@@ -1,0 +1,87 @@
+// Setting dark background
+[data-focus='layout'] {
+    background-color: $background-grey;
+    min-height: 100vh;
+}
+
+// Changing text color for list elt
+.mdl-list__item {
+    color:$custom-white;
+}
+
+// Changing background color of the left menu
+[data-focus="menu-left"] {
+    background-color: $light-black;
+    [data-focus="menu-brand"] {
+        background-color: $dark-black;
+    }
+}
+
+// Changing background color of the header
+[data-focus='header-scrolling'] [data-focus="header-top-row"] {
+    background-color: $light-black;
+}
+
+// Changing color of the menu left icons
+[data-focus="menu-left"] [data-focus="menu-items"]{
+    list-style: none;
+    li a {
+    color :$custom-white !important; // Overriding style color:white
+    }  
+}
+
+// Adaptating title 
+.website-title {
+    margin: 0;
+    color: $vert-zera;//$red-dd;
+    text-align: center;
+}
+
+// No margin bottom to header
+[data-focus='header-scrolling'] {
+    margin-bottom: 0;
+}
+
+// Flex
+.flex {
+    display: flex;
+}
+
+// Popin
+[data-focus='popin'] > [data-focus='popin-overlay'] > [data-focus='popin-window']{
+    background-color: $background-grey;
+}
+
+[data-focus='popin'][data-type='full'][data-size='small'] > div > [data-focus='popin-window'] {
+    display: flex;
+    width: 33.3333vw;
+
+    > div {
+        margin: auto;
+        text-align: center;
+    }
+}
+
+// Space Around
+.space-around {
+    justify-content: space-around;
+}
+
+[data-dd~='center'] {
+    text-align: center;
+}
+
+.summary-elt {
+    margin: auto;
+    h5 {
+        margin: 0;  
+    }
+}
+
+.button-bar {
+    padding: 5px 0;
+    
+    button {
+        margin-right:5px;
+    }
+}

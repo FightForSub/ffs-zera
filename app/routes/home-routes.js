@@ -1,15 +1,27 @@
 import React from 'react';
-import HomeView from '../views/home';
+import StatsView from '../views/stats';
+import LiveView from '../views/live';
+import ParticipantView from '../views/participants';
+import InscriptionView from '../views/inscription';
 
 const routes = [
     {
-        path: 'home',
-        component: HomeView
+        path: 'stats',
+        component: StatsView
     },
     {
-        path: 'admin',
-        component: (() => <div><h2>{'Administration'}</h2></div>)
+        path: 'live',
+        component: LiveView
+    },
+    {
+        path: 'participants',
+        component: ParticipantView
+    },
+    {
+        path: 'inscription',
+        component: () => (<InscriptionView hasLoad={false} isEdit />)
     }
+
 ];
 
 export default routes; 

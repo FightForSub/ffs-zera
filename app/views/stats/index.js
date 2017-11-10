@@ -1,13 +1,13 @@
 import React from 'react';
 
 export default React.createClass({
-    displayName: 'HomeView',
+    displayName: 'StatsView',
 
     /** @inheritDoc */
     render() {
         return (
             <div data-app='homepage'>
-                {'Home'}
+                {'Stats'}
             </div>
         );
     }

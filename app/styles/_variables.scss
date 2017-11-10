@@ -11,7 +11,7 @@ $accent-color:         #FF5252;
 $primary-text-color:   #212121;
 $secondary-text-color: #727272;
 $divider-color:        #B6B6B6;
-
+$vert-zera:#28d244;
 // rouge + light blue
 // $primary-color-dark:   #D32F2F;
 // $primary-color:        #F44336;
@@ -22,6 +22,15 @@ $divider-color:        #B6B6B6;
 // $secondary-text-color: #727272;
 // $divider-color:        #B6B6B6;
 
+
+// Custom Theme
+/*
+grey 3F3F3F
+red E46A6B
+ligth grey 6E6E6E
+white FFFFFF
+black 040404
+*/
 
 $material-card-width: 200px;
 $material-card-height: 300px;
@@ -43,7 +52,13 @@ $concept-card-height:300px;
 $concept-name-font-size:20px;
 $concept-role-font-size:14px;
 
+$custom-white:rgba(255,255,255, 0.87);
+$dark-black: #040404;
+$light-black: #111111;
+$background-grey: #3f3f3f;
+$red-dd: #e90007;
 // Surcharge MDL Variables 
+$color-primary: "40,210,68";
 $image_path: '../../node_modules/material-design-lite/src/images';
 // MDL icons font
 $material-design-icons-font-path: '../../node_modules/material-design-icons-iconfont/dist/fonts/';

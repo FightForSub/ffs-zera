@@ -1,0 +1,42 @@
+@import '../../styles/_variables.scss';
+
+ul[data-dd~="empilable"] {
+    list-style: none;
+    flex-flow: row wrap;
+    display: flex;
+    justify-content: space-around;
+    > li {
+        flex: 0 1 50%;
+        
+   /* @media screen 
+        and (min-device-width: 320px)
+        and (max-device-width: 1024px) {
+            flex: 0 1 calc(100% / 2);
+        }*/ 
+    @media screen 
+        and (max-device-width: 1024px) {
+            flex: 0 1 100%
+        }
+
+    }
+}
+/* Portrait and Landscape */
+
+[data-dd~='list-grey-elt'] {
+    //background-color: lightgrey;
+    border-radius: 20px;
+    cursor:pointer;
+    display:flex;
+    &[data-dd~='selected']{
+        border: 2px solid $red-dd;
+        margin-bottom: -2px;
+        margin-top: -2px;
+    }
+    >span{
+        flex:1;
+    }
+    >i.iconClass{
+        background-position: center;
+        background-size: 110%;
+    }
+}

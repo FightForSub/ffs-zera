@@ -1,0 +1,5 @@
+@import "./fonts/index.scss";
+
+[data-focus="menu-brand"] {
+		@include background-contain("./assets/img/zerator-profile_image.png")
+}

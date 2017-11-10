@@ -1,0 +1,131 @@
+$black-and-white-variant: 0.8;
+
+@mixin background-cover($url) {
+    background-image: url($url);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+}
+
+@mixin shadow($level:2, $transparence1:0.14, $transparence2:0.2, $transparence3:0.12) {
+    //box-shadow: rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.117647) 0px 1px 5px 0px 0 2px 2px 0, rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    //box-shadow: rgb(231, 231, 231) 1px 1px 4px 1px;
+    box-shadow: 0 #{$level}px #{$level}px 0 rgba(0,0,0,$transparence1),0 3px 1px -2px rgba(0,0,0,$transparence2),0 1px 5px 0 rgba(0,0,0,$transparence3);
+}
+
+@mixin back-white-filter {
+    filter: grayscale($black-and-white-variant);
+    -webkit-filter: grayscale($black-and-white-variant);
+    -moz-filter: grayscale($black-and-white-variant);
+    -o-filter: grayscale($black-and-white-variant);
+    -ms-filter: grayscale($black-and-white-variant);
+}
+
+@mixin headings {
+    h1, h2, h3,
+    h4, h5, h6 {
+        @content;
+    }
+}
+
+@mixin picture($defaultImgUrl) {
+    position: relative;
+    width: 100%;
+    & > div {
+        @include background-cover($defaultImgUrl);
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        img {
+            width: 100%;
+            @include back-white-filter;
+        }
+    }
+    & > p {
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+        color: #FFF;
+        font-size: 16px;
+        text-transform: uppercase;
+        background-color: rgba(255, 82, 82, 0.5);
+    }
+}
+
+@mixin card-info() {
+    .card-info {
+        color: $primary-text-color;
+        & > div {
+            margin:10px 0;
+        }
+        .card-info--level1 {
+            font-size: 19px;
+            line-height: 22px;
+        }
+        .card-info--level2 {
+            font-size: 15px;
+        }
+        .card-info--level3 {
+            font-size: 15px;
+            color: $secondary-text-color;
+        }
+    }
+}
+
+/* a supprimer */
+@mixin card($defaultImgUrl, $height, $width) {
+    position: relative;
+    margin: 10px 10px;
+    width: $width;
+    .visuel {
+        height: $height;
+        @include picture('../images/unknown-person.gif');
+        .visuel-infos {
+            position: absolute;
+            bottom: 0;
+            height: 20px;
+            padding: 10px 0;
+            background: rgba(2,168,243, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #FFF;
+            & > div {
+                margin: 0 10px;
+                padding: 0 10px;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+    @include card-info();
+    [data-focus="button-action"] {
+        color:$accent-color;
+    }
+}
+
+@mixin hover-background() {
+    background-color: rgba(0,0,0,0.5);
+}
+
+@mixin hover-actions() {
+    @include hover-background();
+    position: absolute;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom:0;
+    padding: 10px;
+    button {
+        color: #FFF;
+        border: 2px solid #FFF;
+        margin: 0 5px;
+    }
+}
+
+@mixin linear-background() {
+    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+}

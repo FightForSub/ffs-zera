@@ -1,0 +1,49 @@
+///////////////////////////////////////////////////////////
+/// variables
+/// //////////////////////////////////////////////////////
+
+// gris + rouge
+$primary-color-dark:   #455A64;
+$primary-color:        #607D8B;
+$primary-color-light:  #CFD8DC;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #FF5252;
+$primary-text-color:   #212121;
+$secondary-text-color: #727272;
+$divider-color:        #B6B6B6;
+
+// rouge + light blue
+// $primary-color-dark:   #D32F2F;
+// $primary-color:        #F44336;
+// $primary-color-light:  #FFCDD2;
+// $primary-color-text:   #FFFFFF;
+// $accent-color:         #03A9F4;
+// $primary-text-color:   #212121;
+// $secondary-text-color: #727272;
+// $divider-color:        #B6B6B6;
+
+
+$material-card-width: 200px;
+$material-card-height: 300px;
+
+$picture-large-width:210px;
+$picture-small-width:30px;
+
+$poster-ratio:0.752; //0.847602;
+$poster-large-height:250px;
+$poster-large-width:$poster-large-height * $poster-ratio;
+$poster-small-height:30px;
+$poster-small-width:$poster-small-height * $poster-ratio;
+$poster-popin-img-height:80vh;
+$poster-popin-margin-top:(100vh - $poster-popin-img-height) / 2;
+$poster-popin-img-width:$poster-popin-img-height * $poster-ratio;
+
+$concept-card-width:225px;
+$concept-card-height:300px;
+$concept-name-font-size:20px;
+$concept-role-font-size:14px;
+
+// Surcharge MDL Variables 
+$image_path: '../../node_modules/material-design-lite/src/images';
+// MDL icons font
+$material-design-icons-font-path: '../../node_modules/material-design-icons-iconfont/dist/fonts/';

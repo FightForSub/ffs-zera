@@ -1,0 +1,7 @@
+node_modules
+/public
+.idea
+/app/npm-debug.log
+.cache-loader
+.history
+.local-history

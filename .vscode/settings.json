@@ -1,0 +1,24 @@
+// Placez vos paramètres dans ce fichier pour remplacer les paramètres par défaut et les paramètres utilisateur.
+{
+    "http.proxy": "http://172.20.0.9:3128",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\sh.exe",
+    "terminal.integrated.shellArgs.windows": [
+        "--login",
+        "-i"
+    ],
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "eslint.autoFixOnSave": true,
+    "files.autoSave": "onFocusChange",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.cache-loader": true,
+        "**/.history": true
+    },
+    "editor.tabSize": 4
+}

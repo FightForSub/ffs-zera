@@ -1,0 +1,36 @@
+import apiDriverBuilder from '../../utilities/apiDriver';
+import {apiRoot} from './index'
+
+const personRoot = `${apiRoot}persons/`;
+
+export default apiDriverBuilder({
+    create: {
+        url: personRoot,
+        method: 'POST'
+    },
+    load: {
+        url: personRoot + '${id}'
+    },
+    search: {
+        url: personRoot + 'search?listState.skip=${skip}&listState.sortDesc=${sortDesc}&listState.top=${top}',
+        method: 'POST'
+    },
+    update: {
+        url: personRoot + '${id}',
+        method: 'PUT'
+    }
+});
+
+
+/*Ancienne façon*/
+import builder from 'focus-core/util/url/builder';
+import {apiRoot} from './index';
+
+const personRoot = `${apiRoot}persons/`;
+
+export default {
+    create: builder(personRoot, 'POST'),
+    load: builder(personRoot + '${id}', 'GET'),
+    search: builder(personRoot + 'search?listState.skip=${skip}&listState.sortDesc=${sortDesc}&listState.top=${top}', 'POST'),
+    update: builder(personRoot + '${id}', 'PUT')
+};

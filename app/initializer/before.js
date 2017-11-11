@@ -8,6 +8,7 @@ import translationInitializer from './scripts/translation-initializer';
 import numeralInitializer from './scripts/numeral-initializer';
 import routerInitializer from './scripts/router-initializer';
 import momentInitializer from './scripts/moment-initializer';
+import twitchInit from './scripts/twitch-init';
 
 /**
  * Launch initializers that can to be executed before DOM content is loaded (asap)
@@ -21,4 +22,5 @@ export const initialize = () => {
     numeralInitializer();
     momentInitializer();
     routerInitializer();
+    twitchInit();
 };

@@ -85,3 +85,32 @@
         margin-right:5px;
     }
 }
+
+.login-container {
+    display: flex;
+    color:$custom-white;
+    align-items: center;
+
+    i, div {
+        padding-right: 10px;        
+    }
+    i {
+        cursor: pointer;
+    }
+
+    .login-button {
+        background-image: url('https://camo.githubusercontent.com/e3dadf5d1f371961805e6843fc7d9d611a1d14b5/687474703a2f2f7474762d6170692e73332e616d617a6f6e6177732e636f6d2f6173736574732f636f6e6e6563745f6461726b2e706e67');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 32;
+        width: 170px;
+        cursor: pointer;        
+    }
+
+    .logo-login {
+        height: 40px;
+        width: 40px;    
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}

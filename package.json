@@ -36,7 +36,9 @@
                 "SOURCE_MAPS": "false",
                 "MINIMIFY": "true",
                 "DROP_CONSOLE": "true",
-                "NODE_ENV": "production"
+                "NODE_ENV": "production",
+                "ROOT_URL": "https://hartorn.github.io/ffs-zera",
+                "CLIENT_ID": "c8ax3vskq7wdxsxf1t4whhl9c3f9bd"
             }
         },
         "analyze": {
@@ -84,6 +86,8 @@
                 "API_HOST": "localhost",
                 "API_PORT": 8080,
                 "BASE_URL": "/",
+                "ROOT_URL": "http://localhost:3000",
+                "CLIENT_ID": "vi0lol57q48bpz95new6bnus3fj1ix",
                 "NODE_ENV": "development",
                 "HOT_RELOAD": "true",
                 "GENERATE_HTML": "true",

@@ -1,4 +1,6 @@
 // import 'babel-preset-focus/dist/focus-polyfill';
+window.jQuery = {};
+import './twitch';
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader';

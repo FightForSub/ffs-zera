@@ -114,3 +114,35 @@
         background-repeat: no-repeat;
     }
 }
+
+[data-app="inscription-page"] {
+    .logo-login {
+        height: 300px;
+        width: 300px;    
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+
+        .data {
+            flex-grow: 1;
+        }
+    }
+}
+[data-app='events-page']{
+    [data-focus="selection-list"][data-selection="false"] [data-focus="sl-line"] {
+        padding:0;
+    }
+    [data-app='line-event']{
+        display: flex;
+        align-items: center;
+        div {
+            flex-grow: 1
+        }
+        padding:15px;
+    }
+
+}

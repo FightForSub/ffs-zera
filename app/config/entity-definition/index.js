@@ -4,6 +4,16 @@
 */
 
 export default {
+    event: {
+        name: {
+            required: true,
+            domain: 'DO_LABEL_LONG'
+        },
+        date: {
+            required: true,
+            domain: 'DO_DATE'
+        }
+    },
     inscription: {
         champ1: {
             required: true,

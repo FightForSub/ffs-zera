@@ -41,9 +41,19 @@ export default React.createClass({
         }
     },
     /** @inheritDoc */
+    displayPopin(elt) {
+
+    },
     render() {
         const { dataList, modeViewer } = this.state;
-        const toDisplay = dataList.filter(elt => !modeViewer || !elt.isDead)
+        const toDisplayAlive = dataList.filter(elt => !elt.isDead)
+            .map(elt => ({
+                avatar: { iconText: elt.isDead ? 'close' : 'face' },
+                LineContent: this.renderLine(elt),
+                actions: !modeViewer ? [this.buildAction(elt)] : null,
+                onClick: () => { }
+            }));
+        const toDisplayDead = dataList.filter(elt => elt.isDead)
             .map(elt => ({
                 avatar: { iconText: elt.isDead ? 'close' : 'face' },
                 LineContent: this.renderLine(elt),
@@ -57,7 +67,10 @@ export default React.createClass({
                 <div>
                     <Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} />
                 </div>
-                <List data-dd='empilable' dataList={toDisplay} isWrapping />
+                <h4 className='website-title'>{translate('label.alive')}</h4>
+                <List data-dd='empilable' dataList={toDisplayAlive} isWrapping />
+                <h4 className='website-title'>{translate('label.dead')}</h4>
+                <List data-dd='empilable' dataList={toDisplayDead} isWrapping />
             </div>
         );
     }

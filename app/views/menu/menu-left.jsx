@@ -21,9 +21,8 @@ class DemoMenuLeft extends Component {
     _getMenuItems() {
         return [
             { icon: 'live_tv', route: 'live' },
-            { icon: 'add_circle', route: 'inscription', title: 'inscription' },
-            { icon: 'people', route: 'participants' },
-            { icon: 'insert_chart', route: 'stats' }
+            { icon: 'event', route: 'events' },
+            { icon: 'add_circle', route: 'inscription', title: 'inscription' }
         ];
     }
 

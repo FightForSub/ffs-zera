@@ -1,10 +1,12 @@
 import React from 'react';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
+import connectToStore from 'focus-components/behaviours/store/connect';
+import UserStore from 'focus-core/user/built-in-store';
 // import Article from '../../components/article';
 // import Section from '../../components/article';
 
-export default React.createClass({
+const InscriptionView = React.createClass({
     displayName: 'InscriptionView',
     mixins: [formPreset],
     definitionPath: 'inscription',
@@ -12,8 +14,19 @@ export default React.createClass({
     /** @inheritDoc */
     renderContent() {
         return (
-            <div data-app='live-page'>
+            <div data-app='inscription-page'>
                 <h3 className='website-title'>{translate('label.inscription')}</h3>
+                <div className='header'>
+                    <div>
+                        <div className='logo-login' style={{ backgroundImage: `url(${this.props.logo}` }} />
+                    </div>
+                    <div className='data'>
+                        {this.fieldFor('twitchId', { value: this.props._id, isEdit: false })}
+                        {this.fieldFor('pseudo', { value: this.props.display_name, isEdit: false })}
+                        {this.fieldFor('email', { value: this.props.email, isEdit: false })}
+                    </div>
+                </div>
+                <hr />
                 <div>
 
                     {this.fieldFor('champ1')}
@@ -26,3 +39,12 @@ export default React.createClass({
         );
     }
 });
+
+const connect = connectToStore([{
+    store: UserStore,
+    properties: ['profile']
+}], () => {
+    return UserStore.getProfile()
+});
+
+export default connect(InscriptionView);

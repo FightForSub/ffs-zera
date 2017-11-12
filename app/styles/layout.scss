@@ -179,7 +179,7 @@ body {
     }
 }
 
-// Adaptating title 
+// Adaptating title
 .website-title {
     margin: 0;
     color: $vert-zera;//$red-dd;
@@ -223,13 +223,13 @@ body {
 .summary-elt {
     margin: auto;
     h5 {
-        margin: 0;  
+        margin: 0;
     }
 }
 
 .button-bar {
     padding: 5px 0;
-    
+
     button {
         margin-right:5px;
     }
@@ -242,7 +242,7 @@ body {
     justify-content: center;
 
     i, div {
-        padding-right: 10px;        
+        padding-right: 10px;
     }
     i {
         cursor: pointer;
@@ -254,12 +254,12 @@ body {
         background-repeat: no-repeat;
         height: 32;
         width: 170px;
-        cursor: pointer;        
+        cursor: pointer;
     }
 
     .logo-login {
         height: 40px;
-        width: 40px;    
+        width: 40px;
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -268,7 +268,7 @@ body {
 [data-app="inscription-page"] {
     .logo-login {
         height: 300px;
-        width: 300px;    
+        width: 300px;
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -308,4 +308,28 @@ body {
 }
 .mdl-button:hover {
     background-color: initial;
+}
+div[data-focus="field"][data-mode="edit"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div,
+div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div {
+    width: 100%;
+}
+
+div[data-focus="field"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {
+    background: none;
+    font-family: 'Open Sans'
+}
+
+div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {
+    border: none;
+}
+
+
+.detail-user-line-content {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+[data-focus="menu-left"] [data-focus="menu-items"] li span {
+    top:0;
 }

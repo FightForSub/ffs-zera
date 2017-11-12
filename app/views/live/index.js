@@ -1,8 +1,11 @@
 import React from 'react';
 import { translate } from 'focus-core/translation';
-import List from '../../components/list';
 import Button from 'focus-components/components/button';
+import { component as Popin } from 'focus-components/application/popin';
 
+import AddPopin from '../events/add-popin';
+import List from '../../components/list';
+import RecapEvent from './recap-event';
 const initDataList = [
     { id: 1, alias: 'Le streamer 1', nbKill: 0, isDead: false },
     { id: 6, alias: 'Le streamer 1 mort', nbKill: 8, isDead: true },
@@ -21,7 +24,8 @@ export default React.createClass({
     getInitialState() {
         return {
             dataList: initDataList,
-            modeViewer: true
+            modeViewer: true,
+            displayPopin: false
         };
     },
     updateState(id, isDead) {
@@ -39,10 +43,6 @@ export default React.createClass({
             iconText: isDead ? 'restore' : 'delete',
             action: () => this.updateState(id, !isDead)
         }
-    },
-    /** @inheritDoc */
-    displayPopin(elt) {
-
     },
     render() {
         const { dataList, modeViewer } = this.state;
@@ -66,11 +66,18 @@ export default React.createClass({
                 <h3 className='website-title'>{translate('website.live')}</h3>
                 <div>
                     <Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} />
+                    {this.props.params.id && !this.state.modeViewer && <Button label={'label.editEvent'} onClick={() => { this.setState({ displayPopin: true }) }} />}
                 </div>
+                {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
+                <hr />
                 <h4 className='website-title'>{translate('label.alive')}</h4>
                 <List data-dd='empilable' dataList={toDisplayAlive} isWrapping />
                 <h4 className='website-title'>{translate('label.dead')}</h4>
                 <List data-dd='empilable' dataList={toDisplayDead} isWrapping />
+                {this.state.displayPopin && !this.state.modeViewer && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
+                    <AddPopin hasLoad={false} isEdit id={this.props.params.id} onSave={() => this.setState({ displayPopin: false })} />
+                </Popin>}
+
             </div>
         );
     }

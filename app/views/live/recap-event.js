@@ -20,41 +20,12 @@ export default React.createClass({
             properties: ['eventDetail']
         }
     ],
-    componentWillMount() {
-        this.action.save = this.save;
-    },
-    save(data) {
-        const { date, eventDetail, reservedToAffiliates, reservedToPartners, ...dataToSave } = data;
-        dataToSave.reserved_to_affiliates = reservedToAffiliates;
-        dataToSave.reserved_to_partners = reservedToPartners;
 
-        if (this.props.forCreation) {
-            eventActions.create(dataToSave, this);
-        } else {
-            eventActions.update(dataToSave, this);
-        }
-
-        // // alert('TODO save \n' + JSON.stringify(data, null, 4));
-        // this.props.onSave();
-    },
-    afterChange(changeInfos) {
-        if (changeInfos && changeInfos.informations && changeInfos.informations.callerId && this._identifier === changeInfos.informations.callerId) {
-            if (changeInfos.status && changeInfos.status.name && changeInfos.status.name === 'saved') {
-                this._displayMessageOnChange(changeInfos);
-                if (this.props.onSave) {
-                    this.props.onSave();
-                } else {
-                    const id = EventStore.getEventDetail().id;
-                    navigate('event/' + id);
-                }
-            }
-        }
-    },
     /** @inheritDoc */
     renderContent() {
         return (
             <div data-app='live-page'>
-                <h3 className='website-title'>{translate('label.createEvent')}</h3>
+                <h4 className='website-title'>{translate('label.recapEvent')}</h4>
                 <div>
                     {this.fieldFor('name')}
                     {this.fieldFor('description')}
@@ -64,7 +35,6 @@ export default React.createClass({
                     {this.fieldFor('current', { value: this.state.current == null ? null : '' + this.state.current, onChange: (value) => this.setState({ current: (value === 'true' ? true : value === 'false' ? false : null) }) })}
 
                     {/* {this.fieldFor('date')} */}
-                    {this.buttonSave()}
                 </div>
             </div>
         );

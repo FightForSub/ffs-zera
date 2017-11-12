@@ -144,5 +144,14 @@
         }
         padding:15px;
     }
+}
+div[data-focus="field"][data-mode="edit"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div,
+div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div {
+    width: 100%;
+}
 
+div[data-focus="field"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {
+    background: none;
+    border: none;
+    font-family: 'Open Sans'
 }

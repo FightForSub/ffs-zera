@@ -9,6 +9,26 @@ export default {
             required: true,
             domain: 'DO_LABEL_LONG'
         },
+        description: {
+            required: true,
+            domain: 'DO_DESCRIPTION'
+        },
+        reservedToAffiliates: {
+            required: true,
+            domain: 'DO_YES_NO'
+        },
+        reservedToPartners: {
+            required: true,
+            domain: 'DO_YES_NO'
+        },
+        current: {
+            required: true,
+            domain: 'DO_YES_NO'
+        },
+        status: {
+            required: true,
+            domain: 'DO_STATUS_LIST'
+        },
         date: {
             required: true,
             domain: 'DO_DATE'

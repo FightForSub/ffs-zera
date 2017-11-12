@@ -15,6 +15,8 @@ import DO_RUNTIME from './do-runtime';
 import DO_URL from './do-url';
 import DO_YEAR from './do-year';
 import DO_YES_NO from './do-yes-no';
+import DO_STATUS_LIST from './do-status-list';
+import DO_DESCRIPTION from './do-description';
 
 export default {
     DO_CODE,
@@ -33,5 +35,7 @@ export default {
     DO_RUNTIME,
     DO_URL,
     DO_YEAR,
-    DO_YES_NO
+    DO_YES_NO,
+    DO_STATUS_LIST,
+    DO_DESCRIPTION
 };

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Button from 'focus-components/components/button';
+// import Button from 'focus-components/components/button';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
 import twitchFetch from '../utilities/twitch-fetch';
 import { dispatchData } from 'focus-core/dispatcher';
-
+import authService from '../services/authent';
 
 @connectToStore([{
     store: UserStore,
@@ -38,6 +38,7 @@ class LoginButton extends Component {
     componentWillMount() {
         if (this.props.profile && this.props.profile.token) {
             this.loadProfil(this.props.profile);
+            authService.login(this.props.profile.token);
         }
     }
 
@@ -50,6 +51,9 @@ class LoginButton extends Component {
     componentWillReceiveProps({ profile }) {
         if (profile && profile.token && (!this.props.profile || !this.props.profile.token)) {
             this.loadProfil(profile);
+            authService.login(profile.token)
+                .then(res => console.log('AUTH OK', res))
+                .catch(error => console.warn(error));
         }
     }
 

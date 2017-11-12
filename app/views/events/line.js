@@ -6,13 +6,19 @@ export default React.createClass({
     mixins: [lineMixin],
     definitionPath: 'event',
     /** @inheritDoc */
-    renderLineContent() {
+    renderLineContent({ status, reservedToAffiliates, reservedToPartners, current }) {
         return (
             <div data-app='line-event'>
-                <i className='material-icons'>{'event_available'}</i>
-                <div>{this.fieldFor('name')}</div>
-                <div>{this.fieldFor('date')}</div>
+                <i className='material-icons'>{status === 'OPEN' ? 'event_available' : status === 'STARTED' ? 'event_seat' : 'event_busy'}</i>
+                {this.fieldFor('name')}
+                {this.fieldFor('description')}
+                {this.fieldFor('reservedToAffiliates', { value: '' + reservedToAffiliates })}
+                {this.fieldFor('reservedToPartners', { value: '' + reservedToPartners })}
+                {this.fieldFor('current', { value: '' + current })}
+                {this.fieldFor('status')}
             </div>
         );
     }
 });
+//OPEN, CLOSED, STARTED, ENDED
+// {"id":3,"name":"TestName","description":"TestDesc","reservedToAffiliates":false,"reservedToPartners":false,"status":"OPEN","current":false}

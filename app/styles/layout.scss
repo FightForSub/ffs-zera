@@ -1,18 +1,48 @@
+body {
+    color: #cecece;
+}
+
+.fa-ul {
+    color: #000000;
+}
+
+[data-focus="menu-left"] [data-focus="menu-items"] li span {
+	color: #fff;
+	position: initial;
+	top: initial;
+	text-align: initial;
+	z-index: 10;
+}
+
+[data-focus="selection-list"] [data-focus="sl-line"] {
+	border-bottom: 1px solid #333333;
+	&:first-child {
+		border-top: 1px solid #333333;
+	}
+}
+
 // Changing text color for list elt
 .mdl-list__item {
     color:$custom-white;
 }
 
+[data-focus="menu-left"] [data-focus="menu-items"] li:hover {
+  &::before {
+    width: 100%;
+  }
+  &::after {
+    left: 2;
+    opacity: 1;
+  }
+}
 
-
-
-[data-focus="menu-left"] [data-focus="menu-items"] {
-    list-style: none;
-    padding-left: 35px;
+[data-focus="menu-left"] [data-focus="menu-items"] li span {
+	font-size: 15px;
+    margin-left: 10px;
 }
 
 [data-focus="menu-left"] [data-focus="menu-items"] li {
-    width: 100%;
+	width: 100%;
     margin: auto;
     position: relative;
     height: 35px;
@@ -22,9 +52,7 @@
     text-align: left;
     overflow: hidden;
     text-align: initial;
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li::before {
+  	&::before {
     display: block;
     content: '';
     position: absolute;
@@ -32,29 +60,26 @@
     top: 0;
     bottom: 0;
     max-width: 95.5%;
-    width: 100%;
-    background: #28d244;
-    z-index: 0;
+    width: 0%;
+    background: $vert-zera;
+    z-index: -1;
     transform: skew(-16deg);
     transition: all ease .25s;
-}
-[data-focus="menu-left"] [data-focus="menu-items"] li::after {
+	}
+    &::after {
     display: block;
     content: '';
     position: absolute;
-    left: 0px;
+    left: 10px;
     top: 0;
     bottom: 0;
     width: 4px;
-    background: #28d244;
+    background: #2DBEE8;
     transform: translate3d(10px, 0, 0) skew(-16deg);
-    opacity: 1;
+    opacity: 0;
     transition: all ease .25s;
+  }
 }
-
-
-
-
 
 [data-focus='header-top-row'] > div {
     display: none;
@@ -90,8 +115,6 @@
     min-height: 100vh;
 }
 
-
-
 // Changing background color of the left menu
 [data-focus="menu-left"] {
     position: fixed;
@@ -103,7 +126,7 @@
     background: #191919 url(https://zerator.com/wp-content/themes/Zerator/assets/img/nav-background.png) no-repeat bottom left;
     box-shadow: inset -35px 0 35px rgba(0, 0, 0, 0.15);
     [data-focus="menu-brand"] {
-        background-size: 90px !important;
+        background-size: 120px !important;
         background-color: transparent;
         height: 120px;
         padding-top: 30px;
@@ -127,7 +150,7 @@
 
 // Changing background color of the header
 [data-focus='header-scrolling'] [data-focus="header-top-row"] {
-    background-image: url(assets/img/header_pubg.png);
+    background-image: url(assets/img/header_pubg2.png);
     background-repeat: no-repeat;
     background-position: top center;
     background-size: 100%;
@@ -153,15 +176,8 @@
     li a {
         color :$custom-white !important; // Overriding style
         padding-left: 35px;
-    }  
+    }
 }
-
-
-
-
-
-
-
 
 // Adaptating title 
 .website-title {
@@ -223,6 +239,7 @@
     display: flex;
     color:$custom-white;
     align-items: center;
+    justify-content: center;
 
     i, div {
         padding-right: 10px;        
@@ -265,6 +282,11 @@
         }
     }
 }
+
+[data-focus="selection-list"] [data-focus="sl-line"] {
+	background-color: #212121;
+}
+
 [data-app='events-page']{
     [data-focus="selection-list"][data-selection="false"] [data-focus="sl-line"] {
         padding:0;
@@ -278,30 +300,12 @@
         padding:15px;
     }
     [data-selection="false"] [data-focus="sl-line"]:hover {
-        background-color: #f7f7f7;
+        background-color: #232323;
     }
 }
-div[data-focus="field"][data-mode="edit"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div,
-div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div {
-    width: 100%;
+[data-focus='page-content'] .mdl-button:hover {
+    background-color: darken($vert-zera, 5%);
 }
-
-div[data-focus="field"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {
-    background: none;
-    font-family: 'Open Sans'
-}
-
-div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {
-    border: none;
-}
-
-
-.detail-user-line-content {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 10px;
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li span {
-    top:0;
+.mdl-button:hover {
+    background-color: initial;
 }

@@ -1,34 +1,167 @@
+// Changing text color for list elt
+.mdl-list__item {
+    color:$custom-white;
+}
+
+
+
+
+[data-focus="menu-left"] [data-focus="menu-items"] {
+    list-style: none;
+    padding-left: 35px;
+}
+
+[data-focus="menu-left"] [data-focus="menu-items"] li {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    height: 35px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    color: white;
+    text-align: left;
+    overflow: hidden;
+    text-align: initial;
+}
+
+[data-focus="menu-left"] [data-focus="menu-items"] li::before {
+    display: block;
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 0;
+    bottom: 0;
+    max-width: 95.5%;
+    width: 100%;
+    background: #28d244;
+    z-index: 0;
+    transform: skew(-16deg);
+    transition: all ease .25s;
+}
+[data-focus="menu-left"] [data-focus="menu-items"] li::after {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #28d244;
+    transform: translate3d(10px, 0, 0) skew(-16deg);
+    opacity: 1;
+    transition: all ease .25s;
+}
+
+
+
+
+
+[data-focus='header-top-row'] > div {
+    display: none;
+}
+
+[data-focus='header-scrolling'][data-deployed="false"] [data-focus="header-top-row"] {
+    box-shadow: none;
+    position: relative;
+}
+
+[data-focus='header-scrolling'] [data-focus="header-top-row"] {
+    background-color: transparent;
+}
+
+[data-focus='layout'][data-menu='left'] header, [data-focus='layout'][data-menu='left'] footer {
+    margin-left: 250px;
+    padding-left: 0px;
+}
+
+[data-focus='layout'][data-menu='left'] [data-focus='page-content'] {
+    padding-left: 250px;
+}
+
+[data-focus='layout'] [data-focus='page-content'] {
+    width: 1160px;
+    margin: auto;
+    padding: 0px;
+}
+
 // Setting dark background
 [data-focus='layout'] {
     background-color: $background-grey;
     min-height: 100vh;
 }
 
-// Changing text color for list elt
-.mdl-list__item {
-    color:$custom-white;
-}
+
 
 // Changing background color of the left menu
 [data-focus="menu-left"] {
-    background-color: $light-black;
+    position: fixed;
+    z-index: 2000;
+    width: 250px;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    background: #191919 url(https://zerator.com/wp-content/themes/Zerator/assets/img/nav-background.png) no-repeat bottom left;
+    box-shadow: inset -35px 0 35px rgba(0, 0, 0, 0.15);
     [data-focus="menu-brand"] {
-        background-color: $dark-black;
+        background-size: 90px !important;
+        background-color: transparent;
+        height: 120px;
+        padding-top: 30px;
+        margin-bottom: 30px;
+        background-position: 50% 50% !important;
     }
+}
+
+.live-line-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 16px;
+}
+
+[data-focus='page-content'] button {
+    background-color: $vert-zera;
+    border-bottom: 3px solid darken($vert-zera, 10%);
+    transition: all 0.3s;
 }
 
 // Changing background color of the header
 [data-focus='header-scrolling'] [data-focus="header-top-row"] {
-    background-color: $light-black;
+    background-image: url(assets/img/header_pubg.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+    height: 240px;
+    position: relative !important;
 }
 
 // Changing color of the menu left icons
 [data-focus="menu-left"] [data-focus="menu-items"]{
     list-style: none;
+    li {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    height: 35px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    color: white;
+    text-align: left;
+    overflow: hidden;
+    text-align: initial;
+    }
     li a {
-    color :$custom-white !important; // Overriding style color:white
-    }  
+        color :$custom-white !important; // Overriding style
+        padding-left: 35px;
+    }
 }
+
+
+
+
+
+
+
 
 // Adaptating title 
 .website-title {
@@ -144,14 +277,7 @@
         }
         padding:15px;
     }
-}
-div[data-focus="field"][data-mode="edit"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div,
-div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div {
-    width: 100%;
-}
-
-div[data-focus="field"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {
-    background: none;
-    border: none;
-    font-family: 'Open Sans'
+    [data-selection="false"] [data-focus="sl-line"]:hover {
+        background-color: #f7f7f7;
+    }
 }

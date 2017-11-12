@@ -20,7 +20,13 @@ export default React.createClass({
             properties: ['eventDetail']
         }
     ],
-
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.description !== this.state.description && this.refs['event.description']) {
+            if (this.refs['event.description'].refs && this.refs['event.description'].refs.display && this.refs['event.description'].refs.display.forceChange) {
+                this.refs['event.description'].refs.display.forceChange(nextState.description, 'markdown');
+            }
+        }
+    },
     /** @inheritDoc */
     renderContent() {
         return (

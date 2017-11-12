@@ -37,15 +37,21 @@ class LoginButton extends Component {
 
     componentWillMount() {
         if (this.props.profile && this.props.profile.token) {
-            this.loadProfil(this.props.profile);
-            authService.login(this.props.profile.token);
+            this.loadProfil(this.props.profile)
+                .then(data => {
+                    return authService.login(this.props.profile.token);
+                }).then(({ access_token }) => {
+                    dispatchData('profile', { ...UserStore.getProfile(), apiToken: access_token });
+                })
+                .catch(error => console.warn('LOGIN ERROR', error));
         }
     }
 
     loadProfil(profile) {
-        twitchFetch({ url: 'https://api.twitch.tv/kraken/user', method: 'GET' }).then(data => {
-            dispatchData('profile', { ...data, scope: profile.scope, token: profile.token });
-        }).catch(error => console.error(error));
+        return twitchFetch({ url: 'https://api.twitch.tv/kraken/user', method: 'GET' })
+            .then(data => {
+                dispatchData('profile', { ...data, scope: profile.scope, token: profile.token });
+            });
     }
 
     componentWillReceiveProps({ profile }) {

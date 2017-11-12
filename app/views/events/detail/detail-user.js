@@ -44,9 +44,11 @@ export default React.createClass({
             if (changeInfos.status && changeInfos.status.name && changeInfos.status.name === 'saved') {
                 this._displayMessageOnChange(changeInfos);
                 if (this.props.onSave) {
+                    eventActions.listUsers(this.props.id);
                     this.props.onSave();
                 } else {
                     const id = EventStore.getEventDetail().id;
+                    eventActions.listUsers(this.props.id);
                     navigate('event/' + id);
                 }
             }
@@ -58,7 +60,7 @@ export default React.createClass({
             <div data-app='live-page'>
                 <h3 className='website-title'>{translate(!this.props.forCreation ? 'label.updateUser' : 'label.createUser')}</h3>
                 <div>
-                    {this.fieldFor('twitchId', { isEdit: this.props.forCreation })}
+                    {this.fieldFor('twitchId', { isEdit: this.props.forCreation || false })}
                     {!this.props.forCreation && this.fieldFor('username', { isEdit: false })}
                     {this.fieldFor('status')}
                     {!this.props.forCreation && this.fieldFor('followers', { isEdit: false })}

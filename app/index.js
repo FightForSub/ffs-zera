@@ -9,9 +9,17 @@ import { initialize as appConfigInitialize } from './initializer/scripts/app-con
 import { initialize as userInitialize } from './initializer/scripts/user-initializer';
 import { initialize as beforeInit } from './initializer/before';
 import { initialize as afterInit } from './initializer/after';
-
+import { registerPreFetchTransform } from 'focus-core/network/api-driver';
 import Application from './application';
+import UserStore from 'focus-core/user/built-in-store';
 
+
+registerPreFetchTransform(({ urlData, data, options }) => {
+    options = options || {};
+    options.headers = options.headers || {};
+    options.headers.Authorization = (UserStore.getProfile() || {}).apiToken;
+    return { urlData, data, options };
+});
 // Flag to know if DOM was loaded
 document.addEventListener('DOMContentLoaded', () => { window._hasFiredDOMContentLoaded = true; });
 

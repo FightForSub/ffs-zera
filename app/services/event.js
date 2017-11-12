@@ -14,24 +14,26 @@ export default {
         return eventApiDriver.search(null, null, { queryObj });
     },
     createEvent(data) {
-        return eventApiDriver.create(null, data);
+        const { id, current, ...toSave } = data;
+        return eventApiDriver.create(null, toSave);
     },
     updateEvent(data) {
-        return eventApiDriver.update({ id: data.id }, data);
+        const { id, ...toSave } = data;
+        return eventApiDriver.update({ id: data.id }, toSave);
     },
     listUsers(id) {
         return eventApiDriver.listUsers({ id });
     },
     addUser(data) {
-        const { id, idUser, ...toSave } = data;
-        return eventApiDriver.addUser({ id }, toSave);
+        const { id, idUser, status, twitchId } = data;
+        return eventApiDriver.addUser({ id }, { twitch_id: +twitchId, status });
     },
     getUser({ id, idUser }) {
         return eventApiDriver.getUser({ id, idUser });
     },
     updateUser(data) {
-        const { id, idUser, ...toSave } = data;
-        return eventApiDriver.updateUser({ id, idUser }, toSave);
+        const { id, idUser, status, ...toSave } = data;
+        return eventApiDriver.updateUser({ id, idUser }, { status });
     },
     deleteUser(data) {
         const { id, idUser } = data;

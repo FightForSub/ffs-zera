@@ -48,5 +48,8 @@ export default {
     },
     button: {
         save: 'Sauvegarder'
+    },
+    detail: {
+        saved: 'Les modifications ont bien été enregistrées'
     }
 };

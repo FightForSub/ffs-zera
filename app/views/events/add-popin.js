@@ -42,6 +42,7 @@ export default React.createClass({
             if (changeInfos.status && changeInfos.status.name && changeInfos.status.name === 'saved') {
                 this._displayMessageOnChange(changeInfos);
                 if (this.props.onSave) {
+                    eventActions.load(this.props.id)
                     this.props.onSave();
                 } else {
                     const id = EventStore.getEventDetail().id;
@@ -61,7 +62,7 @@ export default React.createClass({
                     {this.fieldFor('status')}
                     {this.fieldFor('reservedToAffiliates', { value: this.state.reservedToAffiliates == null ? null : '' + this.state.reservedToAffiliates, onChange: (value) => this.setState({ reservedToAffiliates: (value === 'true' ? true : value === 'false' ? false : null) }) })}
                     {this.fieldFor('reservedToPartners', { value: this.state.reservedToPartners == null ? null : '' + this.state.reservedToPartners, onChange: (value) => this.setState({ reservedToPartners: (value === 'true' ? true : value === 'false' ? false : null) }) })}
-                    {this.fieldFor('current', { value: this.state.current == null ? null : '' + this.state.current, onChange: (value) => this.setState({ current: (value === 'true' ? true : value === 'false' ? false : null) }) })}
+                    {!this.props.forCreation && this.fieldFor('current', { value: this.state.current == null ? null : '' + this.state.current, onChange: (value) => this.setState({ current: (value === 'true' ? true : value === 'false' ? false : null) }) })}
 
                     {/* {this.fieldFor('date')} */}
                     {this.buttonSave()}

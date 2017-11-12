@@ -79,7 +79,7 @@ class DetailEventView extends Component {
                 </div>
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />
-                <h4 className='website-title'>{translate('label.users   ')}</h4>
+                <h4 className='website-title'>{translate('label.users')}</h4>
                 {!this.state.modeViewer && <div>
                     <Button label={'label.addUser'} onClick={() => { dispatchData('eventUserDetail', null); this.setState({ createUser: true }) }} />
                 </div>}

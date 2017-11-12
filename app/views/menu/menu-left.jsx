@@ -4,7 +4,7 @@ import Menu from 'focus-components/components/menu';
 import { component as Modal } from 'focus-components/application/popin';
 import Link from '../../components/router/link';
 import LoginButton from '../../components/login';
-
+import { translate } from 'focus-core/translation';
 //custom web component
 // import QuickSearchView from '../search/quick';
 
@@ -22,9 +22,9 @@ class DemoMenuLeft extends Component {
 
     _getMenuItems() {
         return [
-            { icon: 'live_tv', route: 'live', name: 'label.livePage' },
-            { icon: 'event', route: 'events', name: 'label.eventListPage' },
-            { icon: 'add_circle', route: 'inscription', name: 'label.inscriptionPage' }
+            { icon: 'live_tv', route: 'live', name: translate('label.livePage') },
+            { icon: 'event', route: 'events', name: translate('label.eventListPage') },
+            { icon: 'add_circle', route: 'inscription', name: translate('label.inscriptionPage') }
         ];
     }
 

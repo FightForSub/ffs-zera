@@ -4,6 +4,28 @@
 */
 
 export default {
+    user: {
+        status: {
+            required: true,
+            domain: 'DO_STATUS_USER_LIST'
+        },
+        twitchId: {
+            required: true,
+            domain: 'DO_NO_DOMAIN'
+        },
+        username: {
+            required: true,
+            domain: 'DO_NO_DOMAIN'
+        },
+        followers: {
+            required: true,
+            domain: 'DO_NO_DOMAIN'
+        },
+        views: {
+            required: true,
+            domain: 'DO_NO_DOMAIN'
+        }
+    },
     event: {
         name: {
             required: true,

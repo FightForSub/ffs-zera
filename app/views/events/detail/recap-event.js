@@ -1,14 +1,14 @@
 import React from 'react';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
-import EventStore from '../../stores/event';
-import eventActions from '../../action/event';
+import EventStore from '../../../stores/event';
+import eventActions from '../../../action/event';
 // import Article from '../../components/article';
 // import Section from '../../components/article';
-import { navigate } from '../../utilities/router';
+import { navigate } from '../../../utilities/router';
 
 export default React.createClass({
-    displayName: 'EventCreationView',
+    displayName: 'EventDetailView',
     mixins: [formPreset],
     definitionPath: 'event',
     action: {
@@ -20,41 +20,12 @@ export default React.createClass({
             properties: ['eventDetail']
         }
     ],
-    componentWillMount() {
-        this.action.save = this.save;
-    },
-    save() {
-        const { date, reference, isEdit, isLoading, eventDetail, reservedToAffiliates, reservedToPartners, ...dataToSave } = this.state;
-        dataToSave.reserved_to_affiliates = reservedToAffiliates;
-        dataToSave.reserved_to_partners = reservedToPartners;
 
-        if (this.props.forCreation) {
-            eventActions.create(dataToSave, this);
-        } else {
-            eventActions.update(dataToSave, this);
-        }
-
-        // // alert('TODO save \n' + JSON.stringify(data, null, 4));
-        // this.props.onSave();
-    },
-    afterChange(changeInfos) {
-        if (changeInfos && changeInfos.informations && changeInfos.informations.callerId && this._identifier === changeInfos.informations.callerId) {
-            if (changeInfos.status && changeInfos.status.name && changeInfos.status.name === 'saved') {
-                this._displayMessageOnChange(changeInfos);
-                if (this.props.onSave) {
-                    this.props.onSave();
-                } else {
-                    const id = EventStore.getEventDetail().id;
-                    navigate('event/' + id);
-                }
-            }
-        }
-    },
     /** @inheritDoc */
     renderContent() {
         return (
             <div data-app='live-page'>
-                <h3 className='website-title'>{translate('label.createEvent')}</h3>
+                <h4 className='website-title'>{translate('label.recapEvent')}</h4>
                 <div>
                     {this.fieldFor('name')}
                     {this.fieldFor('description')}
@@ -64,7 +35,6 @@ export default React.createClass({
                     {this.fieldFor('current', { value: this.state.current == null ? null : '' + this.state.current, onChange: (value) => this.setState({ current: (value === 'true' ? true : value === 'false' ? false : null) }) })}
 
                     {/* {this.fieldFor('date')} */}
-                    {this.buttonSave()}
                 </div>
             </div>
         );

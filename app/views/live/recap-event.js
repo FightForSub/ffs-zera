@@ -8,7 +8,7 @@ import eventActions from '../../action/event';
 import { navigate } from '../../utilities/router';
 
 export default React.createClass({
-    displayName: 'EventCreationView',
+    displayName: 'EventDetailView',
     mixins: [formPreset],
     definitionPath: 'event',
     action: {

@@ -1,37 +1,39 @@
 import React from 'react';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
-import EventStore from '../../stores/event';
-import eventActions from '../../action/event';
+import EventStore from '../../../stores/event';
+import eventActions from '../../../action/event';
 // import Article from '../../components/article';
 // import Section from '../../components/article';
-import { navigate } from '../../utilities/router';
+import { navigate } from '../../../utilities/router';
 
 export default React.createClass({
-    displayName: 'EventCreationView',
+    displayName: 'UserCreationView',
     mixins: [formPreset],
-    definitionPath: 'event',
-    action: {
-        load: eventActions.load
-    },
+    definitionPath: 'user',
+    action: {},
     stores: [
         {
             store: EventStore,
-            properties: ['eventDetail']
+            properties: ['eventUserDetail']
         }
     ],
     componentWillMount() {
+        if (!this.props.forCreation) {
+            eventActions.getUser({ id: this.props.id, idUser: this.props.idUser });
+        }
         this.action.save = this.save;
     },
     save() {
-        const { date, reference, isEdit, isLoading, eventDetail, reservedToAffiliates, reservedToPartners, ...dataToSave } = this.state;
-        dataToSave.reserved_to_affiliates = reservedToAffiliates;
-        dataToSave.reserved_to_partners = reservedToPartners;
+        const { reference, isEdit, isLoading, eventUserDetail, ...dataToSave } = this.state;
+        const { id, idUser } = this.props;
+        dataToSave.id = id;
+        dataToSave.idUser = idUser;
 
         if (this.props.forCreation) {
-            eventActions.create(dataToSave, this);
+            eventActions.addUser(dataToSave, this);
         } else {
-            eventActions.update(dataToSave, this);
+            eventActions.updateUser(dataToSave, this);
         }
 
         // // alert('TODO save \n' + JSON.stringify(data, null, 4));
@@ -54,15 +56,13 @@ export default React.createClass({
     renderContent() {
         return (
             <div data-app='live-page'>
-                <h3 className='website-title'>{translate('label.createEvent')}</h3>
+                <h3 className='website-title'>{translate(!this.props.forCreation ? 'label.updateUser' : 'label.createUser')}</h3>
                 <div>
-                    {this.fieldFor('name')}
-                    {this.fieldFor('description')}
+                    {this.fieldFor('twitchId', { isEdit: this.props.forCreation })}
+                    {!this.props.forCreation && this.fieldFor('username', { isEdit: false })}
                     {this.fieldFor('status')}
-                    {this.fieldFor('reservedToAffiliates', { value: this.state.reservedToAffiliates == null ? null : '' + this.state.reservedToAffiliates, onChange: (value) => this.setState({ reservedToAffiliates: (value === 'true' ? true : value === 'false' ? false : null) }) })}
-                    {this.fieldFor('reservedToPartners', { value: this.state.reservedToPartners == null ? null : '' + this.state.reservedToPartners, onChange: (value) => this.setState({ reservedToPartners: (value === 'true' ? true : value === 'false' ? false : null) }) })}
-                    {this.fieldFor('current', { value: this.state.current == null ? null : '' + this.state.current, onChange: (value) => this.setState({ current: (value === 'true' ? true : value === 'false' ? false : null) }) })}
-
+                    {!this.props.forCreation && this.fieldFor('followers', { isEdit: false })}
+                    {!this.props.forCreation && this.fieldFor('views', { isEdit: false })}
                     {/* {this.fieldFor('date')} */}
                     {this.buttonSave()}
                 </div>
@@ -70,4 +70,31 @@ export default React.createClass({
         );
     }
 });
+/*
+
+followers
+:
+729
+grade
+:
+4000
+logo
+:
+"https://static-cdn.jtvnw.net/jtv_user_pictures/alexmogtv-profile_image-b9e9d6b7f81b7992-300x300.jpeg"
+status
+:
+"VALIDATED"
+twitchId
+:
+74010347
+url
+:
+"https://www.twitch.tv/alexmogtv"
+username
+:
+"AlexMogTV"
+views
+:
+4442
+*/
 // {"id":3,"name":"TestName","description":"TestDesc","reservedToAffiliates":false,"reservedToPartners":false,"status":"OPEN","current":false}

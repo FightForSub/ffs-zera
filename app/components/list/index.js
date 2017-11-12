@@ -33,12 +33,15 @@ const List = (props) => {
             data-dd={(props.isWrapping ? 'empilable' : '') + ' ' + (props.nbItems ? 'nb-items-' + props.nbItems : '')}
         >
             {
-                props.dataList.map(({ avatar, name, LineContent, actions, onClick, selected }, index) => {
+                props.dataList.map(({ avatar, logoUrl, name, LineContent, actions, onClick, selected }, index) => {
                     return (
                         <li key={index} className='mdl-list__item'>
                             <span className='mdl-list__item-primary-content mdl-button--raised' data-dd={`list-grey-elt ${selected ? 'selected' : ''}`} onClick={() => onClick()}>
                                 {avatar &&
                                     <i className={`${avatar.className || 'material-icons'} mdl-list__item-avatar`}>{avatar.iconText}</i>
+                                }
+                                {logoUrl &&
+                                    <i className={'mdl-list__item-avatar'} style={{ backgroundImage: `url(${logoUrl}`, backgroundSize: 'contain' }} />
                                 }
                                 <span>
                                     {LineContent}

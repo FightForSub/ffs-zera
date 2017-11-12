@@ -18,6 +18,23 @@ export default {
     },
     updateEvent(data) {
         return eventApiDriver.update({ id: data.id }, data);
+    },
+    listUsers(id) {
+        return eventApiDriver.listUsers({ id });
+    },
+    addUser(data) {
+        const { id, idUser, ...toSave } = data;
+        return eventApiDriver.addUser({ id }, toSave);
+    },
+    getUser({ id, idUser }) {
+        return eventApiDriver.getUser({ id, idUser });
+    },
+    updateUser(data) {
+        const { id, idUser, ...toSave } = data;
+        return eventApiDriver.updateUser({ id, idUser }, toSave);
+    },
+    deleteUser(data) {
+        const { id, idUser } = data;
+        return eventApiDriver.updateUser({ id, idUser });
     }
 }
-

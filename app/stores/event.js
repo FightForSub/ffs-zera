@@ -7,7 +7,9 @@ import { CoreStore } from 'focus-core/store';
 const eventStore = new CoreStore({
     definition: {
         eventList: 'eventList',
-        eventDetail: 'eventDetail'
+        eventDetail: 'eventDetail',
+        eventUserList: 'eventUserList',
+        eventUserDetail: 'eventUserDetail'
     }
 });
 

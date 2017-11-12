@@ -25,6 +25,36 @@ export default {
         node: 'eventList',
         service: eventServices.loadEventList,
         shouldDumpStoreOnActionCall: false,
+        status: 'loaded'
+    }),
+    listUsers: actionBuilder({
+        node: 'eventUserList',
+        service: eventServices.listUsers,
+        shouldDumpStoreOnActionCall: false,
+        status: 'loaded'
+    }),
+    addUser: actionBuilder({
+        node: 'eventUserDetail',
+        service: eventServices.addUser,
+        shouldDumpStoreOnActionCall: false,
+        status: 'saved'
+    }),
+    getUser: actionBuilder({
+        node: 'eventUserDetail',
+        service: eventServices.getUser,
+        shouldDumpStoreOnActionCall: false,
+        status: 'loaded'
+    }),
+    updateUser: actionBuilder({
+        node: 'eventUserDetail',
+        service: eventServices.updateUser,
+        shouldDumpStoreOnActionCall: false,
+        status: 'saved'
+    }),
+    deleteUser: actionBuilder({
+        node: 'eventUserDetail',
+        service: eventServices.deleteUser,
+        shouldDumpStoreOnActionCall: false,
         status: 'saved'
     })
 }

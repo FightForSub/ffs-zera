@@ -24,13 +24,13 @@ export default {
     list: actionBuilder({
         node: 'eventList',
         service: eventServices.loadEventList,
-        shouldDumpStoreOnActionCall: false,
+        shouldDumpStoreOnActionCall: true,
         status: 'loaded'
     }),
     listUsers: actionBuilder({
         node: 'eventUserList',
         service: eventServices.listUsers,
-        shouldDumpStoreOnActionCall: false,
+        shouldDumpStoreOnActionCall: true,
         status: 'loaded'
     }),
     addUser: actionBuilder({
@@ -42,7 +42,7 @@ export default {
     getUser: actionBuilder({
         node: 'eventUserDetail',
         service: eventServices.getUser,
-        shouldDumpStoreOnActionCall: false,
+        shouldDumpStoreOnActionCall: true,
         status: 'loaded'
     }),
     updateUser: actionBuilder({

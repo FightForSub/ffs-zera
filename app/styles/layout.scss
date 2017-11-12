@@ -279,6 +279,7 @@
     }
     [data-selection="false"] [data-focus="sl-line"]:hover {
         background-color: #f7f7f7;
+    }
 }
 div[data-focus="field"][data-mode="edit"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div,
 div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div {
@@ -299,4 +300,8 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
+}
+
+[data-focus="menu-left"] [data-focus="menu-items"] li span {
+    top:0;
 }

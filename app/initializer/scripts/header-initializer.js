@@ -14,10 +14,10 @@ export default () => {
             // barContentLeftComponent: { component: (props) => <div>Empty</div> },
             summaryComponent: {
                 component: () => (<h3 className='custom-font website-title'>{translate('website.title')}</h3>)
-            },
-            barContentRightComponent: {
-                component: LoginButton
-            }
+            }//,
+            // barContentRightComponent: {
+            //     component: LoginButton
+            // }
         },
         type: 'update'
     });

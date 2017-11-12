@@ -3,6 +3,8 @@ import { navigate } from 'focus-core/history';
 import Menu from 'focus-components/components/menu';
 import { component as Modal } from 'focus-components/application/popin';
 import Link from '../../components/router/link';
+import LoginButton from '../../components/login';
+
 //custom web component
 // import QuickSearchView from '../search/quick';
 
@@ -20,9 +22,9 @@ class DemoMenuLeft extends Component {
 
     _getMenuItems() {
         return [
-            { icon: 'live_tv', route: 'live' },
-            { icon: 'event', route: 'events' },
-            { icon: 'add_circle', route: 'inscription', title: 'inscription' }
+            { icon: 'live_tv', route: 'live', name: 'label.livePage' },
+            { icon: 'event', route: 'events', name: 'label.eventListPage' },
+            { icon: 'add_circle', route: 'inscription', name: 'label.inscriptionPage' }
         ];
     }
 
@@ -35,7 +37,9 @@ class DemoMenuLeft extends Component {
         // const { isQuickSearchModalOpen } = this.state;
         return (
             <div>
-                <Menu LinkComponent={Link} items={items} handleBrandClick={this._onHomeClick} />
+                <Menu LinkComponent={Link} items={items} handleBrandClick={this._onHomeClick}>
+                    <LoginButton />
+                </Menu>
             </div>
         );
     }

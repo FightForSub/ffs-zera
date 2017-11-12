@@ -1,5 +1,5 @@
 // import 'babel-preset-focus/dist/focus-polyfill';
-window.jQuery = {};
+import './initializer/scripts/translation-initializer';
 import './twitch';
 import React from 'react'
 import { render } from 'react-dom'

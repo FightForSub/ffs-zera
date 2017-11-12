@@ -8,13 +8,14 @@ export default {
         current: 'Évènement en cours'
     },
     user: {
-        twitchId: 'Identifiant twitch',
+        twitchId: 'Identifiant Twitch',
         username: 'Pseudo',
         status: 'Statut',
         followers: 'Followers',
         view: 'Nombre de vues'
     },
     select: {
+        unSelected: '-',
         oui: 'Oui',
         non: 'Non',
         open: 'Ouvert',
@@ -27,7 +28,8 @@ export default {
         refused: 'Refusé'
     },
     website: {
-        detailEvent: 'Détail de l\'évènement'
+        detailEvent: 'Détail de l\'évènement',
+        live: 'Évènement Live'
     },
     label: {
         events: 'Évènements',
@@ -38,7 +40,11 @@ export default {
         eventListPage: 'Évènements',
         inscriptionPage: 'Inscription',
         addUser: 'Ajouter un participant',
-        editEvent: 'Modifier l\'évènement'
+        editEvent: 'Modifier l\'évènement',
+        updateUser: 'Modifier le participant',
+        createUser: 'Ajouter un participant',
+        alive: 'Liste des vivants',
+        dead: 'Liste des morts'
     },
     button: {
         save: 'Sauvegarder'

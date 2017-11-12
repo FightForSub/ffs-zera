@@ -7,10 +7,10 @@ export default {
     // SelectComponent: SelectRadio,
     refContainer: {
         eventStatusUserList: [
-            { code: 'VALIDATED', label: 'select.validated' },
-            { code: 'AWAITING_FOR_EMAIL_VALIDATION', label: 'select.awaitingEmailValidation' },
-            { code: 'AWAITING_FOR_ADMIN_VALIDATION', label: 'select.awaitingAdminValidation' },
-            { code: 'REFUSED', label: 'select.refused' }
+            { code: 'VALIDATED', label: translate('select.validated') },
+            { code: 'AWAITING_FOR_EMAIL_VALIDATION', label: translate('select.awaitingEmailValidation') },
+            { code: 'AWAITING_FOR_ADMIN_VALIDATION', label: translate('select.awaitingAdminValidation') },
+            { code: 'REFUSED', label: translate('select.refused') }
         ]
     },
     listName: 'eventStatusUserList',

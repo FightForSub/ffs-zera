@@ -40,7 +40,7 @@ class EventsView extends Component {
             <div data-app='events-page'>
                 <h3 className='website-title'>{translate('label.events')}</h3>
                 {isAdmin() && <Button label='label.createEvent' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />}
-                <List data={this.props.eventList || []} LineComponent={LineComponent} isSelection={false} onLineClick={data => navigate(`event/${data.id}`)} />
+                <List data={this.props.eventList || []} LineComponent={LineComponent} isSelection={false} onLineClick={data => { dispatchData('eventRoundList', null); dispatchData('eventRoundDetail', null); navigate(`event/${data.id}`) }} />
                 {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
                     <AddPopin hasLoad={false} isEdit forCreation />
                 </Popin>}

@@ -50,7 +50,9 @@ export default {
         updateParticipant: 'Ajouter un score',
         rounds: 'Résultats des rounds',
         addRound: 'Ajouter un round',
-        deleteRound: 'Supprimer le round'
+        deleteRound: 'Supprimer le round',
+        refreshResult: 'Rafraîchir les résultats',
+        updateScore: 'Mettre à jour le score'
     },
     button: {
         save: 'Sauvegarder'

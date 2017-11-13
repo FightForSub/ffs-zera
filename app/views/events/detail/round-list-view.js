@@ -119,6 +119,7 @@ export default connectToStore([{
                 {this.props.noLive && <h4 className='website-title'>{translate('label.rounds')}</h4>}
                 <div className='pad-bottom'>
                     <div><Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} /></div>
+                    <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />
                     {!this.state.modeViewer && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
 
                     <div className='pad-buttons' style={{ display: 'flex' }}>

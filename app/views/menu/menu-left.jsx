@@ -23,8 +23,8 @@ class DemoMenuLeft extends Component {
     _getMenuItems() {
         return [
             { icon: 'live_tv', route: 'live', name: translate('label.livePage') },
-            { icon: 'event', route: 'events', name: translate('label.eventListPage') },
-            { icon: 'add_circle', route: 'inscription', name: translate('label.inscriptionPage') }
+            { icon: 'event', route: 'events', name: translate('label.eventListPage') }
+            // { icon: 'add_circle', route: 'inscription', name: translate('label.inscriptionPage') }
         ];
     }
 

@@ -15,7 +15,7 @@ import UserStore from 'focus-core/user/built-in-store';
 registerPreFetchTransform(({ urlData, data, options }) => {
     options = options || {};
     options.headers = options.headers || {};
-    options.headers.Authorization = (UserStore.getProfile() || {}).apiToken;
+    options.headers.Authorization = options.headers.Authorization || (UserStore.getProfile() || {}).apiToken;
     return { urlData, data, options };
 });
 // Flag to know if DOM was loaded

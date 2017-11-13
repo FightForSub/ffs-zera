@@ -3,6 +3,7 @@ import { translate } from 'focus-core/translation';
 import Button from 'focus-components/components/button';
 import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
+import UserStore from 'focus-core/user/built-in-store';
 
 import AddPopin from '../../events/add-popin';
 import UserPopin from './detail-user';
@@ -16,18 +17,22 @@ import { dispatchData } from 'focus-core/dispatcher';
 
 import RoundListView from './round-list-view';
 import { navigate } from '../../../utilities/router';
+import { isAdmin } from '../../../utilities/check-rights';
 
 
 @connectToStore([{
     store: EventStore,
     properties: ['eventUserList']
+},
+{
+    store: UserStore,
+    properties: ['profile']
 }], () => ({ userList: EventStore.getEventUserList() || [] }))
 class DetailEventView extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dataList: [],
-            modeViewer: true,
             displayPopin: false
         };
     }
@@ -58,15 +63,12 @@ class DetailEventView extends Component {
         }
     }
     render() {
-        const { modeViewer } = this.state;
         const toDisplayAlive = this.props.userList
             .map(elt => ({
                 logoUrl: elt.logo,
-                // avatar: { iconText: elt.isDead ? 'close' : 'face' },
                 LineContent: this.renderLine(elt),
-                // actions: !modeViewer ? [this.buildAction(elt)] : null,
                 onClick: () => {
-                    if (!modeViewer) {
+                    if (isAdmin()) {
                         this.setState({
                             twitchId: elt.twitchId
                         })
@@ -77,27 +79,26 @@ class DetailEventView extends Component {
         return (
             <div data-app='detail-event-page'>
                 <h3 className='website-title'>{translate('website.detailEvent')}</h3>
-                <div>
-                    <Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} />
-                    {this.props.params.id && !this.state.modeViewer && <Button label={'label.editEvent'} onClick={() => { this.setState({ displayPopin: true }) }} />}
+                <div className='pad-buttons'>
+                    {this.props.params.id && isAdmin() && <Button label={'label.editEvent'} onClick={() => { this.setState({ displayPopin: true }) }} />}
                     <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.params.id}/results`) }} />
                 </div>
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />
                 <h4 className='website-title'>{translate('label.users')}</h4>
-                {!this.state.modeViewer && <div>
+                {isAdmin() && <div>
                     <Button label={'label.addUser'} onClick={() => { dispatchData('eventUserDetail', null); this.setState({ createUser: true }) }} />
                 </div>}
                 <List data-dd='empilable' dataList={toDisplayAlive} isWrapping />
                 <hr />
                 <RoundListView noLive hasForm={false} id={this.props.params.id} hasLoad={false} />
-                {this.state.displayPopin && !this.state.modeViewer && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
+                {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
                     <AddPopin hasLoad={false} isEdit id={this.props.params.id} onSave={() => this.setState({ displayPopin: false })} />
                 </Popin>}
-                {this.state.twitchId && !this.state.modeViewer && <Popin open type='from-right' onPopinClose={() => this.setState({ twitchId: null })} >
+                {this.state.twitchId && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ twitchId: null })} >
                     <UserPopin hasLoad={false} isEdit id={this.props.params.id} idUser={this.state.twitchId} onSave={() => this.setState({ twitchId: null })} />
                 </Popin>}
-                {this.state.createUser && !this.state.modeViewer && <Popin open type='from-right' onPopinClose={() => this.setState({ createUser: false })} >
+                {this.state.createUser && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ createUser: false })} >
                     <UserPopin hasLoad={false} isEdit forCreation id={this.props.params.id} onSave={() => this.setState({ createUser: false })} />
                 </Popin>}
             </div>

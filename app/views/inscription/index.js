@@ -21,8 +21,8 @@ const InscriptionView = React.createClass({
                         <div className='logo-login' style={{ backgroundImage: `url(${this.props.logo}` }} />
                     </div>
                     <div className='data'>
-                        {this.fieldFor('twitchId', { value: this.props._id, isEdit: false })}
-                        {this.fieldFor('pseudo', { value: this.props.display_name, isEdit: false })}
+                        {this.fieldFor('twitchId', { value: this.props.id, isEdit: false })}
+                        {this.fieldFor('pseudo', { value: this.props.username, isEdit: false })}
                         {this.fieldFor('email', { value: this.props.email, isEdit: false })}
                     </div>
                 </div>

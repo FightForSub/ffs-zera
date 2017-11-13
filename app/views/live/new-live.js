@@ -22,7 +22,6 @@ export default connectToStore([{
         displayName: 'LiveView',
         getInitialState() {
             return {
-                modeViewer: true,
                 displayPopin: false
             };
         },

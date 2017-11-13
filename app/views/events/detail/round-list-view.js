@@ -10,7 +10,11 @@ import connectToStore from 'focus-components/behaviours/store/connect';
 import SelectInput from 'focus-components/components/input/select';
 import { navigate } from '../../../utilities/router';
 
+import { isModo } from '../../../utilities/check-rights';
+
 import EventStore from '../../../stores/event';
+import UserStore from 'focus-core/user/built-in-store';
+
 // import { dispatchData } from 'focus-core/dispatcher';
 
 import actions from '../../../action/event';
@@ -25,13 +29,17 @@ import actions from '../../../action/event';
 export default connectToStore([{
     store: EventStore,
     properties: ['eventRoundList', 'eventRoundDetail', 'eventUserList']
+},
+{
+    store: UserStore,
+    properties: ['profile']
 }], () => ({ eventRoundList: EventStore.getEventRoundList(), eventRoundDetail: EventStore.getEventRoundDetail(), userList: EventStore.getEventUserList() || [] }))
 (React.createClass({
     displayName: 'RoundListView',
     mixins: [formPreset],
     definitionPath: 'user',
     getInitialState() {
-        return { displayPopin: false, modeViewer: true }
+        return { displayPopin: false }
     },
 
     actions: {},
@@ -66,7 +74,7 @@ export default connectToStore([{
             logoUrl: elt.logo,
             LineContent: <span className='detail-user-line-content'>{elt.username}</span>,
             onClick: () => {
-                if (!this.state.modeViewer) {
+                if (isModo()) {
                     this.setState({
                         displayPopin: true,
                         fixTwitchId: elt.twitchId
@@ -106,7 +114,7 @@ export default connectToStore([{
                 logoUrl: elt.logo,
                 LineContent: this.renderLine(elt),
                 onClick: () => {
-                    if (!this.state.modeViewer) {
+                    if (isModo()) {
                         this.setState({
                             displayPopin: true,
                             fixTwitchId: elt.id
@@ -118,11 +126,11 @@ export default connectToStore([{
             <div data-app='round-list-page'>
                 {this.props.noLive && <h4 className='website-title'>{translate('label.rounds')}</h4>}
                 <div className='pad-bottom'>
-                    <div><Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} /></div>
-                    <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />
-                    <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
-
-                    {!this.state.modeViewer && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
+                    <div className='pad-buttons' >
+                        <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
+                        {this.props.id && this.state.roundId && <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />}
+                    </div>
+                    {isModo() && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
 
                     <div className='pad-buttons' style={{ display: 'flex' }}>
                         <SelectInput
@@ -131,10 +139,10 @@ export default connectToStore([{
                             onChange={this.onChangeRound}
                             hasUndefined={false}
                         />
-                        {!this.state.modeViewer && this.state.roundId && this.state.roundId !== 'ALL' &&
+                        {isModo() && this.state.roundId && this.state.roundId !== 'ALL' &&
                                 <Button label='label.updateParticipant' onClick={() => { this.setState({ displayPopin: true }) }} />
                         }
-                        {!this.state.modeViewer && this.state.roundId && <Button label='label.deleteRound' onClick={this.deleteRound} />}
+                        {isModo() && this.state.roundId && <Button label='label.deleteRound' onClick={this.deleteRound} />}
 
                     </div>
                 </div>
@@ -143,7 +151,7 @@ export default connectToStore([{
                 {!this.props.noLive && <h5 className='website-title'>{translate('label.dead')}</h5>}
 
                 <List data-dd='empilable' dataList={toDisplay} />
-                {this.state.displayPopin && !this.state.modeViewer && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false, twitchId: null, fixTwitchId: null, score: null })} >
+                {this.state.displayPopin && isModo() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false, twitchId: null, fixTwitchId: null, score: null })} >
                     <h4 className='website-title'>{translate('label.updateScore')}</h4>
                     {this.fieldFor('twitchId', { isEdit: !this.state.fixTwitchId, value: this.state.fixTwitchId || this.state.twitchId, values: (this.props.userList || []).map(({ twitchId, username }) => ({ code: twitchId, label: username })) })}
                     {this.fieldFor('score', { isEdit: true })}

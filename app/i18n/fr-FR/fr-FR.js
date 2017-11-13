@@ -13,7 +13,8 @@ export default {
         status: 'Statut',
         followers: 'Followers',
         view: 'Nombre de vues',
-        score: 'Score'
+        score: 'Score',
+        usersearch: 'Recherche par pseudo'
     },
     select: {
         unSelected: '-',

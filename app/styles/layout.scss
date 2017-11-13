@@ -350,3 +350,7 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 .pad-bottom > * {
     margin-bottom: 10px;
 }
+
+.mdl-list__item-primary-content {
+    min-height: 40px;
+}

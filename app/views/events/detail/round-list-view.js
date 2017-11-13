@@ -10,9 +10,11 @@ import connectToStore from 'focus-components/behaviours/store/connect';
 import SelectInput from 'focus-components/components/input/select';
 import { navigate } from '../../../utilities/router';
 
-import { isAdmin, isModo } from '../../../utilities/check-rights';
+import { isModo } from '../../../utilities/check-rights';
 
 import EventStore from '../../../stores/event';
+import UserStore from 'focus-core/user/built-in-store';
+
 // import { dispatchData } from 'focus-core/dispatcher';
 
 import actions from '../../../action/event';
@@ -27,6 +29,10 @@ import actions from '../../../action/event';
 export default connectToStore([{
     store: EventStore,
     properties: ['eventRoundList', 'eventRoundDetail', 'eventUserList']
+},
+{
+    store: UserStore,
+    properties: ['profile']
 }], () => ({ eventRoundList: EventStore.getEventRoundList(), eventRoundDetail: EventStore.getEventRoundDetail(), userList: EventStore.getEventUserList() || [] }))
 (React.createClass({
     displayName: 'RoundListView',
@@ -120,9 +126,10 @@ export default connectToStore([{
             <div data-app='round-list-page'>
                 {this.props.noLive && <h4 className='website-title'>{translate('label.rounds')}</h4>}
                 <div className='pad-bottom'>
-                    <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />
-                    <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
-
+                    <div className='pad-buttons' >
+                        <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />
+                        <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
+                    </div>
                     {isModo() && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
 
                     <div className='pad-buttons' style={{ display: 'flex' }}>

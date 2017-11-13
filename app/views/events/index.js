@@ -13,11 +13,16 @@ import LineComponent from './line';
 import AddPopin from './add-popin';
 import { navigate } from '../../utilities/router';
 import { isAdmin } from '../../utilities/check-rights';
+import UserStore from 'focus-core/user/built-in-store';
 
 // {"id":3,"name":"TestName","description":"TestDesc","reservedToAffiliates":false,"reservedToPartners":false,"status":"OPEN","current":false}
 @connectToStore([{
     store: EventStore,
     properties: ['eventList']
+},
+{
+    store: UserStore,
+    properties: ['profile']
 }], () => ({ eventList: EventStore.getEventList() }))
 class EventsView extends Component {
 

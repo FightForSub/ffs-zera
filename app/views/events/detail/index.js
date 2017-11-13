@@ -3,6 +3,7 @@ import { translate } from 'focus-core/translation';
 import Button from 'focus-components/components/button';
 import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
+import UserStore from 'focus-core/user/built-in-store';
 
 import AddPopin from '../../events/add-popin';
 import UserPopin from './detail-user';
@@ -22,6 +23,10 @@ import { isAdmin } from '../../../utilities/check-rights';
 @connectToStore([{
     store: EventStore,
     properties: ['eventUserList']
+},
+{
+    store: UserStore,
+    properties: ['profile']
 }], () => ({ userList: EventStore.getEventUserList() || [] }))
 class DetailEventView extends Component {
     constructor(props) {
@@ -74,7 +79,7 @@ class DetailEventView extends Component {
         return (
             <div data-app='detail-event-page'>
                 <h3 className='website-title'>{translate('website.detailEvent')}</h3>
-                <div>
+                <div className='pad-buttons'>
                     {this.props.params.id && isAdmin() && <Button label={'label.editEvent'} onClick={() => { this.setState({ displayPopin: true }) }} />}
                     <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.params.id}/results`) }} />
                 </div>

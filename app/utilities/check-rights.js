@@ -1,7 +1,7 @@
 import UserStore from 'focus-core/user/built-in-store';
 
 const getGrade = () => {
-    return (UserStore.getProfile() | {}).grade || 0;
+    return (UserStore.getProfile() || {}).grade || 0;
 }
 
 const isAdmin = () => {

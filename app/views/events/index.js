@@ -12,7 +12,7 @@ import actions from '../../action/event';
 import LineComponent from './line';
 import AddPopin from './add-popin';
 import { navigate } from '../../utilities/router';
-
+import { isAdmin } from '../../utilities/check-rights';
 
 // {"id":3,"name":"TestName","description":"TestDesc","reservedToAffiliates":false,"reservedToPartners":false,"status":"OPEN","current":false}
 @connectToStore([{
@@ -23,7 +23,7 @@ class EventsView extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { displayPopin: false, modeViewer: true };
+        this.state = { displayPopin: false };
     }
     componentWillMount() {
         actions.list();
@@ -34,10 +34,9 @@ class EventsView extends Component {
         return (
             <div data-app='events-page'>
                 <h3 className='website-title'>{translate('label.events')}</h3>
-                <Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} />
-                {!this.state.modeViewer && <Button label='label.createEvent' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />}
+                {isAdmin() && <Button label='label.createEvent' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />}
                 <List data={this.props.eventList || []} LineComponent={LineComponent} isSelection={false} onLineClick={data => navigate(`event/${data.id}`)} />
-                {this.state.displayPopin && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
+                {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
                     <AddPopin hasLoad={false} isEdit forCreation />
                 </Popin>}
             </div>

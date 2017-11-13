@@ -5,5 +5,9 @@ export default apiDriverBuilder({
     login: {
         url: apiRoot + 'account/login',
         method: 'POST'
+    },
+    getCurrentUser: {
+        url: apiRoot + 'me',
+        method: 'GET'
     }
 });

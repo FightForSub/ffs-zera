@@ -37,17 +37,22 @@ class LoginButton extends Component {
 
     componentWillMount() {
         if (this.props.profile && this.props.profile.token) {
-            this.loadProfil(this.props.profile)
-                .then(data => {
-                    return authService.login(this.props.profile.token);
-                }).then(({ access_token }) => {
-                    dispatchData('profile', { ...UserStore.getProfile(), apiToken: access_token });
+            let twitchToken = this.props.profile.token;
+            let apiToken;
+            authService.login(this.props.profile.token)
+                .then(({ access_token }) => {
+                    apiToken = access_token;
+                    // dispatchData('profile', { ...UserStore.getProfile(), apiToken: access_token });
+                    return authService.getCurrentUser(access_token);
+                }).then(data => {
+                    dispatchData('profile', { ...data, token: twitchToken, apiToken: apiToken });
                 })
                 .catch(error => console.warn('LOGIN ERROR', error));
         }
     }
 
     loadProfil(profile) {
+
         return twitchFetch({ url: 'https://api.twitch.tv/kraken/user', method: 'GET' })
             .then(data => {
                 dispatchData('profile', { ...data, scope: profile.scope, token: profile.token });
@@ -56,17 +61,24 @@ class LoginButton extends Component {
 
     componentWillReceiveProps({ profile }) {
         if (profile && profile.token && (!this.props.profile || !this.props.profile.token)) {
-            this.loadProfil(profile);
+            let twitchToken = profile.token;
+            let apiToken;
             authService.login(profile.token)
-                .then(res => console.log('AUTH OK', res))
-                .catch(error => console.warn(error));
+                .then(({ access_token }) => {
+                    apiToken = access_token;
+                    // dispatchData('profile', { ...UserStore.getProfile(), apiToken: access_token });
+                    return authService.getCurrentUser(access_token);
+                }).then(data => {
+                    dispatchData('profile', { ...data, token: twitchToken, apiToken: apiToken });
+                })
+                .catch(error => console.warn('LOGIN ERROR', error));
         }
     }
 
     /** @inheritDoc */
     render() {
         // <img src='http://ttv-api.s3.amazonaws.com/assets/connect_dark.png' className='twitch-connect' href='#' onClick={this.doLogin} />
-        const { token, display_name, email, logo } = this.props.profile || {};
+        const { token, username, email, logo } = this.props.profile || {};
         if (!token) {
             return (
                 <div className='login-container'>
@@ -75,13 +87,13 @@ class LoginButton extends Component {
             );
         }
 
-        if (token && !display_name) {
+        if (token && !username) {
             return <div className='login-container'>{'Loading'}</div>
         }
 
         return (<div className='login-container'>
             <div className='logo-login' style={{ backgroundImage: `url(${logo}` }} />
-            <div>{display_name}</div>
+            <div>{username}</div>
             <i className='material-icons' onClick={() => this.doLogout(token)}>{'power_settings_new'}</i>
         </div>);
 

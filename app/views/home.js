@@ -17,10 +17,10 @@ export default React.createClass({
 
         return (
             <div data-app='home-page'>
-                <h1 className='display-1'>
-                    {translate('website.home')}
-                </h1>
                 <Article>
+                    <h1 className='display-1'>
+                        {'Fight for '}<span className='green'>{'Sub'}</span>
+                    </h1>
                     <Section title={translate('home.titles.whatIsIt')}>
                         <p>
                             {translate('home.paragraphs.game')}
@@ -30,13 +30,13 @@ export default React.createClass({
                         </p>
                     </Section>
                     <Section title={translate('home.titles.rules')}>
-                        <h3 className='subheading'>
+                        <h3 className='subheading title-blue'>
                             {translate('home.titles.basicRules')}
                         </h3>
                         <ul>
                             {rules}
                         </ul>
-                        <h3 className='subheading'>
+                        <h3 className='subheading title-green'>
                             {translate('home.titles.handicap')}
                         </h3>
                         <ul>

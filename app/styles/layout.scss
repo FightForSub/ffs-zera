@@ -1,5 +1,6 @@
 body {
     color: #cecece;
+    background-color: $background-grey;
 }
 
 .fa-ul {
@@ -405,4 +406,30 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 
 .subheading{
     font-size: 16pt;
+}
+
+.green{
+    color: $vert-zera;
+}
+
+.title{
+    &-blue, &-green{
+        position: relative;
+        padding-bottom: 8px;
+        &:before{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 100px;
+        }
+    }
+    &-blue:before{
+        background-color: $blue-prime;
+    }
+
+    &-green:before{
+        background-color: $vert-zera;
+    }
 }

@@ -85,7 +85,7 @@
                 "PAGE_TITLE": "Focus demonstration application",
                 "OUTPUT_DIR": "./public",
                 "OUTPUT_PUBLIC_PATH": "./",
-                "API_ROOT": "https://ffs-api.zerator.com/v1/",
+                "API_ROOT": "https://ffs-api-test.zerator.com/",
                 "BASE_URL": "/",
                 "ROOT_URL": "http://localhost:3000/",
                 "CLIENT_ID": "cs5900eog2wajva8rnvf2jtx6gazsvd",

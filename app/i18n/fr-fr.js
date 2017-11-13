@@ -62,6 +62,11 @@ export default {
     detail: {
         saved: 'Les modifications ont bien été enregistrées'
     },
+    global: {
+        login: {
+            twitch: 'Se connecter'
+        }
+    },
     home: {
         titles: {
             whatIsIt: 'Qu\'est-ce que Fight for Sub ?',

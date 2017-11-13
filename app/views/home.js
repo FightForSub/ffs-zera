@@ -7,12 +7,12 @@ export default React.createClass({
     displayName: 'HomeView',
     render() {
         const rules = translate('home.paragraphs.rules', { returnObjects: true })
-            .map(rule => {
-                return <li>{rule}</li>;
+            .map((rule, i) => {
+                return <li key={i}>{rule}</li>;
             });
         const handicaps = translate('home.paragraphs.handicaps', { returnObjects: true })
-            .map(handi => {
-                return <li>{handi}</li>;
+            .map((handi, i) => {
+                return <li key={i}>{handi}</li>;
             });
 
         return (

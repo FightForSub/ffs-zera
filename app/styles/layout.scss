@@ -109,7 +109,7 @@ body {
 }
 
 [data-focus='layout'] [data-focus='page-content'] {
-    width: 1160px;
+    max-width: 1160px;
     margin: auto;
     padding: 0px;
 }

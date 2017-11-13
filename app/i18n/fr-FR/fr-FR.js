@@ -30,7 +30,8 @@ export default {
     },
     website: {
         detailEvent: 'Détail de l\'évènement',
-        live: 'Évènement Live'
+        live: 'Évènement Live',
+        home: 'Fight for Sub'
     },
     label: {
         events: 'Évènements',
@@ -56,5 +57,9 @@ export default {
     },
     detail: {
         saved: 'Les modifications ont bien été enregistrées'
+    },
+    home: {
+        whatIsIt: 'Qu\'est-ce que Fight for Sub ?',
+        rules: 'Les règles'
     }
 };

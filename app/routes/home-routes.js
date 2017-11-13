@@ -6,20 +6,25 @@ import DetailView from '../views/events/detail';
 import ParticipantView from '../views/participants';
 import InscriptionView from '../views/inscription';
 import EventsView from '../views/events';
+import HomeView from '../views/home';
 
 const routes = [
     {
-        path: 'stats',
-        component: StatsView
+        path: 'home',
+        component: HomeView
     },
+    // {
+    //     path: 'stats',
+    //     component: StatsView
+    // },
     {
         path: 'live',
         component: LiveView
     },
-    {
-        path: 'participants',
-        component: ParticipantView
-    },
+    // {
+    //     path: 'participants',
+    //     component: ParticipantView
+    // },
     {
         path: 'events',
         component: EventsView

@@ -1,0 +1,49 @@
+.mdl-card__supporting-text h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+section.section--center .section__text:not(:last-child) {
+    border-bottom: 1px solid rgba(0,0,0,.13);
+}
+
+section .section__text {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding-top: 8px;
+}
+
+section .section__text h5 {
+    margin: 0;
+    margin-bottom: 0.5em;
+}
+
+section > button.mdl-button {
+    position: absolute;
+    z-index: 99;
+    top: 8px;
+    right: 8px;
+}
+
+.mdl-card {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+section.section--center {
+    position: relative;
+    &:not(:last-of-type){
+        margin-bottom: 48px;
+    }
+}
+
+.mdl-card__supporting-text {
+    color: rgba(255,255,255, 0.74);
+}
+.mdl-card {
+    background: rgba(255,255,255,0.13);
+}
+.mdl-button {
+    color: rgba(255, 255, 255, 0.87) !important;
+}

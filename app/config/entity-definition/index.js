@@ -4,6 +4,7 @@
 */
 
 export default {
+    results: {},
     user: {
         status: {
             required: true,

@@ -52,7 +52,9 @@ export default {
         addRound: 'Ajouter un round',
         deleteRound: 'Supprimer le round',
         refreshResult: 'Rafraîchir les résultats',
-        updateScore: 'Mettre à jour le score'
+        updateScore: 'Mettre à jour le score',
+        results: 'Résultats',
+        goToResults: 'Aller au classement'
     },
     button: {
         save: 'Sauvegarder'

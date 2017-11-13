@@ -8,7 +8,7 @@ import Button from 'focus-components/components/button';
 import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import SelectInput from 'focus-components/components/input/select';
-
+import { navigate } from '../../../utilities/router';
 
 import EventStore from '../../../stores/event';
 import { dispatchData } from 'focus-core/dispatcher';
@@ -120,6 +120,8 @@ export default connectToStore([{
                 <div className='pad-bottom'>
                     <div><Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} /></div>
                     <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />
+                    <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
+
                     {!this.state.modeViewer && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
 
                     <div className='pad-buttons' style={{ display: 'flex' }}>

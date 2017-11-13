@@ -11,7 +11,12 @@ body {
 	position: initial;
 	top: initial;
 	text-align: initial;
-	z-index: 10;
+    z-index: 10;
+}
+
+[data-focus="menu-left"] [data-focus="menu-items"] li a {
+    display: inline-block;
+    width: 100%;
 }
 
 [data-focus="selection-list"] [data-focus="sl-line"] {

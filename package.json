@@ -17,7 +17,9 @@
         "analyze": "better-npm-run analyze",
         "build": "npm run production",
         "start": "better-npm-run webpack-dev-server-npm-focus",
-        "watch": "better-npm-run watch"
+        "watch": "better-npm-run watch",
+        "patch": "cp ./patch/built-in-components.js ./node_modules/focus-components/list/mixin && cp ./patch/menu.js ./node_modules/focus-components/components/menu/index.js",
+        "postinstall": "npm run patch"
     },
     "main": "app/index.js",
     "betterScripts": {
@@ -103,6 +105,7 @@
         "focus-components": "2.2.0",
         "focus-core": "2.2.0",
         "focus-devtools": "0.4.1",
+        "jquery": "3.2.1",
         "lodash": "4.17.4",
         "material-design-icons-iconfont": "3.0.3",
         "material-design-lite": "1.3.0",

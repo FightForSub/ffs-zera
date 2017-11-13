@@ -29,7 +29,7 @@ class DemoMenuLeft extends Component {
     }
 
     _onHomeClick() {
-        navigate('live');
+        navigate('home');
     }
 
     render() {

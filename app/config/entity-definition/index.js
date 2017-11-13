@@ -4,6 +4,7 @@
 */
 
 export default {
+    results: {},
     user: {
         status: {
             required: true,
@@ -11,19 +12,23 @@ export default {
         },
         twitchId: {
             required: true,
-            domain: 'DO_NO_DOMAIN'
+            domain: 'DO_ENTIER'
         },
         username: {
             required: true,
-            domain: 'DO_NO_DOMAIN'
+            domain: 'DO_LABEL_LONG'
         },
         followers: {
             required: true,
-            domain: 'DO_NO_DOMAIN'
+            domain: 'DO_ENTIER'
         },
         views: {
             required: true,
-            domain: 'DO_NO_DOMAIN'
+            domain: 'DO_ENTIER'
+        },
+        score: {
+            required: true,
+            domain: 'DO_ENTIER'
         }
     },
     event: {

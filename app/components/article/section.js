@@ -2,8 +2,8 @@ import React from 'react';
 import { translate } from 'focus-core/translation';
 
 
-const Section = ({title, children, size: sizeObj}) => {
-    const {desktop, tablet, phone} = sizeObj || {};
+const Section = ({ title, children, size: sizeObj }) => {
+    const { desktop, tablet, phone } = sizeObj || {};
     const desktopSize = desktop ? `mdl-cell--${desktop}-col-desktop ` : '';
     const tabletSize = tablet ? `mdl-cell--${tablet}-col-tablet ` : '';
     const phoneSize = phone ? `mdl-cell--${phone}-col-phone ` : '';

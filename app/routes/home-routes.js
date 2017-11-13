@@ -1,25 +1,30 @@
 import React from 'react';
 import StatsView from '../views/stats';
-import LiveView from '../views/live';
+import LiveView from '../views/live/new-live';
 import DetailView from '../views/events/detail';
 
-import ParticipantView from '../views/participants';
+// import ParticipantView from '../views/participants';
 import InscriptionView from '../views/inscription';
 import EventsView from '../views/events';
+import HomeView from '../views/home';
 
 const routes = [
     {
-        path: 'stats',
-        component: StatsView
+        path: 'home',
+        component: HomeView
     },
+    // {
+    //     path: 'stats',
+    //     component: StatsView
+    // },
     {
         path: 'live',
         component: LiveView
     },
-    {
-        path: 'participants',
-        component: ParticipantView
-    },
+    // {
+    //     path: 'participants',
+    //     component: ParticipantView
+    // },
     {
         path: 'events',
         component: EventsView
@@ -27,6 +32,10 @@ const routes = [
     {
         path: 'event/:id',
         component: DetailView
+    },
+    {
+        path: 'event/:id/results',
+        component: StatsView
     },
     {
         path: 'inscription',

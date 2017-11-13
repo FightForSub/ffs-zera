@@ -249,10 +249,10 @@ body {
     }
 
     .login-button {
-        background-image: url('https://camo.githubusercontent.com/e3dadf5d1f371961805e6843fc7d9d611a1d14b5/687474703a2f2f7474762d6170692e73332e616d617a6f6e6177732e636f6d2f6173736574732f636f6e6e6563745f6461726b2e706e67');
+        background-image: url('./assets/img/logoTwitch.png');
         background-size: contain;
         background-repeat: no-repeat;
-        height: 32;
+        height: 32px;
         width: 170px;
         cursor: pointer;
     }
@@ -287,15 +287,19 @@ body {
 	background-color: #212121;
 }
 
-[data-app='events-page']{
+[data-app='events-page'], [data-app='results-page']{
     [data-focus="selection-list"][data-selection="false"] [data-focus="sl-line"] {
         padding:0;
     }
-    [data-app='line-event']{
+    [data-app='line-event'], [data-app='line-results']{
         display: flex;
         align-items: center;
         div {
-            flex-grow: 1
+            flex-grow: 1;
+            flex-basis: 20%;
+        }
+        i {
+            flex: 0 0 40px;
         }
         padding:15px;
     }
@@ -332,4 +336,12 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 
 [data-focus="menu-left"] [data-focus="menu-items"] li span {
     top:0;
+}
+
+.pad-buttons > * {
+    margin-right: 10px;
+}
+
+.pad-bottom > * {
+    margin-bottom: 10px;
 }

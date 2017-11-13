@@ -1,12 +1,10 @@
-// import 'babel-preset-focus/dist/focus-polyfill';
 import './initializer/scripts/translation-initializer';
 import './twitch';
+
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader';
 
-import { initialize as appConfigInitialize } from './initializer/scripts/app-configuration-initializer';
-import { initialize as userInitialize } from './initializer/scripts/user-initializer';
 import { initialize as beforeInit } from './initializer/before';
 import { initialize as afterInit } from './initializer/after';
 import { registerPreFetchTransform } from 'focus-core/network/api-driver';
@@ -43,9 +41,7 @@ const renderApplication = Component => {
  * 
  */
 const onDOMContentLoaded = () => {
-    const info = console.info;
     afterInit();
-    info('#########################[START APP]############################');
 
     renderApplication(Application);
 
@@ -55,28 +51,17 @@ const onDOMContentLoaded = () => {
         });
     }
 
-    info('#########################[APP STARTED]##########################');
 };
 
+// Initializers before DOM CONTENT LOADED
+beforeInit();
 
-/**
- * Initialisation of the application : first the initialisers that don't need the DOM, then the others.
- * 
- */
-const appInit = () => {
-    // initializers before DOM CONTENT LOADED
-    beforeInit();
-
-    window.onDOMContentLoaded = onDOMContentLoaded;
-    if (window._hasFiredDOMContentLoaded) {
-        onDOMContentLoaded();
-    } else {
-        document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
-    }
-};
-console.log('[INITIALIZER - BEFORE ANYTHING (prerequisites)]');
-// First we load the configuration of the application, then the conf for the user, and only after we start the application
-appConfigInitialize(() => userInitialize(appInit));
+window.onDOMContentLoaded = onDOMContentLoaded;
+if (window._hasFiredDOMContentLoaded) {
+    onDOMContentLoaded();
+} else {
+    document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
+}
 
 //Reference styles inside the application
 import './styles/index.scss';

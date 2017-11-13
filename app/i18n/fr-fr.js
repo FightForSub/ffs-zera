@@ -12,7 +12,8 @@ export default {
         username: 'Pseudo',
         status: 'Statut',
         followers: 'Followers',
-        view: 'Nombre de vues'
+        view: 'Nombre de vues',
+        score: 'Score'
     },
     select: {
         unSelected: '-',
@@ -29,7 +30,8 @@ export default {
     },
     website: {
         detailEvent: 'Détail de l\'évènement',
-        live: 'Évènement Live'
+        live: 'Évènement Live',
+        home: 'Fight for Sub'
     },
     label: {
         events: 'Évènements',
@@ -44,12 +46,24 @@ export default {
         updateUser: 'Modifier le participant',
         createUser: 'Ajouter un participant',
         alive: 'Liste des vivants',
-        dead: 'Liste des morts'
+        dead: 'Liste des morts',
+        updateParticipant: 'Ajouter un score',
+        rounds: 'Résultats des rounds',
+        addRound: 'Ajouter un round',
+        deleteRound: 'Supprimer le round',
+        refreshResult: 'Rafraîchir les résultats',
+        updateScore: 'Mettre à jour le score',
+        results: 'Résultats',
+        goToResults: 'Aller au classement'
     },
     button: {
         save: 'Sauvegarder'
     },
     detail: {
         saved: 'Les modifications ont bien été enregistrées'
+    },
+    home: {
+        whatIsIt: 'Qu\'est-ce que Fight for Sub ?',
+        rules: 'Les règles'
     }
 };

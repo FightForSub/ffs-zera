@@ -36,5 +36,29 @@ export default apiDriverBuilder({
     deleteUser: {
         url: apiRoot + 'event/${id}/user/${idUser}',
         method: 'DELETE'
+    },
+    getRounds: {
+        url: apiRoot + 'event/${id}/rounds',
+        method: 'GET'
+    },
+    getRoundScore: {
+        url: apiRoot + 'event/${id}/round/${idRound}',
+        method: 'GET'
+    },
+    createRound: {
+        url: apiRoot + 'event/${id}/rounds',
+        method: 'POST'
+    },
+    deleteRound: {
+        url: apiRoot + 'event/${id}/round/${idRound}',
+        method: 'DELETE'
+    },
+    updateUserScore: {
+        url: apiRoot + 'event/${id}/round/${idRound}/score/${idUser}',
+        method: 'PUT'
+    },
+    getCurrentEvent: {
+        url: apiRoot + 'event/current',
+        method: 'GET'
     }
 });

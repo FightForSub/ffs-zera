@@ -1,7 +1,5 @@
-//import english from './en-GB';
-import french from './fr-FR';
+import frFR from './fr-fr';
 
 export default {
-  //'en-GB': {translation: english},
-  'fr-FR': {translation: french}
+    'fr-FR': { translation: frFR }
 };

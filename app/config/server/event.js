@@ -56,5 +56,9 @@ export default apiDriverBuilder({
     updateUserScore: {
         url: apiRoot + 'event/${id}/round/${idRound}/score/${idUser}',
         method: 'PUT'
+    },
+    getCurrentEvent: {
+        url: apiRoot + 'event/current',
+        method: 'GET'
     }
 });

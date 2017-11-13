@@ -88,7 +88,7 @@ class DetailEventView extends Component {
                 </div>}
                 <List data-dd='empilable' dataList={toDisplayAlive} isWrapping />
                 <hr />
-                <RoundListView hasForm={false} id={this.props.params.id} hasLoad={false} />
+                <RoundListView noLive hasForm={false} id={this.props.params.id} hasLoad={false} />
                 {this.state.displayPopin && !this.state.modeViewer && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
                     <AddPopin hasLoad={false} isEdit id={this.props.params.id} onSave={() => this.setState({ displayPopin: false })} />
                 </Popin>}

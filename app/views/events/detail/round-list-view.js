@@ -35,13 +35,6 @@ export default connectToStore([{
     },
 
     actions: {},
-    // constructor(props) {
-    //     super(props);
-    //     this.onChangeRound = this.onChangeRound.bind(this);
-    //     this.renderLine = this.renderLine.bind(this);
-
-    //     this.state = { displayPopin: false, modeViewer: true };
-    // },
     componentWillMount() {
         actions.getRounds(this.props.id);
         this.action.save = this.save;
@@ -64,6 +57,24 @@ export default connectToStore([{
         if (eventRoundList && eventRoundList.length > 0 && (!this.props.eventRoundList || !this.props.eventRoundList.length > 0)) {
             this.onChangeRound(eventRoundList[0]);
         }
+    },
+    renderAlive() {
+
+        const data = (this.props.userList || []).filter(elt => {
+            return !(this.props.eventRoundDetail || []).some(item => item.id === elt.twitchId && item.score)
+        }).map(elt => ({
+            logoUrl: elt.logo,
+            LineContent: <span className='detail-user-line-content'>{elt.username}</span>,
+            onClick: () => {
+                if (!this.state.modeViewer) {
+                    this.setState({
+                        displayPopin: true,
+                        fixTwitchId: elt.twitchId
+                    })
+                }
+            }
+        }));
+        return <List data-dd='empilable' isWrapping dataList={data} />
     },
     renderLine({ username, twitchId, score }) {
         // <div>{'TwitchId: ' + twitchId}</div>
@@ -89,6 +100,7 @@ export default connectToStore([{
     renderContent() {
         // [{ code: 'ALL', label: 'select.all' }].concat(
         const toDisplay = (this.props.eventRoundDetail || [])
+            .filter(elt => elt.score)
             .sort((a, b) => (a.score - b.score))
             .map(elt => ({
                 logoUrl: elt.logo,
@@ -104,7 +116,7 @@ export default connectToStore([{
             }));
         return (
             <div data-app='round-list-page'>
-                <h4 className='website-title'>{translate('label.rounds')}</h4>
+                {this.props.noLive && <h4 className='website-title'>{translate('label.rounds')}</h4>}
                 <div className='pad-bottom'>
                     <div><Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} /></div>
                     {!this.state.modeViewer && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
@@ -117,12 +129,16 @@ export default connectToStore([{
                             hasUndefined={false}
                         />
                         {!this.state.modeViewer && this.state.roundId && this.state.roundId !== 'ALL' &&
-                                <Button label='label.updateParticipant' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />
+                                <Button label='label.updateParticipant' onClick={() => { this.setState({ displayPopin: true }) }} />
                         }
                         {!this.state.modeViewer && this.state.roundId && <Button label='label.deleteRound' onClick={this.deleteRound} />}
 
                     </div>
                 </div>
+                {!this.props.noLive && <h5 className='website-title'>{translate('label.alive')}</h5>}
+                {!this.props.noLive && this.renderAlive()}
+                {!this.props.noLive && <h5 className='website-title'>{translate('label.dead')}</h5>}
+
                 <List data-dd='empilable' dataList={toDisplay} />
                 {this.state.displayPopin && !this.state.modeViewer && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false, twitchId: null, fixTwitchId: null, score: null })} >
                     <h4 className='website-title'>{translate('label.updateScore')}</h4>

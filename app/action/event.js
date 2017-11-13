@@ -9,6 +9,12 @@ export default {
         shouldDumpStoreOnActionCall: true,
         status: 'loaded'
     }),
+    getCurrentEvent: actionBuilder({
+        node: 'eventDetail',
+        service: eventServices.getCurrentEvent,
+        shouldDumpStoreOnActionCall: true,
+        status: 'loaded'
+    }),
     create: actionBuilder({
         node: 'eventDetail',
         service: eventServices.createEvent,

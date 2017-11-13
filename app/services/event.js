@@ -53,5 +53,8 @@ export default {
     },
     updateUserScore({ id, idRound, idUser, score }) {
         return eventApiDriver.updateUserScore({ id, idRound, idUser }, { score });
+    },
+    getCurrentEvent() {
+        return eventApiDriver.getCurrentEvent();
     }
 }

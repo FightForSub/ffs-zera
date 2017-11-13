@@ -56,5 +56,35 @@ export default {
         service: eventServices.deleteUser,
         shouldDumpStoreOnActionCall: false,
         status: 'saved'
+    }),
+    getRounds: actionBuilder({
+        node: 'eventRoundList',
+        service: eventServices.getRounds,
+        shouldDumpStoreOnActionCall: true,
+        status: 'loaded'
+    }),
+    getRoundScore: actionBuilder({
+        node: 'eventRoundDetail',
+        service: eventServices.getRoundScore,
+        shouldDumpStoreOnActionCall: true,
+        status: 'loaded'
+    }),
+    createRound: actionBuilder({
+        node: 'eventRoundUpdate',
+        service: eventServices.createRound,
+        shouldDumpStoreOnActionCall: true,
+        status: 'saved'
+    }),
+    deleteRound: actionBuilder({
+        node: 'eventRoundUpdate',
+        service: eventServices.deleteRound,
+        shouldDumpStoreOnActionCall: true,
+        status: 'saved'
+    }),
+    updateUserScore: actionBuilder({
+        node: 'eventRoundUpdate',
+        service: eventServices.updateUserScore,
+        shouldDumpStoreOnActionCall: true,
+        status: 'saved'
     })
 }

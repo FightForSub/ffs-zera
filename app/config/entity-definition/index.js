@@ -24,6 +24,10 @@ export default {
         views: {
             required: true,
             domain: 'DO_NO_DOMAIN'
+        },
+        score: {
+            required: true,
+            domain: 'DO_NO_DOMAIN'
         }
     },
     event: {

@@ -38,5 +38,20 @@ export default {
     deleteUser(data) {
         const { id, idUser } = data;
         return eventApiDriver.updateUser({ id, idUser });
+    },
+    getRounds(id) {
+        return eventApiDriver.getRounds({ id });
+    },
+    getRoundScore({ id, idRound }) {
+        return eventApiDriver.getRoundScore({ id, idRound });
+    },
+    createRound({ id }) {
+        return eventApiDriver.createRound({ id });
+    },
+    deleteRound({ id, idRound }) {
+        return eventApiDriver.deleteRound({ id, idRound });
+    },
+    updateUserScore({ id, idRound, idUser, score }) {
+        return eventApiDriver.updateUserScore({ id, idRound, idUser }, { score });
     }
 }

@@ -333,3 +333,11 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 [data-focus="menu-left"] [data-focus="menu-items"] li span {
     top:0;
 }
+
+.pad-buttons > * {
+    margin-right: 10px;
+}
+
+.pad-bottom > * {
+    margin-bottom: 10px;
+}

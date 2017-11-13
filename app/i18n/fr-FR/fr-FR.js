@@ -12,7 +12,8 @@ export default {
         username: 'Pseudo',
         status: 'Statut',
         followers: 'Followers',
-        view: 'Nombre de vues'
+        view: 'Nombre de vues',
+        score: 'Score'
     },
     select: {
         unSelected: '-',
@@ -44,7 +45,11 @@ export default {
         updateUser: 'Modifier le participant',
         createUser: 'Ajouter un participant',
         alive: 'Liste des vivants',
-        dead: 'Liste des morts'
+        dead: 'Liste des morts',
+        updateParticipant: 'Ajouter un score',
+        rounds: 'Résultats des rounds',
+        addRound: 'Ajouter un round',
+        deleteRound: 'Supprimer le round'
     },
     button: {
         save: 'Sauvegarder'

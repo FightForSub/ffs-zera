@@ -9,7 +9,10 @@ const eventStore = new CoreStore({
         eventList: 'eventList',
         eventDetail: 'eventDetail',
         eventUserList: 'eventUserList',
-        eventUserDetail: 'eventUserDetail'
+        eventUserDetail: 'eventUserDetail',
+        eventRoundList: 'eventRoundList',
+        eventRoundDetail: 'eventRoundDetail',
+        eventRoundUpdate: 'eventRoundUpdate'
     }
 });
 

@@ -127,8 +127,8 @@ export default connectToStore([{
                 {this.props.noLive && <h4 className='website-title'>{translate('label.rounds')}</h4>}
                 <div className='pad-bottom'>
                     <div className='pad-buttons' >
-                        <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />
                         <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
+                        {this.props.id && this.state.roundId && <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />}
                     </div>
                     {isModo() && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
 

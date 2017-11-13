@@ -15,6 +15,7 @@ import eventActions from '../../../action/event';
 import { dispatchData } from 'focus-core/dispatcher';
 
 import RoundListView from './round-list-view';
+import { navigate } from '../../../utilities/router';
 
 
 @connectToStore([{
@@ -79,6 +80,7 @@ class DetailEventView extends Component {
                 <div>
                     <Button label={'Swap Mode to :' + (!this.state.modeViewer ? 'Viewer' : 'Modo')} onClick={() => { this.setState({ modeViewer: !this.state.modeViewer }) }} />
                     {this.props.params.id && !this.state.modeViewer && <Button label={'label.editEvent'} onClick={() => { this.setState({ displayPopin: true }) }} />}
+                    <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.params.id}/results`) }} />
                 </div>
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />

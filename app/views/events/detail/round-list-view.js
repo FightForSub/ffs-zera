@@ -11,7 +11,7 @@ import SelectInput from 'focus-components/components/input/select';
 import { navigate } from '../../../utilities/router';
 
 import EventStore from '../../../stores/event';
-import { dispatchData } from 'focus-core/dispatcher';
+// import { dispatchData } from 'focus-core/dispatcher';
 
 import actions from '../../../action/event';
 

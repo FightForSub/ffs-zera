@@ -6,6 +6,5 @@ export default () => {
     console.info('|--- NUMERAL');
     // Initialise numeral conf 
     init();
-    // init('0,0','fr'); Exemple d'initialisation
     console.info('   |--- Numeral correctly initialized.');
 }

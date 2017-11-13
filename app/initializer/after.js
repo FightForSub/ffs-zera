@@ -1,7 +1,6 @@
 ////////////////////////////////////////////////////////
 /// SCRIPT EXECUTED AFTER DOM CONTENT LOADED
 ////////////////////////////////////////////////////////
-import storesInitializer from './scripts/stores-initializer';
 import headerInitializer from './scripts/header-initializer'
 import consoleInitializer from './scripts/console-initializer'
 import devToolsInitializer from './scripts/dev-tools-initializer'
@@ -11,7 +10,6 @@ import devToolsInitializer from './scripts/dev-tools-initializer'
  */
 export const initialize = () => {
     console.info('[INITIALIZER - AFTER CONTENT LOADED]');
-    storesInitializer();
     headerInitializer();
     consoleInitializer();
     devToolsInitializer();

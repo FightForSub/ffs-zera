@@ -27,6 +27,7 @@ export default connectToStore([{
     properties: ['eventRoundList', 'eventRoundDetail', 'eventUserList']
 }], () => ({ eventRoundList: EventStore.getEventRoundList(), eventRoundDetail: EventStore.getEventRoundDetail(), userList: EventStore.getEventUserList() || [] }))
 (React.createClass({
+    displayName: 'RoundListView',
     mixins: [formPreset],
     definitionPath: 'user',
     getInitialState() {
@@ -88,7 +89,7 @@ export default connectToStore([{
     renderContent() {
         // [{ code: 'ALL', label: 'select.all' }].concat(
         const toDisplay = (this.props.eventRoundDetail || [])
-            .sort((a, b) => (b.score - a.score))
+            .sort((a, b) => (a.score - b.score))
             .map(elt => ({
                 logoUrl: elt.logo,
                 LineContent: this.renderLine(elt),
@@ -128,7 +129,6 @@ export default connectToStore([{
                     {this.fieldFor('twitchId', { isEdit: !this.state.fixTwitchId, value: this.state.fixTwitchId || this.state.twitchId, values: (this.props.userList || []).map(({ twitchId, username }) => ({ code: twitchId, label: username })) })}
                     {this.fieldFor('score', { isEdit: true })}
                     {this.buttonSave()}
-                    {/* <UserPopin hasLoad={false} isEdit id={this.props.params.id} idUser={this.state.twitchId} onSave={() => this.setState({ displayPopin: false })} /> */}
                 </Popin>}
 
             </div>

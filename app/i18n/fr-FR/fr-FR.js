@@ -12,7 +12,7 @@ export default {
         username: 'Pseudo',
         status: 'Statut',
         followers: 'Followers',
-        view: 'Nombre de vues',
+        views: 'Nombre de vues',
         score: 'Score',
         usersearch: 'Recherche par pseudo'
     },

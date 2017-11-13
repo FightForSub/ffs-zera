@@ -8,7 +8,7 @@ const Section = ({ title, children, size: sizeObj }) => {
 
     return (
         <div className={`section__text mdl-cell ${size}`}>
-            {title && <h2>{translate(title)}</h2>}
+            {title && <h2 className='headline'>{translate(title)}</h2>}
             {children}
         </div>
     );

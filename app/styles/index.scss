@@ -1,6 +1,4 @@
-@import '_mixins.scss';
 @import '_variables.scss';
-
 //--------------------------------------------------------------------------
 //styles from focus-components
 @import 'focus-components/style/index.scss';
@@ -8,6 +6,8 @@
 
 //--------------------------------------------------------------------------
 //styles from demo
+@import '_mixins.scss';
+
 @import './layout.scss';
 @import '../components/list/style.scss';
 @import '../components/article/styles/index.scss';

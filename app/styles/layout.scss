@@ -45,40 +45,44 @@ body {
 	width: 100%;
     margin: auto;
     position: relative;
-    height: 35px;
-    line-height: 30px;
+    height: 45px;
+    line-height: 45px;
     margin-bottom: 15px;
     color: white;
     text-align: left;
     overflow: hidden;
     text-align: initial;
+
   	&::before {
-    display: block;
-    content: '';
-    position: absolute;
-    right: -10px;
-    top: 0;
-    bottom: 0;
-    max-width: 95.5%;
-    width: 0%;
-    background: $vert-zera;
-    z-index: -1;
-    transform: skew(-16deg);
-    transition: all ease .25s;
-	}
+        display: block;
+        content: '';
+        position: absolute;
+        right: -10px;
+        top: 0;
+        bottom: 0;
+        max-width: 95.5%;
+        width: 0%;
+        background: $vert-zera;
+        z-index: -1;
+
+        @include transform(skew(-16deg));
+        @include transition(all ease .25s);
+    }
+
     &::after {
-    display: block;
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: #2DBEE8;
-    transform: translate3d(10px, 0, 0) skew(-16deg);
-    opacity: 0;
-    transition: all ease .25s;
-  }
+        display: block;
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: $blue-prime;
+        opacity: 0;
+
+        @include transform(translate3d(10px, 0, 0) skew(-16deg));
+        @include transition(all ease .25s);
+    }
 }
 
 [data-focus='header-top-row'] > div {
@@ -86,7 +90,7 @@ body {
 }
 
 [data-focus='header-scrolling'][data-deployed="false"] [data-focus="header-top-row"] {
-    box-shadow: none;
+    @include box-shadow(none);
     position: relative;
 }
 
@@ -119,12 +123,14 @@ body {
 [data-focus="menu-left"] {
     position: fixed;
     z-index: 2000;
-    width: 250px;
+    width: 350px;
     height: 100vh;
     top: 0;
     bottom: 0;
     background: #191919 url(https://zerator.com/wp-content/themes/Zerator/assets/img/nav-background.png) no-repeat bottom left;
-    box-shadow: inset -35px 0 35px rgba(0, 0, 0, 0.15);
+
+    @include box-shadow(inset -35px 0 35px rgba(0, 0, 0, 0.15));
+
     [data-focus="menu-brand"] {
         background-size: 120px !important;
         background-color: transparent;
@@ -145,7 +151,7 @@ body {
 [data-focus='page-content'] button {
     background-color: $vert-zera;
     border-bottom: 3px solid darken($vert-zera, 10%);
-    transition: all 0.3s;
+    @include transition(all 0.3s);
 }
 
 // Changing background color of the header
@@ -161,21 +167,52 @@ body {
 // Changing color of the menu left icons
 [data-focus="menu-left"] [data-focus="menu-items"]{
     list-style: none;
-    li {
-    width: 100%;
-    margin: auto;
-    position: relative;
-    height: 35px;
-    line-height: 30px;
-    margin-bottom: 15px;
-    color: white;
-    text-align: left;
-    overflow: hidden;
-    text-align: initial;
-    }
-    li a {
-        color :$custom-white !important; // Overriding style
-        padding-left: 35px;
+
+    li{
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 45px;
+        line-height: 45px;
+        margin: auto;
+        margin-bottom: 15px;
+        color: white;
+        text-align: left;
+        overflow: hidden;
+
+        a{
+            display: flex;
+            line-height: 45px;
+            color: $custom-white !important; // Overriding style
+            padding-left: 35px;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            .material-icons{
+                color: $vert-zera;
+                @include transition(color 200ms);
+            }
+
+            &:hover{
+                .material-icons{
+                    color: white;
+                }
+            }
+
+            button{
+                display: flex;
+                height: 45px;
+
+                .material-icons{
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    margin: auto;
+
+                    @include transform(translate(0,0));
+                }
+            }
+        }
     }
 }
 
@@ -344,4 +381,23 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 
 .pad-bottom > * {
     margin-bottom: 10px;
+}
+
+
+.display-1, .headline, .subheading{
+    color: white;
+}
+
+.display-1{
+    font-size: 36pt;
+    text-transform: uppercase;
+    color: white;
+}
+
+.headline{
+    font-size: 28pt;
+}
+
+.subheading{
+    font-size: 16pt;
 }

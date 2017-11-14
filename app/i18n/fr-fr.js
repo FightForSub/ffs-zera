@@ -39,7 +39,7 @@ export default {
         createEvent: 'Création d\'un évènement',
         recapEvent: 'Récapitulatif',
         users: 'Participants',
-        livePage: 'Evénement en direct',
+        livePage: 'Évènement en direct',
         eventListPage: 'Liste des événements',
         inscriptionPage: 'Inscription',
         addUser: 'Ajouter un participant',
@@ -56,7 +56,8 @@ export default {
         updateScore: 'Mettre à jour le score',
         results: 'Résultats',
         goToResults: 'Aller au classement',
-        loginWelcome: 'Bienvenue,'
+        loginWelcome: 'Bienvenue,',
+        deleteParticipant: 'Supprimer le participant'
     },
     button: {
         save: 'Sauvegarder'

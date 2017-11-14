@@ -3,6 +3,8 @@ import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
 import EventStore from '@/stores/event';
 import eventActions from '@/action/event';
+import Button from 'focus-components/components/button';
+
 // import Article from '../../components/article';
 // import Section from '../../components/article';
 import { navigate } from '@/utilities/router';
@@ -75,6 +77,7 @@ export default React.createClass({
         return (
             <div data-app='live-page'>
                 <h3 className='website-title'>{translate(!this.props.forCreation ? 'label.updateUser' : 'label.createUser')}</h3>
+                {!this.props.forCreation && <Button label='label.deleteParticipant' onClick={() => { const { id, idUser } = this.props; eventActions.deleteUser({ id, idUser }).then(() => { eventActions.listUsers(this.props.id); this.props.onSave(); }) }} />}
                 <div>
                     {this.props.forCreation && this.fieldFor('usersearch', { isEdit: true, onKeyUp: this.searchUser })}
                     {this.fieldFor('twitchId', { isEdit: this.props.forCreation || false })}

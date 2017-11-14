@@ -72,7 +72,7 @@ export default {
     getRoundScore: actionBuilder({
         node: 'eventRoundDetail',
         service: eventServices.getRoundScore,
-        shouldDumpStoreOnActionCall: true,
+        shouldDumpStoreOnActionCall: false,
         status: 'loaded'
     }),
     createRound: actionBuilder({

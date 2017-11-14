@@ -51,6 +51,14 @@ export default connectToStore([{
             this.onChangeRound(this.props.eventRoundList[0]);
         }
 
+        this.handle = window.setInterval(() => {
+            if (this.state.roundId && this.props.id) {
+                actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId });
+            }
+        }, 3 * 1000)
+    },
+    componentWillUnmount() {
+        window.clearInterval(this.handle);
     },
     save() {
         // id, idRound, idUser, score

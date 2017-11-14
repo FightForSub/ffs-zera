@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, browserHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 
 import Routes from './routes';
 
@@ -11,7 +11,7 @@ import { filterByRoles } from './utilities/router'
  */
 const Application = () => (
     <Router
-        history={browserHistory}
+        history={hashHistory}
         routes={filterByRoles(Routes)}
     />
 );

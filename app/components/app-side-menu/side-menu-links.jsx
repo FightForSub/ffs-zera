@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from '@/components/router';
 import { translate } from 'focus-core/translation';
 
 class SideMenuLinks extends React.Component {

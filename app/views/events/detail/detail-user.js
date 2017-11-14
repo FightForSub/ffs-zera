@@ -6,6 +6,7 @@ import eventActions from '../../../action/event';
 // import Article from '../../components/article';
 // import Section from '../../components/article';
 import { navigate } from '../../../utilities/router';
+import twitchFetch from '../../../utilities/twitch-fetch';
 
 export default React.createClass({
     displayName: 'UserCreationView',
@@ -54,12 +55,28 @@ export default React.createClass({
             }
         }
     },
+    searchUser(event) {
+        if (event.key === 'Enter') {
+            let userName = this.state.usersearch;
+            let id = null;
+            if (userName) {
+                twitchFetch({ url: `https://api.twitch.tv/helix/users?login=${userName}`, method: 'GET' })
+                    .then(jsondata => {
+                        if (jsondata.data && jsondata.data.length > 0) {
+                            id = jsondata.data[0].id;
+                        }
+                        this.setState({ usersearch: null, twitchId: id });
+                    })
+            }
+        }
+    },
     /** @inheritDoc */
     renderContent() {
         return (
             <div data-app='live-page'>
                 <h3 className='website-title'>{translate(!this.props.forCreation ? 'label.updateUser' : 'label.createUser')}</h3>
                 <div>
+                    {this.props.forCreation && this.fieldFor('usersearch', { isEdit: true, onKeyUp: this.searchUser })}
                     {this.fieldFor('twitchId', { isEdit: this.props.forCreation || false })}
                     {!this.props.forCreation && this.fieldFor('username', { isEdit: false })}
                     {this.fieldFor('status')}

@@ -288,3 +288,7 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
         background-color: $vert-zera;
     }
 }
+
+.mdl-list__item-primary-content {
+    min-height: 40px;
+}

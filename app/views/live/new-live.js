@@ -29,7 +29,7 @@ export default connectToStore([{
             eventActions.getCurrentEvent();
         },
         componentWillReceiveProps(nextProps) {
-            if (nextProps.eventDetail && nextProps.eventDetail && nextProps.eventDetail.id && nextProps.eventDetail.id !== (this.props.eventDetail || {}).id) {
+            if (nextProps.eventDetail && nextProps.eventDetail.id && (!this.props.eventDetail || !this.props.eventDetail.id || nextProps.eventDetail.id !== this.props.eventDetail.id)) {
                 eventActions.listUsers(nextProps.eventDetail.id);
             }
         },

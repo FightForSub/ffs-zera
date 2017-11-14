@@ -40,7 +40,7 @@ const List = (props) => {
                                 {avatar &&
                                     <i className={`${avatar.className || 'material-icons'} mdl-list__item-avatar`}>{avatar.iconText}</i>
                                 }
-                                {logoUrl &&
+                                {
                                     <i className={'mdl-list__item-avatar'} style={{ backgroundImage: `url(${logoUrl}`, backgroundSize: 'contain' }} />
                                 }
                                 <span>

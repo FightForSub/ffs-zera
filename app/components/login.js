@@ -6,6 +6,8 @@ import UserStore from 'focus-core/user/built-in-store';
 import TwitchButton from './login/twitch-button';
 import UserInfos from './login/user-infos';
 import { dispatchData } from 'focus-core/dispatcher';
+import localForage from 'localforage';
+import moment from 'moment';
 
 import authService from '../services/authent';
 
@@ -20,13 +22,18 @@ class LoginButton extends React.Component {
 
     handleAuthLogin(twitchToken) {
         let apiToken;
-        authService.login(this.props.profile.token)
-            .then(({ access_token }) => {
+        localForage.getItem('api_token')
+            .then(token => {
+                if (token !== null && (token.expiration_date - 3600 * 2) > moment().unix()) {
+                    return token;
+                }
+                return authService.login(this.props.profile.token);
+            }).then(({ access_token, expires_in, expiration_date }) => {
+                localForage.setItem('api_token', { access_token, expires_in, expiration_date: expiration_date ? expiration_date : (moment().unix() + expires_in) });
                 apiToken = access_token;
                 // dispatchData('profile', { ...UserStore.getProfile(), apiToken: access_token });
                 return authService.getCurrentUser(access_token);
-            })
-            .then(data => {
+            }).then(data => {
                 dispatchData('profile', { ...data, token: twitchToken, apiToken: apiToken });
             })
             .catch(error => console.warn('LOGIN ERROR', error));

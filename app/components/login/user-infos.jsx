@@ -3,6 +3,7 @@ import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
 import localForage from 'localforage';
+import { translate } from 'focus-core/translation';
 
 @connectToStore([{
     store: UserStore,
@@ -25,7 +26,7 @@ class UserInfos extends React.Component {
                 />
                 <div className='user-infos-name'>
                     <div className='user-infos-name-welcome'>
-                        {'Bievenue,'}
+                        {translate('label.loginWelcome')}
                     </div>
                     <div className='user-infos-name-value'>
                         {username}

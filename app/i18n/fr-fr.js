@@ -55,7 +55,8 @@ export default {
         refreshResult: 'Rafraîchir les résultats',
         updateScore: 'Mettre à jour le score',
         results: 'Résultats',
-        goToResults: 'Aller au classement'
+        goToResults: 'Aller au classement',
+        loginWelcome: 'Bienvenue,'
     },
     button: {
         save: 'Sauvegarder'
@@ -79,7 +80,7 @@ export default {
             game: 'Une centaine de streamers s\'affrontent lors d\'une compétition tous les mois sur le jeu PlayerUnknow\'s Battlegrounds, organisée et commentée par Zerator.',
             sub: 'Tous les participants de la compétition doivent s\'abonner à la chaine Twitch du vainqueur.',
             rules: [
-                '3 parties (4 en cas d\'égalitée au bout de 3 parties)',
+                '3 parties (4 en cas d\'égalité au bout de 3 parties)',
                 'Une fois par mois',
                 'Uniquement des streamers (affiliate ou partner)',
                 'La moyenne de votre classement dans les 3 games détermine votre place finale (ce qui veut dire que quelqu\'un qui fait TOP 3 - TOP 3 - TOP 3 gagnes face à quelqu\'un qui fait TOP 1 / TOP 1 / TOP 10)',

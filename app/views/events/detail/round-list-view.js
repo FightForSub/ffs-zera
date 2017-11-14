@@ -91,16 +91,25 @@ export default connectToStore([{
         }).map(elt => ({
             logoUrl: elt.logo,
             LineContent: <span className='detail-user-line-content'>{elt.username}</span>,
-            onClick: () => {
-                if (isModo()) {
-                    this.setState({
-                        displayPopin: true,
-                        fixTwitchId: elt.twitchId
-                    })
-                }
-            }
+            onClick: () => this.handleLineClick(elt)
         }));
         return <List data- dd='empilable' isWrapping dataList={data} />
+    },
+    handleLineClick(elt) {
+        if (isModo()) {
+            this.setState({
+                displayPopin: true,
+                fixTwitchId: elt.id
+            })
+        } else {
+            const newTab = document.createElement('a');
+            newTab.href = elt.url;
+            newTab.target = '_blank';
+            newTab.style.display = 'none';
+            document.body.appendChild(newTab);
+            newTab.click();
+            document.body.removeChild(newTab);
+        }
     },
     renderLine({ username, twitchId, score }) {
         return (
@@ -128,14 +137,7 @@ export default connectToStore([{
             .map(elt => ({
                 logoUrl: elt.logo,
                 LineContent: this.renderLine(elt),
-                onClick: () => {
-                    if (isModo()) {
-                        this.setState({
-                            displayPopin: true,
-                            fixTwitchId: elt.id
-                        })
-                    }
-                }
+                onClick: () => this.handleLineClick(elt)
             }));
         return (
             <div data-app='round-list-page' >

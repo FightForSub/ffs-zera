@@ -7,7 +7,7 @@ export default {
     loadEventList(data) {
         let { status, skip, top } = data || {};
         const queryObj = {
-            status: status || 'OPEN',
+            // status: status || 'OPEN',
             start: skip || 0,
             end: top || 50
         };

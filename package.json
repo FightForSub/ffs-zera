@@ -102,6 +102,7 @@
     "devDependencies": {
         "better-npm-run": "0.1.0",
         "eslint-config-focus": "0.6.0",
+        "eslint-import-resolver-webpack": "^0.8.3",
         "focus-components": "2.2.0",
         "focus-core": "2.2.0",
         "focus-devtools": "0.4.1",

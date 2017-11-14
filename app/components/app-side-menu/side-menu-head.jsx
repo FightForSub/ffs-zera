@@ -1,10 +1,10 @@
-import { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
 import AppLogo from './app-logo';
 import LoginButton from './../login';
 
-class SideMenuHead extends Component {
+class SideMenuHead extends React.Component {
     state = {
     }
 

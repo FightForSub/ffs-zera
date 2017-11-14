@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { component as List } from 'focus-components/list/selection/list';
 import { translate } from 'focus-core/translation';
 import Button from 'focus-components/components/button';
@@ -24,7 +24,7 @@ import UserStore from 'focus-core/user/built-in-store';
     store: UserStore,
     properties: ['profile']
 }], () => ({ eventList: EventStore.getEventList() }))
-class EventsView extends Component {
+class EventsView extends React.Component {
 
     constructor(props) {
         super(props);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import Button from 'focus-components/components/button';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
@@ -13,7 +13,7 @@ import authService from '../services/authent';
     store: UserStore,
     properties: ['profile', 'login', 'roles']
 }], () => UserStore.getValue())
-class LoginButton extends Component {
+class LoginButton extends React.Component {
     constructor(props) {
         super(props);
     }

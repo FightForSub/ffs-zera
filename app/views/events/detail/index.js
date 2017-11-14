@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { translate } from 'focus-core/translation';
 import Button from 'focus-components/components/button';
 import { component as Popin } from 'focus-components/application/popin';
@@ -28,7 +28,7 @@ import { isAdmin } from '../../../utilities/check-rights';
     store: UserStore,
     properties: ['profile']
 }], () => ({ userList: EventStore.getEventUserList() || [] }))
-class DetailEventView extends Component {
+class DetailEventView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

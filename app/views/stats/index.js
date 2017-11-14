@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { translate } from 'focus-core/translation';
 // import eventActions from '../../action/event';
 import eventServices from '../../services/event';
@@ -26,7 +26,7 @@ const LineComponent = React.createClass({
 });
 
 
-class StatsView extends Component {
+class StatsView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

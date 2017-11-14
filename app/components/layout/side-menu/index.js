@@ -1,8 +1,8 @@
-import { Component } from 'react';
-import React, { Component } from 'react';
+import React from 'react';
+import React from 'react';
 import { translate } from 'focus-core/translation';
 
-class Layout extends Component {
+class Layout extends React.Component {
     state = {
         isVisible: false
     }

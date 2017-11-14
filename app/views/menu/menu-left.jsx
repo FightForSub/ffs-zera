@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { navigate } from 'focus-core/history';
 import Menu from 'focus-components/components/menu';
 import { component as Modal } from 'focus-components/application/popin';
@@ -14,7 +14,7 @@ import { translate } from 'focus-core/translation';
  * @class DemoMenuLeft
  * @extends {Component} Composant React
  */
-class DemoMenuLeft extends Component {
+class DemoMenuLeft extends React.Component {
     constructor(props) {
         super(props);
         this._onHomeClick = this._onHomeClick.bind(this);

@@ -1,0 +1,30 @@
+@import './login.scss';
+
+.app-side-menu{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    width: 300px;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    background: #191919 url('assets/img/nav-background.png') no-repeat bottom left;
+
+    @include box-shadow(inset -35px 0 35px rgba(0, 0, 0, 0.15));
+
+    .side-menu-head{
+        display: flex;
+        flex-direction: column;
+
+        &-logo{
+            a{
+                display: flex;
+                img{
+                    margin: auto;
+                    width: 120px;
+                }
+            }
+        }
+    }
+}

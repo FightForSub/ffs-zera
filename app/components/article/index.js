@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { translate } from 'focus-core/translation';
 
-class Article extends Component {
+class Article extends React.Component {
     state = {
         isVisible: false
     }

@@ -8,6 +8,7 @@
 //styles from demo
 @import '_mixins.scss';
 
+@import './side-menu/side-menu.scss';
 @import './layout.scss';
 @import '../components/list/style.scss';
 @import '../components/article/styles/index.scss';

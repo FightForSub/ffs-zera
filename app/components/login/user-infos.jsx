@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
@@ -7,7 +7,7 @@ import { dispatchData } from 'focus-core/dispatcher';
     store: UserStore,
     properties: ['profile', 'login', 'roles']
 }], () => UserStore.getValue())
-class UserInfos extends Component {
+class UserInfos extends React.Component {
     doLogout() {
         Twitch.logout(error => console.warn(error));
         dispatchData('profile', null);
@@ -16,20 +16,27 @@ class UserInfos extends Component {
     render() {
         const { token, username, logo } = this.props.profile || {};
         return (
-            <div className='login-container'>
+            <div className='user-infos'>
                 <div
-                    className='logo-login'
+                    className='user-infos-image'
                     style={{ backgroundImage: `url(${logo}` }}
                 />
-                <div>
-                    {username}
+                <div className='user-infos-name'>
+                    <div className='user-infos-name-welcome'>
+                        {'Bievenue,'}
+                    </div>
+                    <div className='user-infos-name-value'>
+                        {username}
+                    </div>
                 </div>
-                <i
-                    className='material-icons'
+                <button
+                    className='user-infos-logout'
                     onClick={() => this.doLogout(token)}
                 >
-                    {'power_settings_new'}
-                </i>
+                    <i className='material-icons'>
+                        {'power_settings_new'}
+                    </i>
+                </button>
             </div>
         );
     }

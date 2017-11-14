@@ -1,17 +1,15 @@
-import { Component } from 'react';
+import React from 'react';
 
-import AppLogo from './app-side-menu/app-logo';
-import SideMenuHead from './app-side-menu/side-menu-head';
+import SideMenuHead from '@/components/app-side-menu/side-menu-head';
 
-class AppSideMenu extends Component {
+class AppSideMenu extends React.Component {
     state = {
     }
 
     render() {
         return (
-            <div>
-                <AppLogo />
-                <AppLogo />
+            <div className='app-side-menu'>
+                <SideMenuHead />
             </div>
         );
     }

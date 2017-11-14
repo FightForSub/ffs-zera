@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { translate } from 'focus-core/translation';
 
-class TwitchButton extends Component {
+class TwitchButton extends React.Component {
     constructor(props) {
         super(props);
         this.doLogin = this.doLogin.bind(this);

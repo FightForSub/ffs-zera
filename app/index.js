@@ -1,3 +1,4 @@
+import 'normalize.css';
 import './initializer/scripts/translation-initializer';
 import './twitch';
 

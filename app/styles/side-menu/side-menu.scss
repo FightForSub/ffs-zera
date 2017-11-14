@@ -1,7 +1,7 @@
 @import './login.scss';
 
 .app-side-menu{
-    position: fixed;
+    position: sticky;
     display: flex;
     flex-direction: column;
     z-index: 100;

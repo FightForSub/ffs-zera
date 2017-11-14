@@ -1,15 +1,14 @@
 import React from 'react';
-import Layout from 'focus-components/components/layout';
 
 import AppSideMenu from './app-side-menu';
-import AppContent from './app-side-menu';
-import MenuLeft from '../views/menu/menu-left';
-//  import Footer from '../views/footer';
+import AppContent from './app-content';
 
 const CustomLayout = (props) => (
-    <div>
+    <div className='app-layout'>
         <AppSideMenu />
-        <AppContent />
+        <AppContent>
+            {props.children}
+        </AppContent>
         {/* <Layout
             MenuLeft={MenuLeft}
         >

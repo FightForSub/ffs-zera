@@ -22,7 +22,9 @@ export default {
         return eventApiDriver.update({ id: data.id }, toSave);
     },
     listUsers(id) {
-        return eventApiDriver.listUsers({ id });
+        return eventApiDriver.listUsers({ id }).then(arr => {
+            return arr.sort((a, b) => ((a || {}).username || '').localeCompare(((b || {}).username || '')));
+        });
     },
     addUser(data) {
         const { id, idUser, status, twitchId } = data;

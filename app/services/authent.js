@@ -1,4 +1,4 @@
-import authApiDriver from '../config/server/authent';
+import authApiDriver from '@/config/server/authent';
 
 export default {
     login(token) {

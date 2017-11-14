@@ -6,5 +6,6 @@ const parsedEnv = envParser(process.env);
 myConfig.addDefinedVariable('__CLIENT_ID__', JSON.stringify(parsedEnv.CLIENT_ID));
 myConfig.addDefinedVariable('__BASE_URL__', JSON.stringify(parsedEnv.BASE_URL));
 myConfig.addDefinedVariable('__ROOT_URL__', JSON.stringify(parsedEnv.ROOT_URL));
+myConfig.addAlias('@', './app');
 
 module.exports = myConfig.toWebpackConfig(parsedEnv);

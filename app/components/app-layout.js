@@ -1,17 +1,17 @@
 import React from 'react';
-import Layout from 'focus-components/components/layout';
 
-import MenuLeft from '../views/menu/menu-left';
-//  import Footer from '../views/footer';
-import DevTools from './dev-tools';
+import AppSideMenu from '@/components/app-side-menu';
+import AppContent from '@/components/app-content';
+import DevTools from '@/components/dev-tools';
+import LoadingBar from 'focus-components/components/layout/header-loading-bar';
 
 const CustomLayout = (props) => (
-    <div>
-        <Layout
-            MenuLeft={MenuLeft}
-        >
+    <div className='app-layout'>
+        <LoadingBar />
+        <AppSideMenu />
+        <AppContent>
             {props.children}
-        </Layout>
+        </AppContent>
         {__DEV__ && <DevTools />}
     </div >
 );

@@ -1,22 +1,42 @@
-body {
+* {
+    box-sizing: border-box;
+}
+
+html, body{
     color: #cecece;
+    background-color: $background-grey;
+    font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+button{
+    background: transparent;
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.app-layout{
+    display: flex;
+
+    .app-content{
+        flex: 1;
+
+        &-content{
+            padding: 32px;
+        }
+
+        &-header{
+            height: 150px;
+            background-image: url('assets/img/header_pubg2.png');
+            background-size: cover;
+        }
+    }
 }
 
 .fa-ul {
     color: #000000;
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li span {
-	color: #fff;
-	position: initial;
-	top: initial;
-	text-align: initial;
-    z-index: 10;
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li a {
-    display: inline-block;
-    width: 100%;
 }
 
 [data-focus="selection-list"] [data-focus="sl-line"] {
@@ -31,67 +51,12 @@ body {
     color:$custom-white;
 }
 
-[data-focus="menu-left"] [data-focus="menu-items"] li:hover {
-  &::before {
-    width: 100%;
-  }
-  &::after {
-    left: 2;
-    opacity: 1;
-  }
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li span {
-	font-size: 15px;
-    margin-left: 10px;
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li {
-	width: 100%;
-    margin: auto;
-    position: relative;
-    height: 35px;
-    line-height: 30px;
-    margin-bottom: 15px;
-    color: white;
-    text-align: left;
-    overflow: hidden;
-    text-align: initial;
-  	&::before {
-    display: block;
-    content: '';
-    position: absolute;
-    right: -10px;
-    top: 0;
-    bottom: 0;
-    max-width: 95.5%;
-    width: 0%;
-    background: $vert-zera;
-    z-index: -1;
-    transform: skew(-16deg);
-    transition: all ease .25s;
-	}
-    &::after {
-    display: block;
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: #2DBEE8;
-    transform: translate3d(10px, 0, 0) skew(-16deg);
-    opacity: 0;
-    transition: all ease .25s;
-  }
-}
-
 [data-focus='header-top-row'] > div {
     display: none;
 }
 
 [data-focus='header-scrolling'][data-deployed="false"] [data-focus="header-top-row"] {
-    box-shadow: none;
+    @include box-shadow(none);
     position: relative;
 }
 
@@ -120,26 +85,6 @@ body {
     min-height: 100vh;
 }
 
-// Changing background color of the left menu
-[data-focus="menu-left"] {
-    position: fixed;
-    z-index: 2000;
-    width: 250px;
-    height: 100vh;
-    top: 0;
-    bottom: 0;
-    background: #191919 url(https://zerator.com/wp-content/themes/Zerator/assets/img/nav-background.png) no-repeat bottom left;
-    box-shadow: inset -35px 0 35px rgba(0, 0, 0, 0.15);
-    [data-focus="menu-brand"] {
-        background-size: 120px !important;
-        background-color: transparent;
-        height: 120px;
-        padding-top: 30px;
-        margin-bottom: 30px;
-        background-position: 50% 50% !important;
-    }
-}
-
 .live-line-content {
     display: flex;
     flex-direction: row;
@@ -150,7 +95,7 @@ body {
 [data-focus='page-content'] button {
     background-color: $vert-zera;
     border-bottom: 3px solid darken($vert-zera, 10%);
-    transition: all 0.3s;
+    @include transition(all 0.3s);
 }
 
 // Changing background color of the header
@@ -161,27 +106,6 @@ body {
     background-size: 100%;
     height: 240px;
     position: relative !important;
-}
-
-// Changing color of the menu left icons
-[data-focus="menu-left"] [data-focus="menu-items"]{
-    list-style: none;
-    li {
-    width: 100%;
-    margin: auto;
-    position: relative;
-    height: 35px;
-    line-height: 30px;
-    margin-bottom: 15px;
-    color: white;
-    text-align: left;
-    overflow: hidden;
-    text-align: initial;
-    }
-    li a {
-        color :$custom-white !important; // Overriding style
-        padding-left: 35px;
-    }
 }
 
 // Adaptating title
@@ -240,36 +164,6 @@ body {
     }
 }
 
-.login-container {
-    display: flex;
-    color:$custom-white;
-    align-items: center;
-    justify-content: center;
-
-    i, div {
-        padding-right: 10px;
-    }
-    i {
-        cursor: pointer;
-    }
-
-    .login-button {
-        background-image: url('./assets/img/logoTwitch.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 32px;
-        width: 170px;
-        cursor: pointer;
-    }
-
-    .logo-login {
-        height: 40px;
-        width: 40px;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-}
-
 [data-app="inscription-page"] {
     .logo-login {
         height: 300px;
@@ -321,11 +215,13 @@ body {
 div[data-focus="field"][data-mode="edit"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div,
 div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div {
     width: 100%;
+    .DraftEditor-root {
+        font-family: 'Roboto', 'Arial', sans-serif;    
+    }
 }
 
 div[data-focus="field"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {
     background: none;
-    font-family: 'Open Sans'
 }
 
 div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {
@@ -349,6 +245,51 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 
 .pad-bottom > * {
     margin-bottom: 10px;
+}
+
+
+.display-1, .headline, .subheading{
+    color: white;
+}
+
+.display-1{
+    font-size: 36pt;
+    text-transform: uppercase;
+    color: white;
+}
+
+.headline{
+    font-size: 28pt;
+}
+
+.subheading{
+    font-size: 16pt;
+}
+
+.green{
+    color: $vert-zera;
+}
+
+.title{
+    &-blue, &-green{
+        position: relative;
+        padding-bottom: 8px;
+        &:before{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 100px;
+        }
+    }
+    &-blue:before{
+        background-color: $blue-prime;
+    }
+
+    &-green:before{
+        background-color: $vert-zera;
+    }
 }
 
 .mdl-list__item-primary-content {

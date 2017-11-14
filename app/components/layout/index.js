@@ -1,7 +1,7 @@
 import React from 'react';
 import { translate } from 'focus-core/translation';
 
-class Article extends React.Component {
+class Layout extends React.Component {
     state = {
         isVisible: false
     }
@@ -18,18 +18,15 @@ class Article extends React.Component {
                 </div>
             </section >
         );
-        /*<button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" onClick={() => this.setState({ isVisible: true })}>
-            <i className="material-icons">more_vert</i>
-          </button>*/
     }
 }
 
-Article.displayName = 'Article';
-Article.propTypes = {
+Layout.displayName = 'Layout';
+Layout.propTypes = {
 
 };
-Article.defaultProps = {
+Layout.defaultProps = {
 
 };
 
-export default Article;
+export default Layout;

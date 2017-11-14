@@ -1,0 +1,139 @@
+@import './login.scss';
+
+.app-side-menu{
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    width: 300px;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    background: #191919 url('assets/img/nav-background.png') no-repeat bottom left;
+
+    @include box-shadow(inset -35px 0 35px rgba(0, 0, 0, 0.15));
+
+    .side-menu-head{
+        display: flex;
+        flex-direction: column;
+
+        &-logo{
+            a{
+                display: flex;
+                img{
+                    margin: auto;
+                    width: 120px;
+                }
+            }
+        }
+    }
+
+    .side-menu-links{
+        display: flex;
+        flex-direction: column;
+        margin-top: 32px;
+
+        li{
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 45px;
+            line-height: 45px;
+            margin: auto;
+            margin-bottom: 15px;
+            color: white;
+            text-align: left;
+            overflow: hidden;
+
+            &::before {
+                display: block;
+                content: '';
+                position: absolute;
+                right: -10px;
+                top: 0;
+                bottom: 0;
+                max-width: 95.5%;
+                width: 0%;
+                background: rgba(white, 0.12);
+                z-index: -1;
+        
+                @include transform(skew(-16deg));
+                @include transition(all ease .25s);
+            }
+        
+            &::after {
+                display: block;
+                content: '';
+                position: absolute;
+                left: 10px;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background: $vert-zera;
+                opacity: 0;
+        
+                @include transform(translate3d(10px, 0, 0) skew(-16deg));
+                @include transition(all ease .25s);
+            }
+
+            &:hover{
+                &::before {
+                    width: 100%;
+                }
+                &::after {
+                    left: 2;
+                    opacity: 1;
+                }
+            }
+
+    
+            a{
+                display: flex;
+                line-height: 45px;
+                width: 100%;
+                color: $custom-white !important; // Overriding style
+                padding-left: 35px;
+                text-decoration: none;
+                text-transform: uppercase;
+    
+                .material-icons{
+                    color: $vert-zera;
+                    margin: auto 0;
+                    margin-right: 16px;
+                    @include transition(color 200ms);
+                }
+    
+                &:hover{
+                    .material-icons{
+                        color: white;
+                    }
+                }
+    
+                button{
+                    display: flex;
+                    height: 45px;
+    
+                    .material-icons{
+                        position: relative;
+                        top: 0;
+                        left: 0;
+                        margin: auto;
+    
+                        @include transform(translate(0,0));
+                    }
+                }
+            }
+    
+            .side-menu-link{
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+
+    ul, li{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}

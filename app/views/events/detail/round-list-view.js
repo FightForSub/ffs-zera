@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import { component as List } from 'focus-components/list/selection/list';
 import List from '../../../components/list';
 import { mixin as formPreset } from 'focus-components/common/form';
@@ -140,7 +140,7 @@ export default connectToStore([{
                             hasUndefined={false}
                         />
                         {isModo() && this.state.roundId && this.state.roundId !== 'ALL' &&
-                                <Button label='label.updateParticipant' onClick={() => { this.setState({ displayPopin: true }) }} />
+                        <Button label='label.updateParticipant' onClick={() => { this.setState({ displayPopin: true }) }} />
                         }
                         {isModo() && this.state.roundId && <Button label='label.deleteRound' onClick={this.deleteRound} />}
 

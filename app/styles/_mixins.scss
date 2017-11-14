@@ -35,6 +35,27 @@ $black-and-white-variant: 0.8;
     -ms-filter: grayscale($black-and-white-variant);
 }
 
+@mixin transition($transitions...){
+	-webkit-transition: $transitions;
+     -moz-transition: $transitions;
+       -o-transition: $transitions;
+          transition: $transitions;
+}
+
+@mixin transform($transforms...){
+	-webkit-transform: $transforms;
+     -moz-transform: $transforms;
+       -o-transform: $transforms;
+          transform: $transforms;
+}
+
+@mixin box-shadow($box-shadows...){
+	-webkit-box-shadow: $box-shadows;
+     -moz-box-shadow: $box-shadows;
+       -o-box-shadow: $box-shadows;
+          box-shadow: $box-shadows;
+}
+
 @mixin headings {
     h1, h2, h3,
     h4, h5, h6 {

@@ -64,4 +64,4 @@ if (window._hasFiredDOMContentLoaded) {
 }
 
 //Reference styles inside the application
-import './styles/index.scss';
+import './styles';

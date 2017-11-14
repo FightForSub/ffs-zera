@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { translate } from 'focus-core/translation';
 // import eventActions from '../../action/event';
-import eventServices from '../../services/event';
 import { component as List } from 'focus-components/list/selection/list';
-
 import { mixin as lineMixin } from 'focus-components/list/selection/line';
+
+import eventServices from '@/services/event';
 
 const LineComponent = React.createClass({
     displayName: 'ResultLineView',
@@ -26,7 +26,7 @@ const LineComponent = React.createClass({
 });
 
 
-class StatsView extends Component {
+class StatsView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

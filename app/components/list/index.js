@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from '../router'
+import { Link } from '@/components/router';
 
 const defaultProps = {
     dataList: [],

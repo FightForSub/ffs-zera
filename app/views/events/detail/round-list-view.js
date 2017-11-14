@@ -18,6 +18,7 @@ import UserStore from 'focus-core/user/built-in-store';
 // import { dispatchData } from 'focus-core/dispatcher';
 
 import actions from '../../../action/event';
+import { dispatchData } from 'focus-core/dispatcher';
 
 // const LineComponent = (data) => (<div>{JSON.stringify(data)}</div>)
 // import LineComponent from './round-line';
@@ -68,6 +69,9 @@ export default connectToStore([{
     componentWillReceiveProps({ eventRoundList }) {
         if (eventRoundList && eventRoundList.length > 0 && (!this.props.eventRoundList || !this.props.eventRoundList.length > 0)) {
             this.onChangeRound(eventRoundList[0]);
+        } else if (eventRoundList && eventRoundList.length === 0) {
+            this.setState({ roundId: null });
+            dispatchData('eventRoundDetail', null);
         }
     },
     renderRound(children) {
@@ -99,8 +103,6 @@ export default connectToStore([{
         return <List data- dd='empilable' isWrapping dataList={data} />
     },
     renderLine({ username, twitchId, score }) {
-        // <div>{'TwitchId: ' + twitchId}</div>
-
         return (
             <span className='detail-user-line-content' >
                 <span>{username}</span>
@@ -120,16 +122,6 @@ export default connectToStore([{
     },
     /** @inheritDoc */
     renderContent() {
-
-        /*
-                                                                        <SelectInput
-                                                                    value={this.state.roundId}
-                                                                    values={(this.props.eventRoundList || []).map((elt, idx) => ({ code: elt, label: 'Round ' + (idx + 1) }))}
-                                                                    onChange={this.onChangeRound}
-                                                                    hasUndefined={false}
-                                                                />
-                                        */
-        // [{ code: 'ALL', label: 'select.all' }].concat(
         const toDisplay = (this.props.eventRoundDetail || [])
             .filter(elt => elt.score)
             .sort((a, b) => (a.score - b.score))
@@ -154,7 +146,7 @@ export default connectToStore([{
                         {this.props.id && this.state.roundId && <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />}
                     </div>
                     {isModo() && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
-                    {this.renderRound()}
+                    {this.state.roundId && this.renderRound()}
                     <div className='pad-buttons' style={{ display: 'flex' }} >
                         {isModo() && this.state.roundId && this.state.roundId !== 'ALL' &&
                                 <Button label='label.updateParticipant' onClick={() => { this.setState({ displayPopin: true }) }} />

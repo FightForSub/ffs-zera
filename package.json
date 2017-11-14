@@ -51,7 +51,7 @@
                 "BABELIFIED_PATH": "./app",
                 "ENTRY_FILE_PATH": "./app/index",
                 "PAGE_TITLE": "Fight For Sub",
-                "OUTPUT_DIR": "./docs",
+                "OUTPUT_DIR": ".",
                 "OUTPUT_PUBLIC_PATH": "/ffs-zera/",
                 "BASE_URL": "/",
                 "API_ROOT": "https://ffs-api-test.zerator.com/v1/",

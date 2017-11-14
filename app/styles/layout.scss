@@ -28,7 +28,7 @@ button{
         }
 
         &-header{
-            height: 120px;
+            height: 150px;
             background-image: url('assets/img/header_pubg2.png');
             background-size: cover;
         }
@@ -215,6 +215,9 @@ button{
 div[data-focus="field"][data-mode="edit"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div,
 div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div {
     width: 100%;
+    .DraftEditor-root {
+        font-family: 'Roboto', 'Arial', sans-serif;    
+    }
 }
 
 div[data-focus="field"][data-domain="DO_DESCRIPTION"] [data-focus="field-value-container"] > div > div {

@@ -1,4 +1,5 @@
 import 'normalize.css';
+import 'font-awesome/css/font-awesome.css';
 import './initializer/scripts/translation-initializer';
 import './twitch';
 

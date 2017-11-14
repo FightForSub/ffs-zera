@@ -3,6 +3,14 @@ body {
     background-color: $background-grey;
 }
 
+button{
+    background: transparent;
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
 .fa-ul {
     color: #000000;
 }

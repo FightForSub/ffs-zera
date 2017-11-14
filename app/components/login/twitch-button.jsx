@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import { translate } from 'focus-core/translation';
 
 class TwitchButton extends React.Component {
@@ -16,15 +17,17 @@ class TwitchButton extends React.Component {
 
     render() {
         return (
-            <button
-                className='twitch-sign-in'
-                onClick={this.doLogin}
-            >
-                <i className='fa fa-twitch' />
-                <span>
-                    {translate('global.login.twitch')}
-                </span>
-            </button>
+            <div className='twitch-container'>
+                <button
+                    className='twitch-sign-in'
+                    onClick={this.doLogin}
+                >
+                    <FontAwesome name='twitch' />
+                    <span>
+                        {translate('global.login.twitch')}
+                    </span>
+                </button >
+            </div>
         );
     }
 }

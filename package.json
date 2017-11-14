@@ -119,6 +119,8 @@
         "webpack-focus": "1.0.0"
     },
     "dependencies": {
-        "normalize.css": "^7.0.0"
+        "font-awesome": "^4.7.0",
+        "normalize.css": "^7.0.0",
+        "react-fontawesome": "^1.6.1"
     }
 }

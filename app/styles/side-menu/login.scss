@@ -30,15 +30,38 @@
     }
 
     &-logout{
-        background: transparent;
         color: white;
-        appearance: none;
-        border: none;
         width: 45px;
 
         &:hover{
             cursor: pointer;
             background-color: lighten($vert-zera, 2%);
         }
+    }
+}
+
+.twitch-container{
+    padding: 0 16px;
+}
+.twitch-sign-in{
+    display: flex;
+    justify-content: center;
+    background-color: $twitch;
+    color: white;
+    height: 45px;
+    line-height: 45px;
+    width: 100%;
+    text-transform: uppercase;
+
+    .fa{
+        font-size: 24px;
+        vertical-align: middle;
+        margin: auto 0;
+        margin-right: 16px;
+    }
+
+    &:hover{
+        cursor: pointer;
+        background: lighten($twitch, 10%);
     }
 }

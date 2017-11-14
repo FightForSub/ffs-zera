@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 // import Button from 'focus-components/components/button';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
-import twitchFetch from '../utilities/twitch-fetch';
 import { dispatchData } from 'focus-core/dispatcher';
+import localForage from 'localforage';
+import moment from 'moment';
+
+import twitchFetch from '../utilities/twitch-fetch';
 import authService from '../services/authent';
 
 @connectToStore([{
@@ -25,6 +28,7 @@ class LoginButton extends Component {
 
     doLogout(token) {
         Twitch.logout(error => console.warn(error));
+        localForage.clear();
         dispatchData('profile', null);
 
         // twitchFetch({ url: `https://api.twitch.tv/kraken/oauth2/revoke?client_id=${__CLIENT_ID__}&token=${token}`, method: 'POST' }).then(data => {
@@ -39,8 +43,15 @@ class LoginButton extends Component {
         if (this.props.profile && this.props.profile.token) {
             let twitchToken = this.props.profile.token;
             let apiToken;
-            authService.login(this.props.profile.token)
-                .then(({ access_token }) => {
+
+            localForage.getItem('api_token')
+                .then(token => {
+                    if (token !== null && (token.expiration_date - 3600 * 2) > moment().unix()) {
+                        return token;
+                    }
+                    return authService.login(this.props.profile.token);
+                }).then(({ access_token, expires_in, expiration_date }) => {
+                    localForage.setItem('api_token', { access_token, expires_in, expiration_date: expiration_date ? expiration_date : (moment().unix() + expires_in) });
                     apiToken = access_token;
                     // dispatchData('profile', { ...UserStore.getProfile(), apiToken: access_token });
                     return authService.getCurrentUser(access_token);

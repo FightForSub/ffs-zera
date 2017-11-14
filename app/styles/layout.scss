@@ -29,19 +29,6 @@ button{
     color: #000000;
 }
 
-[data-focus="menu-left"] [data-focus="menu-items"] li span {
-	color: #fff;
-	position: initial;
-	top: initial;
-	text-align: initial;
-    z-index: 10;
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li a {
-    display: inline-block;
-    width: 100%;
-}
-
 [data-focus="selection-list"] [data-focus="sl-line"] {
 	border-bottom: 1px solid #333333;
 	&:first-child {
@@ -52,65 +39,6 @@ button{
 // Changing text color for list elt
 .mdl-list__item {
     color:$custom-white;
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li:hover {
-  &::before {
-    width: 100%;
-  }
-  &::after {
-    left: 2;
-    opacity: 1;
-  }
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li span {
-	font-size: 15px;
-    margin-left: 10px;
-}
-
-[data-focus="menu-left"] [data-focus="menu-items"] li {
-	width: 100%;
-    margin: auto;
-    position: relative;
-    height: 45px;
-    line-height: 45px;
-    margin-bottom: 15px;
-    color: white;
-    text-align: left;
-    overflow: hidden;
-    text-align: initial;
-
-  	&::before {
-        display: block;
-        content: '';
-        position: absolute;
-        right: -10px;
-        top: 0;
-        bottom: 0;
-        max-width: 95.5%;
-        width: 0%;
-        background: $vert-zera;
-        z-index: -1;
-
-        @include transform(skew(-16deg));
-        @include transition(all ease .25s);
-    }
-
-    &::after {
-        display: block;
-        content: '';
-        position: absolute;
-        left: 10px;
-        top: 0;
-        bottom: 0;
-        width: 4px;
-        background: $blue-prime;
-        opacity: 0;
-
-        @include transform(translate3d(10px, 0, 0) skew(-16deg));
-        @include transition(all ease .25s);
-    }
 }
 
 [data-focus='header-top-row'] > div {
@@ -147,28 +75,6 @@ button{
     min-height: 100vh;
 }
 
-// Changing background color of the left menu
-[data-focus="menu-left"] {
-    position: fixed;
-    z-index: 2000;
-    width: 350px;
-    height: 100vh;
-    top: 0;
-    bottom: 0;
-    background: #191919 url(https://zerator.com/wp-content/themes/Zerator/assets/img/nav-background.png) no-repeat bottom left;
-
-    @include box-shadow(inset -35px 0 35px rgba(0, 0, 0, 0.15));
-
-    [data-focus="menu-brand"] {
-        background-size: 120px !important;
-        background-color: transparent;
-        height: 120px;
-        padding-top: 30px;
-        margin-bottom: 30px;
-        background-position: 50% 50% !important;
-    }
-}
-
 .live-line-content {
     display: flex;
     flex-direction: row;
@@ -190,58 +96,6 @@ button{
     background-size: 100%;
     height: 240px;
     position: relative !important;
-}
-
-// Changing color of the menu left icons
-[data-focus="menu-left"] [data-focus="menu-items"]{
-    list-style: none;
-
-    li{
-        position: relative;
-        display: flex;
-        width: 100%;
-        height: 45px;
-        line-height: 45px;
-        margin: auto;
-        margin-bottom: 15px;
-        color: white;
-        text-align: left;
-        overflow: hidden;
-
-        a{
-            display: flex;
-            line-height: 45px;
-            color: $custom-white !important; // Overriding style
-            padding-left: 35px;
-            text-decoration: none;
-            text-transform: uppercase;
-
-            .material-icons{
-                color: $vert-zera;
-                @include transition(color 200ms);
-            }
-
-            &:hover{
-                .material-icons{
-                    color: white;
-                }
-            }
-
-            button{
-                display: flex;
-                height: 45px;
-
-                .material-icons{
-                    position: relative;
-                    top: 0;
-                    left: 0;
-                    margin: auto;
-
-                    @include transform(translate(0,0));
-                }
-            }
-        }
-    }
 }
 
 // Adaptating title
@@ -297,36 +151,6 @@ button{
 
     button {
         margin-right:5px;
-    }
-}
-
-.login-container {
-    display: flex;
-    color:$custom-white;
-    align-items: center;
-    justify-content: center;
-
-    i, div {
-        padding-right: 10px;
-    }
-    i {
-        cursor: pointer;
-    }
-
-    .login-button {
-        background-image: url('./assets/img/logoTwitch.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 32px;
-        width: 170px;
-        cursor: pointer;
-    }
-
-    .logo-login {
-        height: 40px;
-        width: 40px;
-        background-size: contain;
-        background-repeat: no-repeat;
     }
 }
 

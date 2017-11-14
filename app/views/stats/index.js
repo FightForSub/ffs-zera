@@ -34,10 +34,14 @@ class StatsView extends React.Component {
             results: []
         };
     }
+    // this.handle = window.setInterval(() => {
+    //     if (this.state.roundId && this.props.id) {
+    //         actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId });
+    //     }
+    // }, 3 * 1000)
 
-    componentWillMount() {
+    loadData() {
         const eventId = this.props.params.id;
-        eventServices.listUsers(eventId).then(res => this.setState({ participants: res }));
         const servicesCall = eventServices.getRounds(eventId)
             .then(eventRoundList => {
                 return (eventRoundList || [])
@@ -49,6 +53,21 @@ class StatsView extends React.Component {
             .then(arrResult => {
                 this.setState({ results: arrResult });
             });
+    }
+
+    componentWillMount() {
+        const eventId = this.props.params.id;
+        eventServices.listUsers(eventId).then(res => this.setState({ participants: res }));
+        this.loadData();
+        this.handle = window.setInterval(() => {
+            if (this.props.params.id && this.state.participants) {
+                this.loadData()
+            }
+        }, 3 * 1000)
+    }
+
+    componentWillUnmount() {
+        window.clearInterval(this.handle);
     }
 
     buildResults() {

@@ -295,3 +295,9 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 .mdl-list__item-primary-content {
     min-height: 40px;
 }
+
+.mdl-tabs.mdl-js-tabs {
+    .mdl-tabs__tab {
+        cursor: pointer;
+    }
+}

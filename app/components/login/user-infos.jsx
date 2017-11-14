@@ -2,6 +2,7 @@ import React from 'react';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
+import localForage from 'localforage';
 
 @connectToStore([{
     store: UserStore,
@@ -10,6 +11,7 @@ import { dispatchData } from 'focus-core/dispatcher';
 class UserInfos extends React.Component {
     doLogout() {
         Twitch.logout(error => console.warn(error));
+        localForage.clear();
         dispatchData('profile', null);
     }
 

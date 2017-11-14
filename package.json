@@ -14,6 +14,7 @@
     },
     "scripts": {
         "production": "better-npm-run production",
+        "recette": "better-npm-run recette",
         "analyze": "better-npm-run analyze",
         "build": "npm run production",
         "start": "better-npm-run webpack-dev-server-npm-focus",
@@ -31,9 +32,29 @@
                 "ENTRY_FILE_PATH": "./app/index",
                 "PAGE_TITLE": "Fight For Sub",
                 "OUTPUT_DIR": "./docs",
-                "OUTPUT_PUBLIC_PATH": "/ffs-zera/",
+                "OUTPUT_PUBLIC_PATH": "/",
                 "BASE_URL": "/",
                 "API_ROOT": "https://ffs-api.zerator.com/v1/",
+                "DEV": "false",
+                "SOURCE_MAPS": "false",
+                "MINIMIFY": "true",
+                "DROP_CONSOLE": "true",
+                "NODE_ENV": "production",
+                "ROOT_URL": "https://ffs.zerator.com/",
+                "CLIENT_ID": "uzjude5lwse23lg2aobz2m2ywa5vb1"
+            }
+        },
+        "recette": {
+            "command": "webpack --progress",
+            "env": {
+                "ANCHOR_CLASS": "demo-app",
+                "BABELIFIED_PATH": "./app",
+                "ENTRY_FILE_PATH": "./app/index",
+                "PAGE_TITLE": "Fight For Sub",
+                "OUTPUT_DIR": ".",
+                "OUTPUT_PUBLIC_PATH": "/ffs-zera/",
+                "BASE_URL": "/",
+                "API_ROOT": "https://ffs-api-test.zerator.com/v1/",
                 "DEV": "false",
                 "SOURCE_MAPS": "false",
                 "MINIMIFY": "true",

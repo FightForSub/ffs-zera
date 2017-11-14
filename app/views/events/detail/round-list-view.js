@@ -46,6 +46,10 @@ export default connectToStore([{
     componentWillMount() {
         actions.getRounds(this.props.id);
         this.action.save = this.save;
+        if (this.props.eventRoundList && this.props.eventRoundList.length > 0) {
+            this.onChangeRound(this.props.eventRoundList[0]);
+        }
+
     },
     save() {
         // id, idRound, idUser, score
@@ -66,6 +70,16 @@ export default connectToStore([{
             this.onChangeRound(eventRoundList[0]);
         }
     },
+    renderRound(children) {
+        const tabs = (this.props.eventRoundList || []).map((round, idx) => (<a onClick={(evt) => { evt.preventDefault(); this.onChangeRound(round); }} className={`mdl-tabs__tab ${this.state.roundId === round ? 'is-active' : ''}`}>{'Round ' + (idx + 1)}</a>));
+
+        return (<div className='mdl-tabs mdl-js-tabs mdl-js-ripple-effect is-upgraded'>
+            <div className='mdl-tabs__tab-bar'>
+                {tabs}
+            </div>
+            <div className='mdl-tabs__panel is-active'>{this.state.roundId && children}</div>
+        </div>);
+    },
     renderAlive() {
 
         const data = (this.props.userList || []).filter(elt => {
@@ -82,13 +96,13 @@ export default connectToStore([{
                 }
             }
         }));
-        return <List data-dd='empilable' isWrapping dataList={data} />
+        return <List data- dd='empilable' isWrapping dataList={data} />
     },
     renderLine({ username, twitchId, score }) {
         // <div>{'TwitchId: ' + twitchId}</div>
 
         return (
-            <span className='detail-user-line-content'>
+            <span className='detail-user-line-content' >
                 <span>{username}</span>
                 <span>{'Score: ' + score}</span>
             </span>
@@ -106,6 +120,15 @@ export default connectToStore([{
     },
     /** @inheritDoc */
     renderContent() {
+
+        /*
+                                                                        <SelectInput
+                                                                    value={this.state.roundId}
+                                                                    values={(this.props.eventRoundList || []).map((elt, idx) => ({ code: elt, label: 'Round ' + (idx + 1) }))}
+                                                                    onChange={this.onChangeRound}
+                                                                    hasUndefined={false}
+                                                                />
+                                        */
         // [{ code: 'ALL', label: 'select.all' }].concat(
         const toDisplay = (this.props.eventRoundDetail || [])
             .filter(elt => elt.score)
@@ -123,42 +146,38 @@ export default connectToStore([{
                 }
             }));
         return (
-            <div data-app='round-list-page'>
+            <div data-app='round-list-page' >
                 {this.props.noLive && <h4 className='website-title'>{translate('label.rounds')}</h4>}
-                <div className='pad-bottom'>
+                < div className='pad-bottom' >
                     <div className='pad-buttons' >
                         <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
                         {this.props.id && this.state.roundId && <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />}
                     </div>
                     {isModo() && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
-
-                    <div className='pad-buttons' style={{ display: 'flex' }}>
-                        <SelectInput
-                            value={this.state.roundId}
-                            values={(this.props.eventRoundList || []).map((elt, idx) => ({ code: elt, label: 'Round ' + (idx + 1) }))}
-                            onChange={this.onChangeRound}
-                            hasUndefined={false}
-                        />
+                    {this.renderRound()}
+                    <div className='pad-buttons' style={{ display: 'flex' }} >
                         {isModo() && this.state.roundId && this.state.roundId !== 'ALL' &&
-                        <Button label='label.updateParticipant' onClick={() => { this.setState({ displayPopin: true }) }} />
+                                <Button label='label.updateParticipant' onClick={() => { this.setState({ displayPopin: true }) }} />
                         }
                         {isModo() && this.state.roundId && <Button label='label.deleteRound' onClick={this.deleteRound} />}
 
-                    </div>
-                </div>
-                {!this.props.noLive && <h5 className='website-title'>{translate('label.alive')}</h5>}
-                {!this.props.noLive && this.renderAlive()}
-                {!this.props.noLive && <h5 className='website-title'>{translate('label.dead')}</h5>}
+                    </div >
+                </div >
+                {
+                    this.state.roundId && <div>{!this.props.noLive && <h5 className='website-title'>{translate('label.alive')}</h5>}
+                        {!this.props.noLive && this.renderAlive()}
+                        {!this.props.noLive && <h5 className='website-title'>{translate('label.dead')}</h5>}
 
-                <List data-dd='empilable' dataList={toDisplay} />
-                {this.state.displayPopin && isModo() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false, twitchId: null, fixTwitchId: null, score: null })} >
-                    <h4 className='website-title'>{translate('label.updateScore')}</h4>
-                    {this.fieldFor('twitchId', { isEdit: !this.state.fixTwitchId, value: this.state.fixTwitchId || this.state.twitchId, values: (this.props.userList || []).map(({ twitchId, username }) => ({ code: twitchId, label: username })) })}
-                    {this.fieldFor('score', { isEdit: true })}
-                    {this.buttonSave()}
-                </Popin>}
+                        <List data-dd='empilable' dataList={toDisplay} />
+                        {this.state.displayPopin && isModo() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false, twitchId: null, fixTwitchId: null, score: null })} >
+                            <h4 className='website-title'>{translate('label.updateScore')}</h4>
+                            {this.fieldFor('twitchId', { isEdit: !this.state.fixTwitchId, value: this.state.fixTwitchId || this.state.twitchId, values: (this.props.userList || []).map(({ twitchId, username }) => ({ code: twitchId, label: username })) })}
+                            {this.fieldFor('score', { isEdit: true })}
+                            {this.buttonSave()}
+                        </Popin>}</div>
+                }
 
-            </div>
+            </div >
         );
     }
 }));

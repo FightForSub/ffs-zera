@@ -11,7 +11,7 @@ $accent-color:         #FF5252;
 $primary-text-color:   #212121;
 $secondary-text-color: #727272;
 $divider-color:        #B6B6B6;
-$vert-zera:#4a9433;
+$vert-zera:#4a9433; //(74,148,51) 
 $blue-prime:#2dbee8;
 $twitch: #6441a4;
 // rouge + light blue
@@ -62,5 +62,8 @@ $red-dd: #e90007;
 // Surcharge MDL Variables 
 $color-primary: "40,210,68";
 $image_path: '../../node_modules/material-design-lite/src/images';
+$tab-text-color: $vert-zera;
+$tab-active-text-color:rgb(40, 210, 68);
+// $tab-border-color: $vert-zera;
 // MDL icons font
 $material-design-icons-font-path: '../../node_modules/material-design-icons-iconfont/dist/fonts/';

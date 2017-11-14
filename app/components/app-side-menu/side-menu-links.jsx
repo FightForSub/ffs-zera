@@ -24,9 +24,11 @@ class SideMenuLinks extends React.Component {
 
     render() {
         const items = this._getMenuItems()
-            .map((link) => {
+            .map((link, i) => {
                 return (
-                    <li>
+                    <li
+                        key={i}
+                    >
                         <Link
                             to={link.route}
                             className='side-menu-link'

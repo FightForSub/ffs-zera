@@ -2,14 +2,13 @@ import React from 'react';
 // import Button from 'focus-components/components/button';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
-
-import TwitchButton from './login/twitch-button';
-import UserInfos from './login/user-infos';
 import { dispatchData } from 'focus-core/dispatcher';
 import localForage from 'localforage';
 import moment from 'moment';
 
-import authService from '../services/authent';
+import TwitchButton from '@/components/login/twitch-button';
+import UserInfos from '@/components/login/user-infos';
+import authService from '@/services/authent';
 
 @connectToStore([{
     store: UserStore,

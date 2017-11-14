@@ -1,7 +1,8 @@
 import React from 'react';
 import { translate } from 'focus-core/translation';
-import Article from '../components/article';
-import Section from '../components/article/section';
+
+import Article from '@/components/article';
+import Section from '@/components/article/section';
 
 export default React.createClass({
     displayName: 'HomeView',

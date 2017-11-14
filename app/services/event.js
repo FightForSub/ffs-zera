@@ -1,4 +1,4 @@
-import eventApiDriver from '../config/server/event';
+import eventApiDriver from '@/config/server/event';
 
 export default {
     loadEvent(id) {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import AppLogo from './app-logo';
-import LoginButton from './../login';
+import AppLogo from '@/components/app-side-menu/app-logo';
+import LoginButton from '@/components/login';
 
 class SideMenuHead extends React.Component {
     state = {

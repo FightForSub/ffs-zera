@@ -1,6 +1,6 @@
 import HomeRoutes from './home-routes';
 
-import AppLayout from '../components/app-layout';
+import AppLayout from '@/components/app-layout';
 
 export default {
     path: `${__BASE_URL__}`,

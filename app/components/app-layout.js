@@ -1,7 +1,7 @@
 import React from 'react';
 
-import AppSideMenu from './app-side-menu';
-import AppContent from './app-content';
+import AppSideMenu from '@/components/app-side-menu';
+import AppContent from '@/components/app-content';
 
 const CustomLayout = (props) => (
     <div className='app-layout'>

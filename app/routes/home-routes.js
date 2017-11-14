@@ -36,7 +36,16 @@ const routes = [
     {
         path: 'event/:id/results',
         component: StatsView
+    },
+    {
+        path: ':token',
+        indexRoute: {
+            onEnter: ({ params }, replace) => {
+                replace(`${__BASE_URL__}home`);
+            }
+        }
     }
+
     // {
     //     path: 'inscription',
     //     component: () => (<InscriptionView hasLoad={false} isEdit />)

@@ -17,6 +17,9 @@ export default {
         const { id, current, ...toSave } = data;
         return eventApiDriver.create(null, toSave);
     },
+    deleteEvent(id) {
+        return eventApiDriver.delete({ id });
+    },
     updateEvent(data) {
         const { id, ...toSave } = data;
         return eventApiDriver.update({ id: data.id }, toSave);

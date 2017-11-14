@@ -15,6 +15,12 @@ export default {
         shouldDumpStoreOnActionCall: true,
         status: 'loaded'
     }),
+    delete: actionBuilder({
+        node: 'eventDetail',
+        service: eventServices.deleteEvent,
+        shouldDumpStoreOnActionCall: true,
+        status: 'deleted'
+    }),
     create: actionBuilder({
         node: 'eventDetail',
         service: eventServices.createEvent,

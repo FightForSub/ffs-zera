@@ -5,6 +5,8 @@ import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
+import confirm from 'focus-core/application/confirm';
+
 
 import AddPopin from '@/views/events/add-popin';
 import UserPopin from './detail-user';
@@ -35,6 +37,7 @@ class DetailEventView extends React.Component {
             dataList: [],
             displayPopin: false
         };
+        this.deleteEvent = this.deleteEvent.bind(this);
     }
 
     componentWillMount() {
@@ -62,6 +65,19 @@ class DetailEventView extends React.Component {
             action: () => this.updateState(id, !isDead)
         }
     }
+
+    deleteEvent() {
+        confirm(translate('label.confirmEventDeletion'))
+            .then(() => this.doDeleteEvent())
+            .catch(() => { });
+    }
+
+    doDeleteEvent() {
+        eventActions.delete(this.props.params.id).then(() => {
+            navigate('events');
+        });
+    }
+
     render() {
         const toDisplayAlive = this.props.userList
             .map(elt => ({
@@ -79,9 +95,12 @@ class DetailEventView extends React.Component {
         return (
             <div data-app='detail-event-page'>
                 <h3 className='website-title'>{translate('website.detailEvent')}</h3>
-                <div className='pad-buttons'>
-                    {this.props.params.id && isAdmin() && <Button label={'label.editEvent'} onClick={() => { this.setState({ displayPopin: true }) }} />}
-                    <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.params.id}/results`) }} />
+                <div className='pad-bottom'>
+                    <div className='pad-buttons'>
+                        {this.props.params.id && isAdmin() && <Button label={'label.editEvent'} onClick={() => { this.setState({ displayPopin: true }) }} />}
+                        <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.params.id}/results`) }} />
+                    </div>
+                    {isAdmin() && <Button label='label.deleteEvent' onClick={this.deleteEvent} />}
                 </div>
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />
@@ -91,7 +110,7 @@ class DetailEventView extends React.Component {
                 </div>}
                 <List data-dd='empilable' dataList={toDisplayAlive} isWrapping />
                 <hr />
-                <RoundListView noLive hasForm={false} id={this.props.params.id} hasLoad={false} />
+                <RoundListView hasForm={false} noLive id={this.props.params.id} hasLoad={false} />
                 {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
                     <AddPopin hasLoad={false} isEdit id={this.props.params.id} onSave={() => this.setState({ displayPopin: false })} />
                 </Popin>}

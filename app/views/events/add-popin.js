@@ -33,10 +33,21 @@ export default React.createClass({
         } else {
             eventActions.update(dataToSave, this);
         }
-
-        // // alert('TODO save \n' + JSON.stringify(data, null, 4));
-        // this.props.onSave();
     },
+    saveOnEnter(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
+            this.clearError();
+            if (this._validate()) {
+                this.action.save.call(this, this._getEntity());
+            }
+        }
+    },
+    componentDidMount() {
+        this.refs['event.name'].refs.input.refs.htmlInput.focus();
+    },
+
     afterChange(changeInfos) {
         if (changeInfos && changeInfos.informations && changeInfos.informations.callerId && this._identifier === changeInfos.informations.callerId) {
             if (changeInfos.status && changeInfos.status.name && changeInfos.status.name === 'saved') {
@@ -54,7 +65,7 @@ export default React.createClass({
     /** @inheritDoc */
     renderContent() {
         return (
-            <div data-app='live-page'>
+            <div data-app='live-page' onKeyUp={this.saveOnEnter} >
                 <h3 className='website-title'>{translate('label.createEvent')}</h3>
                 <div>
                     {this.fieldFor('name')}
@@ -63,12 +74,9 @@ export default React.createClass({
                     {this.fieldFor('reservedToAffiliates', { value: this.state.reservedToAffiliates == null ? null : '' + this.state.reservedToAffiliates, onChange: (value) => this.setState({ reservedToAffiliates: (value === 'true' ? true : value === 'false' ? false : null) }) })}
                     {this.fieldFor('reservedToPartners', { value: this.state.reservedToPartners == null ? null : '' + this.state.reservedToPartners, onChange: (value) => this.setState({ reservedToPartners: (value === 'true' ? true : value === 'false' ? false : null) }) })}
                     {!this.props.forCreation && this.fieldFor('current', { value: this.state.current == null ? null : '' + this.state.current, onChange: (value) => this.setState({ current: (value === 'true' ? true : value === 'false' ? false : null) }) })}
-
-                    {/* {this.fieldFor('date')} */}
                     {this.buttonSave()}
                 </div>
             </div>
         );
     }
 });
-// {"id":3,"name":"TestName","description":"TestDesc","reservedToAffiliates":false,"reservedToPartners":false,"status":"OPEN","current":false}

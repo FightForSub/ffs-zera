@@ -27,6 +27,15 @@ export default React.createClass({
         }
         this.action.save = this.save;
     },
+
+    componentDidMount() {
+        if (this.props.forCreation) {
+            this.refs['user.usersearch'].refs.input.refs.htmlInput.focus()
+        } else {
+            this.refs['user.status'].refs.input.refs.htmlSelect.focus()
+        }
+    },
+
     save() {
         const { reference, isEdit, isLoading, eventUserDetail, ...dataToSave } = this.state;
         const { id, idUser } = this.props;
@@ -38,9 +47,6 @@ export default React.createClass({
         } else {
             eventActions.updateUser(dataToSave, this);
         }
-
-        // // alert('TODO save \n' + JSON.stringify(data, null, 4));
-        // this.props.onSave();
     },
     afterChange(changeInfos) {
         if (changeInfos && changeInfos.informations && changeInfos.informations.callerId && this._identifier === changeInfos.informations.callerId) {
@@ -59,6 +65,8 @@ export default React.createClass({
     },
     searchUser(event) {
         if (event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
             let userName = this.state.usersearch;
             let id = null;
             if (userName) {
@@ -72,10 +80,22 @@ export default React.createClass({
             }
         }
     },
+
+    saveOnEnter(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
+            this.clearError();
+            if (this._validate()) {
+                this.save.call();
+            }
+        }
+    },
+
     /** @inheritDoc */
     renderContent() {
         return (
-            <div data-app='live-page'>
+            <div data-app='live-page' onKeyUp={this.saveOnEnter}>
                 <h3 className='website-title'>{translate(!this.props.forCreation ? 'label.updateUser' : 'label.createUser')}</h3>
                 {!this.props.forCreation && <Button label='label.deleteParticipant' onClick={() => { const { id, idUser } = this.props; eventActions.deleteUser({ id, idUser }).then(() => { eventActions.listUsers(this.props.id); this.props.onSave(); }) }} />}
                 <div>
@@ -85,38 +105,9 @@ export default React.createClass({
                     {this.fieldFor('status')}
                     {!this.props.forCreation && this.fieldFor('followers', { isEdit: false })}
                     {!this.props.forCreation && this.fieldFor('views', { isEdit: false })}
-                    {/* {this.fieldFor('date')} */}
                     {this.buttonSave()}
                 </div>
             </div>
         );
     }
 });
-/*
-
-followers
-:
-729
-grade
-:
-4000
-logo
-:
-"https://static-cdn.jtvnw.net/jtv_user_pictures/alexmogtv-profile_image-b9e9d6b7f81b7992-300x300.jpeg"
-status
-:
-"VALIDATED"
-twitchId
-:
-74010347
-url
-:
-"https://www.twitch.tv/alexmogtv"
-username
-:
-"AlexMogTV"
-views
-:
-4442
-*/
-// {"id":3,"name":"TestName","description":"TestDesc","reservedToAffiliates":false,"reservedToPartners":false,"status":"OPEN","current":false}

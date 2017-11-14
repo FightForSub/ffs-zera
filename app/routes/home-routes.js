@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import StatsView from '@/views/stats';
 import LiveView from '@/views/live/new-live';
 import DetailView from '@/views/events/detail';
@@ -31,7 +31,7 @@ const routes = [
     },
     {
         path: 'event/:id',
-        component: DetailView
+        component: (props) => (<DetailView {...props} hasForm={false} />)
     },
     {
         path: 'event/:id/results',

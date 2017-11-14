@@ -305,3 +305,16 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 .mdl-list__item{
     padding: 0;
 }
+
+[data-focus="confirmation-popin"] [data-focus='popin'][data-type='full'] > [data-focus='popin-overlay'] > [data-focus='popin-window'] > div {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    span {
+        flex-grow: 1;
+        text-align: center;
+    }
+    [data-focus="button-stack"]{
+        right: 0;
+    }
+}

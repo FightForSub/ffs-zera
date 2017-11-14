@@ -42,7 +42,7 @@ class EventsView extends React.Component {
                 {isAdmin() && <Button label='label.createEvent' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />}
                 <List data={this.props.eventList || []} LineComponent={LineComponent} isSelection={false} onLineClick={data => { dispatchData('eventRoundList', null); dispatchData('eventRoundDetail', null); navigate(`event/${data.id}`) }} />
                 {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
-                    <AddPopin hasLoad={false} isEdit forCreation />
+                    <AddPopin hasLoad={false} hasForm={false} isEdit forCreation />
                 </Popin>}
             </div>
         );

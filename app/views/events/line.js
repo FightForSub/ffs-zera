@@ -20,5 +20,3 @@ export default React.createClass({
         );
     }
 });
-//OPEN, CLOSED, STARTED, ENDED
-// {"id":3,"name":"TestName","description":"TestDesc","reservedToAffiliates":false,"reservedToPartners":false,"status":"OPEN","current":false}

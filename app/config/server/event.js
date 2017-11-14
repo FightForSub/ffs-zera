@@ -17,6 +17,10 @@ export default apiDriverBuilder({
         url: apiRoot + 'event/${id}',
         method: 'PUT'
     },
+    delete: {
+        url: apiRoot + 'event/${id}',
+        method: 'DELETE'
+    },
     listUsers: {
         url: apiRoot + 'event/${id}/users',
         method: 'GET'

@@ -1,4 +1,13 @@
 export default {
+    field: {
+        required: 'Le champ est requis'
+    },
+    popin: {
+        confirmation: {
+            cancel: 'Annuler',
+            confirm: 'Confirmer'
+        }
+    },
     event: {
         reservedToAffiliates: 'Affiliés',
         reservedToPartners: 'Partenaires',
@@ -35,8 +44,11 @@ export default {
         home: 'Fight for Sub'
     },
     label: {
+        confirmRoundDeletion: 'Confirmez-vous la suppression du round ?',
+        confirmEventDeletion: 'Confirmez-vous la suppression de l\'évènement ?',
         events: 'Évènements',
         createEvent: 'Création d\'un évènement',
+        deleteEvent: 'Supprimer l\'évènement',
         recapEvent: 'Récapitulatif',
         users: 'Participants',
         livePage: 'Évènement en direct',

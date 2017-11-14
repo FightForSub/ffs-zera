@@ -41,7 +41,9 @@
                 "DROP_CONSOLE": "true",
                 "NODE_ENV": "production",
                 "ROOT_URL": "https://ffs.zerator.com/",
-                "CLIENT_ID": "uzjude5lwse23lg2aobz2m2ywa5vb1"
+                "CLIENT_ID": "uzjude5lwse23lg2aobz2m2ywa5vb1",
+                "USE_CACHE": "false",
+                "PARALLEL_BUILD": "true"
             }
         },
         "recette": {
@@ -61,7 +63,10 @@
                 "DROP_CONSOLE": "true",
                 "NODE_ENV": "production",
                 "ROOT_URL": "https://hartorn.github.io/ffs-zera",
-                "CLIENT_ID": "c8ax3vskq7wdxsxf1t4whhl9c3f9bd"
+                "CLIENT_ID": "c8ax3vskq7wdxsxf1t4whhl9c3f9bd",
+				"USE_CACHE": "false",
+                "PARALLEL_BUILD": "true"
+
             }
         },
         "analyze": {

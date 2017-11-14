@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
 import connectToStore from 'focus-components/behaviours/store/connect';

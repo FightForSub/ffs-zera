@@ -1,0 +1,68 @@
+.user-infos{
+    display: flex;
+    background: $vert-zera;
+    width: 100%;
+    height: 60px;
+    border-bottom: 10px solid lighten($vert-zera, 3%);
+
+    &-image{
+        height: 45px;
+        width: 45px;
+        border-radius: 100%;
+        border: 3px solid lighten($vert-zera, 5%);
+        margin: auto 16px;
+
+        background-color: darken($vert-zera, 10%);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    &-name{
+        flex: 1;
+        margin: auto 0;
+        font-size: 13pt;
+        color: white;
+
+        &-welcome{
+            font-size: 10pt;
+            opacity: 0.56;
+        }
+    }
+
+    &-logout{
+        color: white;
+        width: 45px;
+
+        &:hover{
+            cursor: pointer;
+            background-color: lighten($vert-zera, 2%);
+        }
+    }
+}
+
+.twitch-container{
+    padding: 0 16px;
+}
+.twitch-sign-in{
+    display: flex;
+    justify-content: center;
+    background-color: $twitch;
+    color: white;
+    height: 45px;
+    line-height: 45px;
+    font-weight: 500;
+    width: 100%;
+    text-transform: uppercase;
+
+    .fa{
+        font-size: 24px;
+        vertical-align: middle;
+        margin: auto 0;
+        margin-right: 16px;
+    }
+
+    &:hover{
+        cursor: pointer;
+        background: lighten($twitch, 10%);
+    }
+}

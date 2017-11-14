@@ -1,12 +1,12 @@
 import React from 'react';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
-import EventStore from '../../../stores/event';
-import eventActions from '../../../action/event';
+import EventStore from '@/stores/event';
+import eventActions from '@/action/event';
 // import Article from '../../components/article';
 // import Section from '../../components/article';
-import { navigate } from '../../../utilities/router';
-import twitchFetch from '../../../utilities/twitch-fetch';
+import { navigate } from '@/utilities/router';
+import twitchFetch from '@/utilities/twitch-fetch';
 
 export default React.createClass({
     displayName: 'UserCreationView',

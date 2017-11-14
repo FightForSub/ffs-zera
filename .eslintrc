@@ -3,5 +3,10 @@
     "rules": {
         "valid-jsdoc": "off",
         "require-jsdoc": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "webpack": "webpack.config.js"
+        }
     }
 }

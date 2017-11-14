@@ -63,8 +63,38 @@ export default {
     detail: {
         saved: 'Les modifications ont bien été enregistrées'
     },
+    global: {
+        login: {
+            twitch: 'Se connecter'
+        }
+    },
     home: {
-        whatIsIt: 'Qu\'est-ce que Fight for Sub ?',
-        rules: 'Les règles'
+        titles: {
+            whatIsIt: 'Qu\'est-ce que Fight for Sub ?',
+            rules: 'Les règles',
+            basicRules: 'Les règles de base',
+            handicap: 'Handicap pour certains joueurs'
+        },
+        paragraphs: {
+            game: 'Une centaine de streamers s\'affrontent lors d\'une compétition tous les mois sur le jeu PlayerUnknow\'s Battlegrounds, organisée et commentée par Zerator.',
+            sub: 'Tous les participants de la compétition doivent s\'abonner à la chaine Twitch du vainqueur.',
+            rules: [
+                '3 parties (4 en cas d\'égalitée au bout de 3 parties)',
+                'Une fois par mois',
+                'Uniquement des streamers (affiliate ou partner)',
+                'La moyenne de votre classement dans les 3 games détermine votre place finale (ce qui veut dire que quelqu\'un qui fait TOP 3 - TOP 3 - TOP 3 gagnes face à quelqu\'un qui fait TOP 1 / TOP 1 / TOP 10)',
+                'Les kills ne changent rien aux points',
+                'Mode : TPP (non FPP)',
+                'Solo only, pas de duo ni de squad',
+                'Si vous êtes dans le top 15, vous devez fermer votre t\'chat de stream.',
+                'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de cut le live'
+            ],
+            handicaps: [
+                'Pas de stuff T2 / T3 SAUF casque T2',
+                'Pas d\'utilisation de Painkiller/Boissons/Adrenaline Syringe',
+                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objects suivants (AWM, M24, Mk14 EBR, M249, Groza, Ghillie Suit)',
+                'Pas d\'utilisation ni de 8x, ni de 15x'
+            ]
+        }
     }
 };

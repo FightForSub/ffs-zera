@@ -1,12 +1,12 @@
 // import React from 'react';
-import StatsView from '../views/stats';
-import LiveView from '../views/live/new-live';
-import DetailView from '../views/events/detail';
+import StatsView from '@/views/stats';
+import LiveView from '@/views/live/new-live';
+import DetailView from '@/views/events/detail';
 
-// import ParticipantView from '../views/participants';
-// import InscriptionView from '../views/inscription';
-import EventsView from '../views/events';
-import HomeView from '../views/home';
+// import ParticipantView from '@/views/participants';
+// import InscriptionView from '@/views/inscription';
+import EventsView from '@/views/events';
+import HomeView from '@/views/home';
 
 const routes = [
     {

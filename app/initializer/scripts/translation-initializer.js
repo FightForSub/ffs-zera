@@ -1,4 +1,4 @@
-import { translate, init } from 'focus-core/translation';
+import { init } from 'focus-core/translation';
 import traductionFiles from '../../i18n';
 
 // export default () => {

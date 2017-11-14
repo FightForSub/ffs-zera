@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { translate } from 'focus-core/translation';
 import Button from 'focus-components/components/button';
 import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
-
-import AddPopin from '../../events/add-popin';
-import UserPopin from './detail-user';
-
-import List from '../../../components/list';
-import RecapEvent from './recap-event';
-
-import EventStore from '../../../stores/event';
-import eventActions from '../../../action/event';
 import { dispatchData } from 'focus-core/dispatcher';
 
+import AddPopin from '@/views/events/add-popin';
+import UserPopin from './detail-user';
+
+import List from '@/components/list';
+import RecapEvent from './recap-event';
+
+import EventStore from '@/stores/event';
+import eventActions from '@/action/event';
+
 import RoundListView from './round-list-view';
-import { navigate } from '../../../utilities/router';
-import { isAdmin } from '../../../utilities/check-rights';
+import { navigate } from '@/utilities/router';
+import { isAdmin } from '@/utilities/check-rights';
 
 
 @connectToStore([{
@@ -28,7 +28,7 @@ import { isAdmin } from '../../../utilities/check-rights';
     store: UserStore,
     properties: ['profile']
 }], () => ({ userList: EventStore.getEventUserList() || [] }))
-class DetailEventView extends Component {
+class DetailEventView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -10,7 +10,7 @@ import connectToStore from 'focus-components/behaviours/store/connect';
 import SelectInput from 'focus-components/components/input/select';
 import { navigate } from '../../../utilities/router';
 
-import { isModo } from '../../../utilities/check-rights';
+import { isAdmin, isModo } from '../../../utilities/check-rights';
 
 import EventStore from '../../../stores/event';
 import UserStore from 'focus-core/user/built-in-store';
@@ -155,13 +155,13 @@ export default connectToStore([{
                         <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
                         {this.props.id && this.state.roundId && <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />}
                     </div>
-                    {isModo() && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
+                    {isAdmin() && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
                     {this.state.roundId && this.renderRound()}
                     <div className='pad-buttons' style={{ display: 'flex' }} >
                         {isModo() && this.state.roundId && this.state.roundId !== 'ALL' &&
                                 <Button label='label.updateParticipant' onClick={() => { this.setState({ displayPopin: true }) }} />
                         }
-                        {isModo() && this.state.roundId && <Button label='label.deleteRound' onClick={this.deleteRound} />}
+                        {isAdmin() && this.state.roundId && <Button label='label.deleteRound' onClick={this.deleteRound} />}
 
                     </div >
                 </div >

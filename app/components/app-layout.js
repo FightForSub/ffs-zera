@@ -9,11 +9,6 @@ const CustomLayout = (props) => (
         <AppContent>
             {props.children}
         </AppContent>
-        {/* <Layout
-            MenuLeft={MenuLeft}
-        >
-            {props.children}
-        </Layout> */}
     </div >
 );
 CustomLayout.displayName = 'CustomAppLayout';

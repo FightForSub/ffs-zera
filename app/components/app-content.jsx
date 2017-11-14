@@ -7,7 +7,10 @@ class AppContent extends React.Component {
     render() {
         return (
             <div className='app-content'>
-                {this.props.children}
+                <div className='app-content-header' />
+                <div className='app-content-content'>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

@@ -22,6 +22,16 @@ button{
 
     .app-content{
         flex: 1;
+
+        &-content{
+            padding: 32px;
+        }
+
+        &-header{
+            height: 120px;
+            background-image: url('assets/img/header_pubg2.png');
+            background-size: cover;
+        }
     }
 }
 

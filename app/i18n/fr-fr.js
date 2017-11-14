@@ -78,14 +78,14 @@ export default {
             game: 'Une centaine de streamers s\'affrontent lors d\'une compétition tous les mois sur le jeu PlayerUnknow\'s Battlegrounds, organisée et commentée par Zerator.',
             sub: 'Tous les participants de la compétition doivent s\'abonner à la chaine Twitch du vainqueur.',
             rules: [
-                '3 parties (4 en cas d\'égalité au bout de 3 parties)',
+                '3 parties (4 en cas d\'égalitée au bout de 3 parties)',
                 'Une fois par mois',
                 'Uniquement des streamers (affiliate ou partner)',
-                'La moyenne de votre classement dans les 3 games détermine votre place finale (ce qui veut dire que quelqu\'un qui fait TOP 3 - TOP 3 - TOP 3 gagne face à quelqu\'un qui fait TOP 1 / TOP 1 / TOP 10)',
+                'La moyenne de votre classement dans les 3 games détermine votre place finale (ce qui veut dire que quelqu\'un qui fait TOP 3 - TOP 3 - TOP 3 gagnes face à quelqu\'un qui fait TOP 1 / TOP 1 / TOP 10)',
                 'Les kills ne changent rien aux points',
                 'Mode : TPP (non FPP)',
                 'Solo only, pas de duo ni de squad',
-                'Si vous êtes dans le top 15, vous devez fermez votre t\'chat de stream.',
+                'Si vous êtes dans le top 15, vous devez fermer votre t\'chat de stream.',
                 'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de cut le live'
             ],
             handicaps: [

@@ -1,4 +1,4 @@
-import { browserHistory as history } from 'react-router'
+import { hashHistory as history } from 'react-router'
 import { createRoutes } from 'react-router/lib/RouteUtils'
 import { hasRole } from 'focus-core/user'
 

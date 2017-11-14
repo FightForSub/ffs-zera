@@ -39,7 +39,7 @@ export default {
     },
     deleteUser(data) {
         const { id, idUser } = data;
-        return eventApiDriver.updateUser({ id, idUser });
+        return eventApiDriver.deleteUser({ id, idUser });
     },
     getRounds(id) {
         return eventApiDriver.getRounds({ id });

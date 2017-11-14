@@ -40,8 +40,8 @@
                 "MINIMIFY": "true",
                 "DROP_CONSOLE": "true",
                 "NODE_ENV": "production",
-                "ROOT_URL": "http://ffs.zerator.com/",
-                "CLIENT_ID": "c8ax3vskq7wdxsxf1t4whhl9c3f9bd"
+                "ROOT_URL": "https://ffs.zerator.com/",
+                "CLIENT_ID": "uzjude5lwse23lg2aobz2m2ywa5vb1"
             }
         },
         "recette": {

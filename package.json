@@ -32,7 +32,7 @@
                 "PAGE_TITLE": "Fight For Sub",
                 "OUTPUT_DIR": "./docs",
                 "OUTPUT_PUBLIC_PATH": "/ffs-zera/",
-                "BASE_URL": "/ffs-zera/",
+                "BASE_URL": "/",
                 "API_ROOT": "https://ffs-api.zerator.com/v1/",
                 "DEV": "false",
                 "SOURCE_MAPS": "false",

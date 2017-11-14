@@ -1,6 +1,3 @@
-import 'normalize.css';
-import 'font-awesome/css/font-awesome.css';
-import 'typeface-roboto';
 import './initializer/scripts/translation-initializer';
 import './twitch';
 
@@ -67,4 +64,4 @@ if (window._hasFiredDOMContentLoaded) {
 }
 
 //Reference styles inside the application
-import './styles/index.scss';
+import './styles';

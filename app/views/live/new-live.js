@@ -1,12 +1,6 @@
 import React from 'react';
 import { translate } from 'focus-core/translation';
-// import Button from 'focus-components/components/button';
-// import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
-
-// import AddPopin from '../events/add-popin';
-// import List from '../../components/list';
-// import RecapEvent from './recap-event';
 
 import RoundListView from '@/views/events/detail/round-list-view';
 import eventActions from '@/action/event';

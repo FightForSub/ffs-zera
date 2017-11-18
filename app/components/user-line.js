@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 import { translate } from 'focus-core/translation';
+import { format } from 'focus-core/definition/formatter/number';
+
 import Icon from './icon';
 
-const Field = ({ fieldName, value }) => (
-    value[fieldName] ? <span>{translate(`user.${fieldName}`) + ' : ' + value[fieldName]}</span> : null
+const Field = ({ fieldName, value, formatter }) => (
+    value[fieldName] ? <span>{translate(`user.${fieldName}`) + ' : ' + formatter(+value[fieldName])}</span> : null
 );
 
 const UserLine = (value) => {
@@ -14,9 +16,9 @@ const UserLine = (value) => {
                 <Icon iconLib='fa fa-icon'>{'\uF1E8'}</Icon>
                 <span>{username}</span>
             </a>
-            <Field fieldName='score' value={value} />
-            <Field fieldName='followers' value={value} />
-            <Field fieldName='views' value={value} />
+            <Field fieldName='score' value={value} formatter={format} />
+            <Field fieldName='followers' value={value} formatter={format} />
+            <Field fieldName='views' value={value} formatter={format} />
         </span>)
 };
 

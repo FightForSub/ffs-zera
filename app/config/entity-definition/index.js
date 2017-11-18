@@ -12,7 +12,7 @@ export default {
         },
         twitchId: {
             required: true,
-            domain: 'DO_ENTIER'
+            domain: 'DO_ID'
         },
         username: {
             required: true,

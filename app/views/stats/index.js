@@ -73,11 +73,11 @@ class StatsView extends React.Component {
                     part['round' + (idx + 1)] = arrRes.filter(elt => elt.id === twitchId).reduce((acc, elt) => (elt.score || '?'), '?');
                 });
             part.total = this.state.results
-                .map((arrRes) => +(arrRes.find(elt => elt.id === twitchId) || 0))
+                .map((arrRes) => +((arrRes.find(elt => elt.id === twitchId) || {}).score || 0))
                 .reduce((acc, score) => acc + score, 0);
 
             part.hiddenTotal = this.state.results
-                .map((arrRes) => +(arrRes.find(elt => elt.id === twitchId) || 1000))
+                .map((arrRes) => +((arrRes.find(elt => elt.id === twitchId) || {}).score || 1000))
                 .reduce((acc, score) => acc + score, 0);
 
             return part;

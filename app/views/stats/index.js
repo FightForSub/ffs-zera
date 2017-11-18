@@ -73,13 +73,17 @@ class StatsView extends React.Component {
                     part['round' + (idx + 1)] = arrRes.filter(elt => elt.id === twitchId).reduce((acc, elt) => (elt.score || '?'), '?');
                 });
             part.total = this.state.results
-                .map((arrRes) => arrRes.filter(elt => elt.id === twitchId).reduce((acc, elt) => ((+elt.score) || 0), 0))
+                .map((arrRes) => +(arrRes.find(elt => elt.id === twitchId) || 0))
+                .reduce((acc, score) => acc + score, 0);
+
+            part.hiddenTotal = this.state.results
+                .map((arrRes) => +(arrRes.find(elt => elt.id === twitchId) || 1000))
                 .reduce((acc, score) => acc + score, 0);
 
             return part;
         })
-            .sort((a, b) => a.total - b.total)
-            .map((elt, idx) => { elt.rank = idx + 1; return elt; });
+            .sort((a, b) => a.hiddenTotal - b.hiddenTotal)
+            .map((elt, idx) => ({ ...elt, rank: idx + 1 }));
 
         const firstLine = { total: 'Total', username: 'Pseudo', rank: 'Classement' };
         this.state.results

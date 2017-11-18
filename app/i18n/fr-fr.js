@@ -23,7 +23,9 @@ export default {
         followers: 'Followers',
         views: 'Nombre de vues',
         score: 'Score',
-        usersearch: 'Recherche par pseudo'
+        usersearch: 'Recherche par pseudo',
+        email: 'Email',
+        event: 'Évènement'
     },
     select: {
         unSelected: '-',
@@ -53,6 +55,7 @@ export default {
         users: 'Participants',
         livePage: 'Évènement en direct',
         eventListPage: 'Liste des événements',
+        myEventsPage: 'Mes événements',
         inscriptionPage: 'Inscription',
         addUser: 'Ajouter un participant',
         editEvent: 'Modifier l\'évènement',
@@ -69,7 +72,8 @@ export default {
         results: 'Résultats',
         goToResults: 'Aller au classement',
         loginWelcome: 'Bienvenue,',
-        deleteParticipant: 'Supprimer le participant'
+        deleteParticipant: 'Supprimer le participant',
+        inscription: 'Inscription'
     },
     button: {
         save: 'Sauvegarder'

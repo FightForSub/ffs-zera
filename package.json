@@ -41,7 +41,9 @@
                 "DROP_CONSOLE": "true",
                 "NODE_ENV": "production",
                 "ROOT_URL": "https://ffs.zerator.com/",
-                "CLIENT_ID": "uzjude5lwse23lg2aobz2m2ywa5vb1"
+                "CLIENT_ID": "uzjude5lwse23lg2aobz2m2ywa5vb1",
+                "USE_CACHE": "false",
+                "PARALLEL_BUILD": "true"
             }
         },
         "recette": {
@@ -61,7 +63,9 @@
                 "DROP_CONSOLE": "true",
                 "NODE_ENV": "production",
                 "ROOT_URL": "https://hartorn.github.io/ffs-zera",
-                "CLIENT_ID": "c8ax3vskq7wdxsxf1t4whhl9c3f9bd"
+                "CLIENT_ID": "c8ax3vskq7wdxsxf1t4whhl9c3f9bd",
+                "USE_CACHE": "false",
+                "PARALLEL_BUILD": "true"
             }
         },
         "analyze": {
@@ -106,7 +110,7 @@
                 "PAGE_TITLE": "Focus demonstration application",
                 "OUTPUT_DIR": "./public",
                 "OUTPUT_PUBLIC_PATH": "./",
-                "API_ROOT": "https://ffs-api-test.zerator.com/v1/",
+                "API_ROOT": "http://localhost:4000/v1/",
                 "BASE_URL": "/",
                 "ROOT_URL": "http://localhost:3000/",
                 "CLIENT_ID": "cs5900eog2wajva8rnvf2jtx6gazsvd",
@@ -119,7 +123,7 @@
             }
         }
     },
-    "license": "MIT",
+    "license": " GPL-3.0",
     "devDependencies": {
         "better-npm-run": "0.1.0",
         "eslint-config-focus": "0.6.0",

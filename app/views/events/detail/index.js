@@ -48,14 +48,18 @@ class DetailEventView extends React.Component {
         this.setState({ dataList: dataList.map(elt => elt.id !== id ? elt : { ...elt, isDead }) })
     }
 
-    renderLine({ username, views, twitchId, followers }) {
+    renderLine({ username, views, followers, url }) {
         // <div>{'TwitchId: ' + twitchId}</div>
 
         return (
             <span className='detail-user-line-content'>
-                <span>{username}</span>
+                <a target='_blank' href={url} onClick={evt => evt.stopPropagation()}>
+                    <i className='fa fa-icon'>{'\uF1E8'}</i>
+                    <span>{username}</span>
+                </a>
                 <span>{'Followers: ' + followers}</span>
                 <span>{'Views: ' + views}</span>
+
             </span>
         );
     }

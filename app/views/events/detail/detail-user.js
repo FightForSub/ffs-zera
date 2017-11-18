@@ -1,12 +1,10 @@
 import React from 'react';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
-import EventStore from '@/stores/event';
-import eventActions from '@/action/event';
 import Button from 'focus-components/components/button';
 
-// import Article from '../../components/article';
-// import Section from '../../components/article';
+import EventStore from '@/stores/event';
+import eventActions from '@/action/event';
 import { navigate } from '@/utilities/router';
 import twitchFetch from '@/utilities/twitch-fetch';
 
@@ -48,6 +46,7 @@ export default React.createClass({
             eventActions.updateUser(dataToSave, this);
         }
     },
+
     afterChange(changeInfos) {
         if (changeInfos && changeInfos.informations && changeInfos.informations.callerId && this._identifier === changeInfos.informations.callerId) {
             if (changeInfos.status && changeInfos.status.name && changeInfos.status.name === 'saved') {
@@ -63,6 +62,7 @@ export default React.createClass({
             }
         }
     },
+
     searchUser(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -92,12 +92,20 @@ export default React.createClass({
         }
     },
 
+    deleteParticipant() {
+        const { id, idUser } = this.props;
+        eventActions.deleteUser({ id, idUser })
+            .then(() => {
+                eventActions.listUsers(this.props.id); this.props.onSave();
+            });
+    },
+
     /** @inheritDoc */
     renderContent() {
         return (
             <div data-app='live-page' onKeyUp={this.saveOnEnter}>
                 <h3 className='website-title'>{translate(!this.props.forCreation ? 'label.updateUser' : 'label.createUser')}</h3>
-                {!this.props.forCreation && <Button label='label.deleteParticipant' onClick={() => { const { id, idUser } = this.props; eventActions.deleteUser({ id, idUser }).then(() => { eventActions.listUsers(this.props.id); this.props.onSave(); }) }} />}
+                {!this.props.forCreation && <Button label='label.deleteParticipant' onClick={this.deleteParticipant} />}
                 <div>
                     {this.props.forCreation && this.fieldFor('usersearch', { isEdit: true, onKeyUp: this.searchUser })}
                     {this.fieldFor('twitchId', { isEdit: this.props.forCreation || false })}

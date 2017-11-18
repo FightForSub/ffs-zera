@@ -233,6 +233,18 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
+
+    a {
+        text-decoration: none;
+        i {
+            // font-size: 25px;
+            padding-right: 5px;
+            color:#6441a4;
+        }
+        span {
+            color: rgba(255, 255, 255, .87);
+        }
+    }
 }
 
 [data-focus="menu-left"] [data-focus="menu-items"] li span {

@@ -89,8 +89,8 @@ export default connectToStore([{
             return !(this.props.eventRoundDetail || []).some(item => item.id === elt.twitchId && item.score)
         }).map(elt => ({
             logoUrl: elt.logo,
-            LineContent: <span className='detail-user-line-content'>{elt.username}</span>,
-            onClick: () => this.handleLineClick(elt)
+            onClick: () => this.handleLineClick(elt),
+            LineContent: this.renderLine(elt, false)
         }));
         return <List data- dd='empilable' isWrapping dataList={data} />
     },
@@ -100,21 +100,16 @@ export default connectToStore([{
                 displayPopin: true,
                 fixTwitchId: elt.id || elt.twitchId
             })
-        } else {
-            const newTab = document.createElement('a');
-            newTab.href = elt.url;
-            newTab.target = '_blank';
-            newTab.style.display = 'none';
-            document.body.appendChild(newTab);
-            newTab.click();
-            document.body.removeChild(newTab);
         }
     },
-    renderLine({ username, twitchId, score }) {
+    renderLine({ username, score, url }, withScore = true) {
         return (
-            <span className='detail-user-line-content' >
-                <span>{username}</span>
-                <span>{'Score: ' + score}</span>
+            <span className='detail-user-line-content'>
+                <a target='_blank' href={url} onClick={evt => evt.stopPropagation()}>
+                    <i className='fa fa-icon'>{'\uF1E8'}</i>
+                    <span>{username}</span>
+                </a>
+                {withScore && <span>{'Score: ' + score}</span>}
             </span>
         );
     },

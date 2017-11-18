@@ -4,8 +4,6 @@ import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
-// import Article from '../../components/article';
-// import Section from '../../components/article';
 
 const InscriptionView = React.createClass({
     displayName: 'InscriptionView',
@@ -29,7 +27,6 @@ const InscriptionView = React.createClass({
                 </div>
                 <hr />
                 <div>
-
                     {this.fieldFor('champ1')}
                     {this.fieldFor('champ2')}
                     {this.fieldFor('champ3')}

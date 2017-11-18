@@ -330,3 +330,14 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
         right: 0;
     }
 }
+
+// Results
+[data-app='results-page'] ul{
+    padding-top: 15px;
+    [data-focus='sl-line']:first-child {
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #28d244;
+        border-bottom-color:#28d244;
+    }
+}

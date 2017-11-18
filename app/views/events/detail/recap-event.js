@@ -1,8 +1,8 @@
 import React from 'react';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
-import EventStore from '../../../stores/event';
-import eventActions from '../../../action/event';
+import EventStore from '@/stores/event';
+import eventActions from '@/action/event';
 
 export default React.createClass({
     displayName: 'EventDetailView',
@@ -24,6 +24,13 @@ export default React.createClass({
             }
         }
     },
+    buildBooleanProps(fieldName) {
+        return {
+            value: this.state[fieldName] == null ? null : '' + this.state[fieldName],
+            onChange: (value) => this.setState({ [fieldName]: (value === 'true' ? true : value === 'false' ? false : null) })
+        }
+    },
+
     /** @inheritDoc */
     renderContent() {
         return (
@@ -33,9 +40,9 @@ export default React.createClass({
                     {this.fieldFor('name')}
                     {this.fieldFor('description')}
                     {this.fieldFor('status')}
-                    {this.fieldFor('reservedToAffiliates', { value: this.state.reservedToAffiliates == null ? null : '' + this.state.reservedToAffiliates, onChange: (value) => this.setState({ reservedToAffiliates: (value === 'true' ? true : value === 'false' ? false : null) }) })}
-                    {this.fieldFor('reservedToPartners', { value: this.state.reservedToPartners == null ? null : '' + this.state.reservedToPartners, onChange: (value) => this.setState({ reservedToPartners: (value === 'true' ? true : value === 'false' ? false : null) }) })}
-                    {this.fieldFor('current', { value: this.state.current == null ? null : '' + this.state.current, onChange: (value) => this.setState({ current: (value === 'true' ? true : value === 'false' ? false : null) }) })}
+                    {this.fieldFor('reservedToAffiliates', this.buildBooleanProps('reservedToAffiliates'))}
+                    {this.fieldFor('reservedToPartners', this.buildBooleanProps('reservedToPartners'))}
+                    {this.fieldFor('current', this.buildBooleanProps('current'))}
                 </div>
             </div>
         );

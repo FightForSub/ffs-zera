@@ -12,7 +12,6 @@ const LineComponent = React.createClass({
     definitionPath: 'results',
     /** @inheritDoc */
     renderLineContent({ rank, logo, username, total }) {
-        // {this.fieldFor('description')}        
         return (
             <div data-app='line-results'>
                 {this.fieldFor('rank')}
@@ -34,11 +33,6 @@ class StatsView extends React.Component {
             results: []
         };
     }
-    // this.handle = window.setInterval(() => {
-    //     if (this.state.roundId && this.props.id) {
-    //         actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId });
-    //     }
-    // }, 3 * 1000)
 
     loadData() {
         const eventId = this.props.params.id;
@@ -79,13 +73,17 @@ class StatsView extends React.Component {
                     part['round' + (idx + 1)] = arrRes.filter(elt => elt.id === twitchId).reduce((acc, elt) => (elt.score || '?'), '?');
                 });
             part.total = this.state.results
-                .map((arrRes) => arrRes.filter(elt => elt.id === twitchId).reduce((acc, elt) => { console.log('elt', elt); return (+elt.score) || 0; }, 0))
+                .map((arrRes) => +(arrRes.find(elt => elt.id === twitchId) || 0))
+                .reduce((acc, score) => acc + score, 0);
+
+            part.hiddenTotal = this.state.results
+                .map((arrRes) => +(arrRes.find(elt => elt.id === twitchId) || 1000))
                 .reduce((acc, score) => acc + score, 0);
 
             return part;
         })
-            .sort((a, b) => a.total - b.total)
-            .map((elt, idx) => { elt.rank = idx + 1; return elt; });
+            .sort((a, b) => a.hiddenTotal - b.hiddenTotal)
+            .map((elt, idx) => ({ ...elt, rank: idx + 1 }));
 
         const firstLine = { total: 'Total', username: 'Pseudo', rank: 'Classement' };
         this.state.results

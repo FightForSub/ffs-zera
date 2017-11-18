@@ -1,4 +1,4 @@
-import eventServices from '../services/event';
+import eventServices from '@/services/event';
 import actionBuilder from 'focus-core/application/action-builder';
 
 

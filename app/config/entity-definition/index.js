@@ -29,6 +29,14 @@ export default {
         score: {
             required: true,
             domain: 'DO_ENTIER'
+        },
+        email: {
+            required: true,
+            domain: 'DO_LABEL_LONG'
+        },
+        event: {
+            required: true,
+            domain: 'DO_ID'
         }
     },
     event: {

@@ -341,3 +341,13 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
         border-bottom-color:#28d244;
     }
 }
+
+// Inscription
+.recap-info {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    .form {
+        flex-grow: 1
+    }
+}

@@ -7,10 +7,12 @@ export default {
     loadEventList(data) {
         let { status, skip, top } = data || {};
         const queryObj = {
-            // status: status || 'OPEN',
             start: skip || 0,
             end: top || 50
         };
+        if (status) {
+            queryObj.status = status;
+        }
         return eventApiDriver.search(null, null, { queryObj });
     },
     createEvent(data) {

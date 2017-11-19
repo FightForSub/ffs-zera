@@ -1,10 +1,10 @@
 import React from 'react';
 import { translate } from 'focus-core/translation';
-// import eventActions from '../../action/event';
 import { component as List } from 'focus-components/list/selection/list';
 import { mixin as lineMixin } from 'focus-components/list/selection/line';
 
 import eventServices from '@/services/event';
+import FFSWebSocket from '@/utilities/web-socket';
 
 const LineComponent = React.createClass({
     displayName: 'ResultLineView',
@@ -38,6 +38,7 @@ class StatsView extends React.Component {
         const eventId = this.props.params.id;
         const servicesCall = eventServices.getRounds(eventId)
             .then(eventRoundList => {
+                this.setState({ eventRoundList });
                 return (eventRoundList || [])
                     .map(elt => {
                         return eventServices.getRoundScore({ id: eventId, idRound: elt });
@@ -53,15 +54,40 @@ class StatsView extends React.Component {
         const eventId = this.props.params.id;
         eventServices.listUsers(eventId).then(res => this.setState({ participants: res }));
         this.loadData();
-        this.handle = window.setInterval(() => {
-            if (this.props.params.id && this.state.participants) {
-                this.loadData()
+        this.eventWs = new FFSWebSocket(this.props.params.id, (data, topics) => this.onWsUpdate(data));
+    }
+
+    onWsUpdate(data) {
+        const { event_id, round_id, score, user_id } = data;
+        if (+this.props.params.id === event_id) {
+            const roundIdx = (this.state.eventRoundList || []).indexOf(round_id);
+            if (roundIdx === -1) {
+                this.loadData();
+            } else {
+                this.setState(({ results, participants }, props) => {
+                    const roundScore = results[roundIdx];
+                    let found = false;
+                    roundScore.forEach(elt => {
+                        if (elt.id === user_id) {
+                            found = true;
+                            elt.score = score;
+                        }
+                    })
+                    if (!found) {
+                        const part = participants.find(elt => elt.twitchId === user_id);
+                        if (part) {
+                            const { username, url, logo, twitchId } = part;
+                            roundScore.push({ id: twitchId, username, url, logo, score });
+                        }
+                    }
+                    return { results };
+                });
             }
-        }, 3 * 1000)
+        }
     }
 
     componentWillUnmount() {
-        window.clearInterval(this.handle);
+        this.eventWs.close();
     }
 
     buildResults() {

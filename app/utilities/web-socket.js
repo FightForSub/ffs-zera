@@ -1,8 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import UserStore from 'focus-core/user/built-in-store';
 
-const __WS_SOCKET_URL__ = 'wss://pubsub-ffs-test.zerator.com/';
-
 class FFSWebsocket {
 
     constructor(eventId, onMessage) {

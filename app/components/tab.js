@@ -12,6 +12,7 @@ const TabComponent = ({ tabs, children }) => (
             {tabs.map(({ label, isActive, onClick }, idx) => (
                 <a
                     key={idx}
+                    href='#'
                     onClick={onClickTab(onClick)}
                     className={`mdl-tabs__tab ${isActive ? 'is-active' : ''}`}
                 >

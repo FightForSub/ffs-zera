@@ -17,6 +17,7 @@ import { navigate } from '@/utilities/router';
 import { isAdmin, isModo } from '@/utilities/check-rights';
 import EventStore from '@/stores/event';
 import actions from '@/action/event';
+import FFSWebSocket from '@/utilities/web-socket';
 
 export default connectToStore([{
     store: EventStore,
@@ -42,14 +43,16 @@ export default connectToStore([{
             this.onChangeRound(this.props.eventRoundList[0]);
         }
 
-        this.handle = window.setInterval(() => {
-            if (this.state.roundId && this.props.id) {
-                actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId });
-            }
-        }, 3 * 1000)
+        this.eventWs = new FFSWebSocket(this.props.id, (data, topics) => this.onWsUpdate(data));
+    },
+    onWsUpdate(data) {
+        const { event_id, round_id, score, user_id } = data;
+        if (this.props.id === event_id && this.state.roundId === round_id) {
+            dispatchData('eventRoundDetail', data);
+        }
     },
     componentWillUnmount() {
-        window.clearInterval(this.handle);
+        this.eventWs.close();
     },
     save() {
         const { fixTwitchId, twitchId, roundId, score } = this.state;
@@ -73,19 +76,10 @@ export default connectToStore([{
         }
     },
     renderRound(children) {
-
-
         const tabs = (this.props.eventRoundList || [])
             .map((round, idx) => ({ label: 'Round ' + (idx + 1), isActive: this.state.roundId === round, onClick: () => this.onChangeRound(round) }));
-            // .map((round, idx) => (<a onClick={(evt) => { evt.preventDefault(); this.onChangeRound(round); }} className={`mdl-tabs__tab ${this.state.roundId === round ? 'is-active' : ''}`}>{'Round ' + (idx + 1)}</a>));
 
         return <Tabs tabs={tabs}>{this.state.roundId && children}</Tabs>;
-        // return (<div className='mdl-tabs mdl-js-tabs mdl-js-ripple-effect is-upgraded'>
-        //     <div className='mdl-tabs__tab-bar'>
-        //         {tabs}
-        //     </div>
-        //     <div className='mdl-tabs__panel is-active'>{this.state.roundId && children}</div>
-        // </div>);
     },
     renderAlive() {
         const data = (this.props.userList || []).filter(elt => {

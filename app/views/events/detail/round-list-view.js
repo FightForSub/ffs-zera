@@ -1,23 +1,24 @@
 import React from 'react';
-// import { component as List } from 'focus-components/list/selection/list';
-import List from '../../../components/list';
-import { mixin as formPreset } from 'focus-components/common/form';
-
-import { translate } from 'focus-core/translation';
-import Button from 'focus-components/components/button';
-import { component as Popin } from 'focus-components/application/popin';
-import connectToStore from 'focus-components/behaviours/store/connect';
 
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
 import confirm from 'focus-core/application/confirm';
+import { translate } from 'focus-core/translation';
 
-import { navigate } from '../../../utilities/router';
-import { isAdmin, isModo } from '../../../utilities/check-rights';
-import EventStore from '../../../stores/event';
+import { mixin as formPreset } from 'focus-components/common/form';
+import Button from 'focus-components/components/button';
+import { component as Popin } from 'focus-components/application/popin';
+import connectToStore from 'focus-components/behaviours/store/connect';
 
-
-import actions from '../../../action/event';
+import List from '@/components/list';
+import Tabs from '@/components/tab';
+import UserLine from '@/components/user-line';
+import { navigate } from '@/utilities/router';
+import { isAdmin, isModo } from '@/utilities/check-rights';
+import EventStore from '@/stores/event';
+import actions from '@/action/event';
+import FFSWebSocket from '@/utilities/web-socket';
+import TwitchLive from './twitch-live';
 
 export default connectToStore([{
     store: EventStore,
@@ -43,17 +44,18 @@ export default connectToStore([{
             this.onChangeRound(this.props.eventRoundList[0]);
         }
 
-        this.handle = window.setInterval(() => {
-            if (this.state.roundId && this.props.id) {
-                actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId });
-            }
-        }, 3 * 1000)
+        this.eventWs = new FFSWebSocket(this.props.id, (data, topics) => this.onWsUpdate(data));
+    },
+    onWsUpdate(data) {
+        const { event_id, round_id, score, user_id } = data;
+        if (this.props.id === event_id && this.state.roundId === round_id) {
+            dispatchData('eventRoundDetail', data);
+        }
     },
     componentWillUnmount() {
-        window.clearInterval(this.handle);
+        this.eventWs.close();
     },
     save() {
-        // id, idRound, idUser, score
         const { fixTwitchId, twitchId, roundId, score } = this.state;
         actions.updateUserScore({ id: this.props.id, idRound: roundId, idUser: fixTwitchId || twitchId, score }, this).then(data => {
             if (data && data.status && data.status.eventRoundUpdate && data.status.eventRoundUpdate.name === 'saved') {
@@ -75,24 +77,33 @@ export default connectToStore([{
         }
     },
     renderRound(children) {
-        const tabs = (this.props.eventRoundList || []).map((round, idx) => (<a onClick={(evt) => { evt.preventDefault(); this.onChangeRound(round); }} className={`mdl-tabs__tab ${this.state.roundId === round ? 'is-active' : ''}`}>{'Round ' + (idx + 1)}</a>));
+        const tabs = (this.props.eventRoundList || [])
+            .map((round, idx) => ({ label: 'Round ' + (idx + 1), isActive: this.state.roundId === round, onClick: () => this.onChangeRound(round) }));
 
-        return (<div className='mdl-tabs mdl-js-tabs mdl-js-ripple-effect is-upgraded'>
-            <div className='mdl-tabs__tab-bar'>
-                {tabs}
-            </div>
-            <div className='mdl-tabs__panel is-active'>{this.state.roundId && children}</div>
-        </div>);
+        return <Tabs tabs={tabs}>{this.state.roundId && children}</Tabs>;
     },
-    renderAlive() {
-        const data = (this.props.userList || []).filter(elt => {
-            return !(this.props.eventRoundDetail || []).some(item => item.id === elt.twitchId && item.score)
-        }).map(elt => ({
+    renderAlive(isWrapping = true) {
+        const data = (this.props.userList || [])
+            .filter(elt => {
+                return !(this.props.eventRoundDetail || []).some(item => item.id === elt.twitchId && item.score)
+            }).map(({ logo, score, username, twitchId, id }) => ({ logo, score, username, twitchId, id }));
+        return this.renderList(data, isWrapping);
+    },
+    renderDead() {
+        const toDisplay = (this.props.eventRoundDetail || [])
+            .filter(elt => elt.score)
+            .sort((a, b) => (a.score - b.score))
+            .map(({ logo, score, username, twitchId, id }) => ({ logo, score, username, twitchId, id }));
+
+        return this.renderList(toDisplay);
+    },
+    renderList(arr, isWrapping) {
+        const elts = arr.map(elt => ({
             logoUrl: elt.logo,
-            LineContent: <span className='detail-user-line-content'>{elt.username}</span>,
-            onClick: () => this.handleLineClick(elt)
+            LineContent: <UserLine {...elt} />,
+            onClick: (evt) => { evt.preventDefault(); evt.stopPropagation(); this.handleLineClick(elt); }
         }));
-        return <List data- dd='empilable' isWrapping dataList={data} />
+        return <List data-dd='empilable' isWrapping={isWrapping} dataList={elts} />;
     },
     handleLineClick(elt) {
         if (isModo()) {
@@ -101,22 +112,8 @@ export default connectToStore([{
                 fixTwitchId: elt.id || elt.twitchId
             })
         } else {
-            const newTab = document.createElement('a');
-            newTab.href = elt.url;
-            newTab.target = '_blank';
-            newTab.style.display = 'none';
-            document.body.appendChild(newTab);
-            newTab.click();
-            document.body.removeChild(newTab);
+            this.setState({ channel: elt.username.toLowerCase() })
         }
-    },
-    renderLine({ username, twitchId, score }) {
-        return (
-            <span className='detail-user-line-content' >
-                <span>{username}</span>
-                <span>{'Score: ' + score}</span>
-            </span>
-        );
     },
     addRound() {
         actions.createRound({ id: this.props.id }).then(() => {
@@ -150,14 +147,6 @@ export default connectToStore([{
     },
     /** @inheritDoc */
     renderContent() {
-        const toDisplay = (this.props.eventRoundDetail || [])
-            .filter(elt => elt.score)
-            .sort((a, b) => (a.score - b.score))
-            .map(elt => ({
-                logoUrl: elt.logo,
-                LineContent: this.renderLine(elt),
-                onClick: () => this.handleLineClick(elt)
-            }));
         return (
             <div data-app='round-list-page' >
                 {this.props.noLive && <h4 className='website-title'>{translate('label.rounds')}</h4>}
@@ -177,10 +166,18 @@ export default connectToStore([{
                     </div >
                 </div >
                 {this.state.roundId && <div>{!this.props.noLive && <h5 className='website-title'>{translate('label.alive')}</h5>}
+                    {this.state.channel && (
+                        <TwitchLive channel={this.state.channel} onPopinClose={() => this.setState({ channel: null })} >
+                            <div>
+                                <h5 className='website-title'>{translate('label.alive')}</h5>
+                                {this.renderAlive(false)}
+                                <h5 className='website-title'>{translate('label.dead')}</h5>
+                                {this.renderDead()}
+                            </div>
+                        </TwitchLive>)}
                     {!this.props.noLive && this.renderAlive()}
                     {!this.props.noLive && <h5 className='website-title'>{translate('label.dead')}</h5>}
-
-                    <List data-dd='empilable' dataList={toDisplay} />
+                    {this.renderDead()}
                     {this.state.displayPopin && isModo() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false, twitchId: null, fixTwitchId: null, score: null })}>
                         <div onKeyUp={this.saveOnEnter}>
                             <h4 className='website-title'>{translate('label.updateScore')}</h4>

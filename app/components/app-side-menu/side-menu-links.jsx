@@ -1,13 +1,22 @@
 import React from 'react';
 import { Link } from '@/components/router';
 import { translate } from 'focus-core/translation';
+import UserStore from 'focus-core/user/built-in-store';
+import connectToStore from 'focus-components/behaviours/store/connect';
+import { isAuthenticated } from '@/utilities/check-rights';
 
+@connectToStore([{
+    store: UserStore,
+    properties: ['profile']
+}], () => {
+    return {}
+})
 class SideMenuLinks extends React.Component {
     state = {
     }
 
     _getMenuItems() {
-        return [
+        const items = [
             {
                 icon: 'live_tv',
                 route: 'live',
@@ -18,8 +27,21 @@ class SideMenuLinks extends React.Component {
                 route: 'events',
                 name: translate('label.eventListPage')
             }
-            // { icon: 'add_circle', route: 'inscription', name: translate('label.inscriptionPage') }
         ];
+
+        if (isAuthenticated()) {
+            items.push({
+                icon: 'dashboard',
+                route: 'myevents',
+                name: translate('label.myEventsPage')
+            },
+            {
+                icon: 'add_circle',
+                route: 'inscription',
+                name: translate('label.inscriptionPage')
+            });
+        }
+        return items;
     }
 
     render() {

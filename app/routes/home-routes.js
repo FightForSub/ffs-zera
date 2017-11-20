@@ -3,8 +3,7 @@ import StatsView from '@/views/stats';
 import LiveView from '@/views/live/new-live';
 import DetailView from '@/views/events/detail';
 
-// import ParticipantView from '@/views/participants';
-// import InscriptionView from '@/views/inscription';
+import InscriptionView from '@/views/inscription';
 import EventsView from '@/views/events';
 import HomeView from '@/views/home';
 
@@ -13,20 +12,16 @@ const routes = [
         path: 'home',
         component: HomeView
     },
-    // {
-    //     path: 'stats',
-    //     component: StatsView
-    // },
     {
         path: 'live',
         component: LiveView
     },
-    // {
-    //     path: 'participants',
-    //     component: ParticipantView
-    // },
     {
         path: 'events',
+        component: EventsView
+    },
+    {
+        path: 'myevents',
         component: EventsView
     },
     {
@@ -38,6 +33,10 @@ const routes = [
         component: StatsView
     },
     {
+        path: 'inscription',
+        component: () => (<InscriptionView hasLoad={false} isEdit />)
+    },
+    {
         path: ':token',
         indexRoute: {
             onEnter: ({ params }, replace) => {
@@ -45,11 +44,6 @@ const routes = [
             }
         }
     }
-
-    // {
-    //     path: 'inscription',
-    //     component: () => (<InscriptionView hasLoad={false} isEdit />)
-    // }
 
 ];
 

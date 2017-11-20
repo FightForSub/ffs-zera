@@ -36,7 +36,7 @@ const List = (props) => {
                 props.dataList.map(({ avatar, logoUrl, name, LineContent, actions, onClick, selected }, index) => {
                     return (
                         <li key={index} className='mdl-list__item'>
-                            <span className='mdl-list__item-primary-content mdl-button--raised' data-dd={`list-grey-elt ${selected ? 'selected' : ''}`} onClick={() => onClick()}>
+                            <span className='mdl-list__item-primary-content mdl-button--raised' data-dd={`list-grey-elt ${selected ? 'selected' : ''}`} onClick={(evt) => onClick(evt)}>
                                 {avatar &&
                                     <i className={`${avatar.className || 'material-icons'} mdl-list__item-avatar`}>{avatar.iconText}</i>
                                 }

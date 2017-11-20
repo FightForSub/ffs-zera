@@ -1,5 +1,6 @@
 import './initializer/scripts/translation-initializer';
 import './twitch';
+import './twitch-embed.v1';
 
 import React from 'react'
 import { render } from 'react-dom'

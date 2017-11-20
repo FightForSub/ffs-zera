@@ -69,12 +69,6 @@ class DetailEventView extends React.Component {
         });
     }
 
-    showEditParticipant() {
-        dispatchData('eventUserDetail', null);
-        this.setState({ createUser: true });
-    }
-
-
     showAddParticipant() {
         dispatchData('eventUserDetail', null);
         this.setState({ createUser: true });
@@ -85,7 +79,6 @@ class DetailEventView extends React.Component {
             this.setState({ twitchId: id });
         }
     }
-
 
     hidePopins() {
         this.setState({

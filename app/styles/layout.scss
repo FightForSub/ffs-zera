@@ -351,3 +351,42 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
         flex-grow: 1
     }
 }
+// Live Popin
+[data-focus='popin'].twitch-popin {
+
+    .twitch-header i.material-icons{
+        top:0;
+        right:0;
+        font-size: 30px;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    > div[data-focus='popin-overlay'] {
+        background-color: #191919;
+    }
+
+    .live-popin-container {
+        display: flex;
+        width: 100%;
+        height: 100%;
+
+        > div {
+            flex-grow: 1;
+
+            &:first-child {
+                width:20%;
+                overflow-y: auto;
+            }
+
+            &:last-child {
+                width:80%;
+            }
+        }
+    
+        .twitch-live-container {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

@@ -12,10 +12,11 @@ const UserLine = (value) => {
     const { url, username } = value;
     return (
         <span className='detail-user-line-content'>
-            <a target='_blank' href={url} onClick={evt => evt.stopPropagation()}>
+            {url && <a target='_blank' href={url} onClick={evt => evt.stopPropagation()}>
                 <Icon iconLib='fa fa-icon'>{'\uF1E8'}</Icon>
                 <span>{username}</span>
-            </a>
+            </a>}
+            {!url && <span>{username}</span>}
             <Field fieldName='score' value={value} formatter={format} />
             <Field fieldName='followers' value={value} formatter={format} />
             <Field fieldName='views' value={value} formatter={format} />
@@ -29,7 +30,7 @@ UserLine.defaultProps = {
 UserLine.propTypes = {
     username: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    score: PropTypes.number,
+    score: PropTypes.number
 }
 
 export default UserLine;

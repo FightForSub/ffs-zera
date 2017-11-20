@@ -18,6 +18,7 @@ import { isAdmin, isModo } from '@/utilities/check-rights';
 import EventStore from '@/stores/event';
 import actions from '@/action/event';
 import FFSWebSocket from '@/utilities/web-socket';
+import TwitchLive from './twitch-live';
 
 export default connectToStore([{
     store: EventStore,
@@ -81,16 +82,18 @@ export default connectToStore([{
 
         return <Tabs tabs={tabs}>{this.state.roundId && children}</Tabs>;
     },
-    renderAlive() {
-        const data = (this.props.userList || []).filter(elt => {
-            return !(this.props.eventRoundDetail || []).some(item => item.id === elt.twitchId && item.score)
-        });
-        return this.renderList(data);
+    renderAlive(isWrapping = true) {
+        const data = (this.props.userList || [])
+            .filter(elt => {
+                return !(this.props.eventRoundDetail || []).some(item => item.id === elt.twitchId && item.score)
+            }).map(({ logo, score, username, twitchId, id }) => ({ logo, score, username, twitchId, id }));
+        return this.renderList(data, isWrapping);
     },
     renderDead() {
         const toDisplay = (this.props.eventRoundDetail || [])
             .filter(elt => elt.score)
-            .sort((a, b) => (a.score - b.score));
+            .sort((a, b) => (a.score - b.score))
+            .map(({ logo, score, username, twitchId, id }) => ({ logo, score, username, twitchId, id }));
 
         return this.renderList(toDisplay);
     },
@@ -98,7 +101,7 @@ export default connectToStore([{
         const elts = arr.map(elt => ({
             logoUrl: elt.logo,
             LineContent: <UserLine {...elt} />,
-            onClick: () => this.handleLineClick(elt)
+            onClick: (evt) => { evt.preventDefault(); evt.stopPropagation(); this.handleLineClick(elt); }
         }));
         return <List data-dd='empilable' isWrapping={isWrapping} dataList={elts} />;
     },
@@ -108,6 +111,8 @@ export default connectToStore([{
                 displayPopin: true,
                 fixTwitchId: elt.id || elt.twitchId
             })
+        } else {
+            this.setState({ channel: elt.username.toLowerCase() })
         }
     },
     addRound() {
@@ -161,6 +166,15 @@ export default connectToStore([{
                     </div >
                 </div >
                 {this.state.roundId && <div>{!this.props.noLive && <h5 className='website-title'>{translate('label.alive')}</h5>}
+                    {this.state.channel && (
+                        <TwitchLive channel={this.state.channel} onPopinClose={() => this.setState({ channel: null })} >
+                            <div>
+                                <h5 className='website-title'>{translate('label.alive')}</h5>
+                                {this.renderAlive(false)}
+                                <h5 className='website-title'>{translate('label.dead')}</h5>
+                                {this.renderDead()}
+                            </div>
+                        </TwitchLive>)}
                     {!this.props.noLive && this.renderAlive()}
                     {!this.props.noLive && <h5 className='website-title'>{translate('label.dead')}</h5>}
                     {this.renderDead()}

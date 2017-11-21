@@ -6,7 +6,7 @@ const Icon = ({ children, iconLib }) => (
 );
 
 Icon.defaultProps = {
-    iconLib: 'material-icons',
+    iconLib: 'material-icons'
 };
 
 Icon.propTypes = {

@@ -359,7 +359,10 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
         right:0;
         font-size: 30px;
         cursor: pointer;
-        position: absolute;
+        position: absolute; 
+        &[data-focus="popin-window-chat"] {
+            right:40px;
+        }
     }
 
     > div[data-focus='popin-overlay'] {
@@ -387,6 +390,19 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
         .twitch-live-container {
             width: 100%;
             height: 100%;
+        }
+
+        .live-iframe-container {
+            display: flex;
+            iframe {
+                border:none;
+            }
+            .video {
+                flex-grow: 1;
+            }
+            .chat {
+                flex-basis: 340px;
+            }
         }
     }
 }

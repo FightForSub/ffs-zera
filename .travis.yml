@@ -1,0 +1,15 @@
+sudo: false
+language: node_js
+node_js:
+- 6
+- node
+branches:
+  only:
+  - master
+  - development
+cache:
+  directories:
+  - node_modules
+notifications:
+  slack:
+    secure: qjDFI3CVGOJT36MvzPTSYGlcZKn4Y3wPpVNgFpPLcRDnhhi4rMMTRZTgE1cTQ5bnHsb4v0DcBuFaYYileB7BJ6edk1Eoby+U/LzIzzssr2b3RZPKZfKoMbDR8xXJNzcevWO4vC4W4z7kiU45NeMEcQQsfLZO2WcKcCgvbobSi7pVBFURRvW6cBAK//fKKWB2FIgs9tQYiWWgEb96zNB2Im6ohtrN6z73YpBnJH7kevz4WUc7yf59x+I0rd36nPQPy0FeZz52QfTJ7Gz/IhdGFkd/rRTkhephr6/8DyiF7Eb5OqbQYpqaGYhL0Tv8Pz2sbtJOPi+/5cmLLPBkIUkjhLNIYbBFI9TzqEj6wUVnf5tleQ6QorYfm0f0QLyXdBsQOjzxFpHA5ZVjNYx9xrboWGtClZNHdfOsYLfuAo8k26Cdr+TJSwN+UWN0RMrN4oHr51GjlTXeHC5jKBtcCU0HM5FWyBJiHmUh5+0fpnRleoQdn9+KY02xAjl82CVK9gBBetSSfnKv9Q60Gm97NPMr8RN34C7vS3HL50rPBb56snQqP4toY7Z+R/Jby6T7rs3QPurEIfi4PXsDhzGyrWifgPZ1tQMlSDBOvmzDGKNt5YHsZSzIoZNj1MgEgT+f0vWOUe5h3PXbFXxHN36+jST0WqhVHi4Yu5kltwznhHbWK9Y=

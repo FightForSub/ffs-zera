@@ -30,7 +30,11 @@ class EventsView extends React.Component {
         this.state = { displayPopin: false };
     }
     componentWillMount() {
-        actions.list();
+        if (this.props.userOnly) {
+            actions.loadMyEvents();
+        } else {
+            actions.list();
+        }
     }
 
     /** @inheritDoc */
@@ -39,10 +43,10 @@ class EventsView extends React.Component {
             <div data-app='events-page'>
                 <h3 className='website-title'>{translate('label.events')}</h3>
                 <div className='pad-bottom'>
-                    {isAdmin() && <Button label='label.createEvent' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />}
+                    {!this.props.userOnly && isAdmin() && <Button label='label.createEvent' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />}
                 </div>
                 <List data={this.props.eventList || []} LineComponent={LineComponent} isSelection={false} onLineClick={data => { dispatchData('eventRoundList', null); dispatchData('eventRoundDetail', null); navigate(`event/${data.id}`) }} />
-                {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
+                {!this.props.userOnly && this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
                     <AddPopin hasLoad={false} hasForm={false} isEdit forCreation />
                 </Popin>}
             </div>

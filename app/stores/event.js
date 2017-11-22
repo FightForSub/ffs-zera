@@ -44,7 +44,8 @@ const eventStore = new EventStore({
         eventUserDetail: 'eventUserDetail',
         eventRoundList: 'eventRoundList',
         eventRoundDetail: 'eventRoundDetail',
-        eventRoundUpdate: 'eventRoundUpdate'
+        eventRoundUpdate: 'eventRoundUpdate',
+        eventUserRegistration: 'eventUserRegistration'
     }
 });
 

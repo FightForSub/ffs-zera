@@ -4,6 +4,9 @@ import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
+import { addSuccessMessage } from 'focus-core/message';
+import { navigate } from '@/utilities/router';
+
 import EventStore from '@/stores/event';
 import actions from '@/action/event';
 
@@ -14,25 +17,42 @@ const InscriptionView = React.createClass({
     displayName: 'InscriptionView',
     mixins: [formPreset],
     definitionPath: 'user',
-    action: { save: (data) => alert('TODO save \n' + JSON.stringify(data, null, 4)) },
-
+    action: {},
+    stores: [
+        {
+            store: EventStore,
+            properties: ['eventUserRegistration']
+        }
+    ],
     componentWillMount() {
         actions.list({ status: 'OPEN' });
+        this.action.save = () => actions.registerToEvent(this.state.event, this);
+    },
+
+    afterChange(changeInfos) {
+        if (changeInfos && changeInfos.informations && changeInfos.informations.callerId && this._identifier === changeInfos.informations.callerId) {
+            if (changeInfos.status && changeInfos.status.name && changeInfos.status.name === 'saved') {
+                addSuccessMessage('label.registerSuccess');
+                navigate('event/' + this.state.event);
+            }
+        }
     },
 
     /** @inheritDoc */
     renderContent() {
+        const procedure = translate('inscription.explication.detail', { returnObjects: true })
+            .map((rule, i) => {
+                return <li key={i}>{rule}</li>;
+            });
+
         return (
             <div data-app='inscription-page'>
                 <h3 className='website-title'>{translate('label.inscription')}</h3>
                 <Article>
                     <Section title={translate('inscription.titles.explication')}>
-                        <p>
-                            {translate('inscription.explication.partie1')}
-                        </p>
-                        <p>
-                            {translate('inscription.explication.partie2')}
-                        </p>
+                        <ul>
+                            {procedure}
+                        </ul>
                     </Section>
                     <Section title={translate('inscription.titles.recap')}>
                         <div className='recap-info'>

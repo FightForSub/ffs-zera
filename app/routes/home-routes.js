@@ -22,7 +22,7 @@ const routes = [
     },
     {
         path: 'myevents',
-        component: EventsView
+        component: (props) => (<EventsView userOnly {...props} />)
     },
     {
         path: 'event/:id',

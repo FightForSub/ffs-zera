@@ -28,7 +28,7 @@ import RoundListView from './round-list-view';
 {
     store: UserStore,
     properties: ['profile']
-}], () => ({ userList: EventStore.getEventUserList() || [] }))
+}], () => ({ userList: EventStore.getEventUserList() || [], userId: (UserStore.getProfile() || {}).twitchId }))
 class DetailEventView extends React.Component {
     constructor(props) {
         super(props);
@@ -40,6 +40,8 @@ class DetailEventView extends React.Component {
         this.showAddParticipant = this.showAddParticipant.bind(this);
         this.showEditParticipant = this.showEditParticipant.bind(this);
         this.hidePopins = this.hidePopins.bind(this);
+        this.isRegistered = this.isRegistered.bind(this);
+        this.doUnregister = this.doUnregister.bind(this);
     }
 
     componentWillMount() {
@@ -80,6 +82,21 @@ class DetailEventView extends React.Component {
         }
     }
 
+    unregister() {
+        return eventActions.unregisterFromEvent(this.props.params.id, this);
+    }
+
+    doUnregister() {
+        confirm(translate('label.confirmEventUnregister'))
+            .then(() => this.unregister())
+            .then(() => eventActions.listUsers(this.props.params.id))
+            .catch(() => { });
+    }
+
+    isRegistered() {
+        return (this.props.userList || []).some(({ twitchId }) => (twitchId == this.props.userId));
+    }
+
     hidePopins() {
         this.setState({
             createUser: false,
@@ -89,7 +106,7 @@ class DetailEventView extends React.Component {
     }
 
     render() {
-        const toDisplayAlive = this.props.userList
+        const toDisplayUser = this.props.userList
             .map(elt => ({
                 logoUrl: elt.logo,
                 LineContent: <UserLine {...elt} />,
@@ -114,10 +131,16 @@ class DetailEventView extends React.Component {
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />
                 <h4 className='website-title'>{translate('label.users')}</h4>
-                {isAdmin() && <div>
-                    <Button label={'label.addUser'} onClick={this.showAddParticipant} />
-                </div>}
-                <List data-dd='empilable' dataList={toDisplayAlive} isWrapping />
+                <div className='pad-bottom'>
+                    {isAdmin() && <div>
+                        <Button label={'label.addUser'} onClick={this.showAddParticipant} />
+                    </div>}
+                    {this.isRegistered() && <div>
+                        <Button label={'label.unregister'} onClick={this.doUnregister} />
+                    </div>}
+                </div>
+
+                <List data-dd='empilable' dataList={toDisplayUser} isWrapping />
                 <hr />
                 <RoundListView hasForm={false} noLive id={this.props.params.id} hasLoad={false} />
                 {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={this.hidePopins} >

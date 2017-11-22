@@ -46,6 +46,9 @@ export default {
         home: 'Fight for Sub'
     },
     label: {
+        registerSuccess: 'Vous avez bien été inscrit',
+        confirmEventUnregister: 'Êtes-vous sur de vouloir vous désinscrire ?',
+        unregister: 'Se désinscrire',
         confirmRoundDeletion: 'Confirmez-vous la suppression du round ?',
         confirmEventDeletion: 'Confirmez-vous la suppression de l\'évènement ?',
         events: 'Évènements',
@@ -76,7 +79,8 @@ export default {
         inscription: 'Inscription'
     },
     button: {
-        save: 'Sauvegarder'
+        save: 'Sauvegarder',
+        saving: 'Sauvegarde en cours'
     },
     detail: {
         saved: 'Les modifications ont bien été enregistrées'
@@ -84,6 +88,21 @@ export default {
     global: {
         login: {
             twitch: 'Se connecter'
+        }
+    },
+    inscription: {
+        titles: {
+            explication: 'Procédure d\'inscription',
+            recap: 'Récapitulatif et formulaire'
+        },
+        explication: {
+            detail: [
+                'Sélectionnez l\'évènement dans la liste et validez',
+                'Après l\'inscription, vous allez recevoir un mail de confirmation, sur l\'adresse affichée dans le récapitulatif',
+                'Après validation par les administrateurs de votre inscription, vous recevrez un autre mail',
+                'Un rappel avec le détail de l\'évènement vous sera envoyé avant l\'évènement',
+                'Enfin, il vous est possible de vous désinscrire d\'un évènement en allant sur la page de détail de l\'évènement'
+            ]
         }
     },
     home: {

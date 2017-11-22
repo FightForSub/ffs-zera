@@ -22,6 +22,7 @@ class FFSWebsocket {
 
     close() {
         clearInterval(this.handle);
+        this.handle = null;
     }
 
     onopen() {
@@ -37,6 +38,9 @@ class FFSWebsocket {
     }
 
     onclose(event) {
+        if (this.handle) {
+            clearInterval(this.handle);
+        }
         console.log('WS:Close', event);
     }
 

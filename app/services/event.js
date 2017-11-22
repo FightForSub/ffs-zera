@@ -1,6 +1,11 @@
 import eventApiDriver from '@/config/server/event';
 
 export default {
+    loadMyEvents() {
+        return eventApiDriver.loadMyEvents().then(events => {
+            return events.map(({ event, elt }) => ({ ...event, ...elt }))
+        });
+    },
     loadEvent(id) {
         return eventApiDriver.load({ id });
     },
@@ -63,5 +68,11 @@ export default {
     },
     getCurrentEvent() {
         return eventApiDriver.getCurrentEvent();
+    },
+    registerToEvent(id) {
+        return eventApiDriver.registerToEvent({ id });
+    },
+    unregisterFromEvent(id) {
+        return eventApiDriver.unregisterFromEvent({ id });
     }
 }

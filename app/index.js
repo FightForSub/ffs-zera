@@ -10,7 +10,8 @@ import { initialize as afterInit } from './initializer/after';
 import { registerPreFetchTransform } from 'focus-core/network/api-driver';
 import Application from './application';
 import UserStore from 'focus-core/user/built-in-store';
-
+import errorHandling from './utilities/error-handling';
+import { configure } from 'focus-core/network/config';
 
 registerPreFetchTransform(({ urlData, data, options }) => {
     options = options || {};
@@ -18,6 +19,8 @@ registerPreFetchTransform(({ urlData, data, options }) => {
     options.headers.Authorization = options.headers.Authorization || (UserStore.getProfile() || {}).apiToken;
     return { urlData, data, options };
 });
+
+configure({ xhrErrors: errorHandling });
 // Flag to know if DOM was loaded
 document.addEventListener('DOMContentLoaded', () => { window._hasFiredDOMContentLoaded = true; });
 

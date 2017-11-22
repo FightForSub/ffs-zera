@@ -46,6 +46,7 @@ export default {
         home: 'Fight for Sub'
     },
     label: {
+        registerSuccess: 'Vous avez bien été inscrit',
         confirmEventUnregister: 'Êtes-vous sur de vouloir vous désinscrire ?',
         unregister: 'Se désinscrire',
         confirmRoundDeletion: 'Confirmez-vous la suppression du round ?',

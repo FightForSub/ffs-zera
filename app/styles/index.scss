@@ -3,6 +3,7 @@
 //styles from focus-components
 @import 'focus-components/style/index.scss';
 @import 'material-design-icons-iconfont/dist/material-design-icons.scss';
+@import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 //--------------------------------------------------------------------------
 //styles from demo
@@ -10,6 +11,7 @@
 
 @import './side-menu/side-menu.scss';
 @import './layout.scss';
+@import './rich-text-editor.scss';
 @import './mobile.scss';
 @import '../components/list/style.scss';
 @import '../components/article/styles/index.scss';

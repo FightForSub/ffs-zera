@@ -5,6 +5,6 @@ export default (fetchData, options) => {
     const newOptions = { ...options };
     newOptions.headers = (options || {}).headers || {};
     newOptions.headers['Client-ID'] = __CLIENT_ID__;
-    newOptions.headers.Authorization = 'OAuth ' + (UserStore.getProfile() || {}).token;
+    newOptions.headers.Authorization = options && options.headers && options.headers.Authorization || 'OAuth ' + (UserStore.getProfile() || {}).token;
     return fetch(fetchData, newOptions);
 }

@@ -6,6 +6,7 @@
 [![Dependencies Status](https://david-dm.org/Hartorn/ffs-zera.svg)](https://david-dm.org/Hartorn/ffs-zera)
 [![Dev Dependencies Status](https://david-dm.org/Hartorn/ffs-zera/dev-status.svg)](https://david-dm.org/Hartorn/ffs-zera?type=dev)
 [![Peer Dependencies Status](https://david-dm.org/Hartorn/ffs-zera/peer-status.svg)](https://david-dm.org/Hartorn/ffs-zera?type=peer)
+[![Slack Status](https://slack.fightforsub.com/badge.svg)](https://slack.fightforsub.com)
 
 These are the FFS front sources.
 
@@ -48,6 +49,10 @@ And that's it ! Site can be accessed from `http://localhost:3000`
 ## Bug Report
 
 If you find any bugs, please report it on the [Issues](https://gitlab.com/Hartorn/ffz-zera/issues) page of the project
+
+## Join us on Slack
+
+Discuss with us about this project on [Slack](https://slack.fightforsub.com).
 
 ## License
 

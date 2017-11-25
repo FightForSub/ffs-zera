@@ -1,3 +1,4 @@
+/* eslint-disable */
 const baseConfig = require('webpack-focus/config/default');
 const envParser = require('webpack-focus/webpack-utilities/env-parser');
 
@@ -10,5 +11,14 @@ myConfig.addDefinedVariable('__WS_SOCKET_URL__', JSON.stringify(parsedEnv.WS_SOC
 myConfig.addDefinedVariable('__IS_VERTIGO__', 'false');
 
 myConfig.addAlias('@', './app');
+// Removing multiple version
+myConfig.addAlias('immutable', './node_modules/immutable');
+// React RTE (we are not using it)
+myConfig.addSimpleLoader(26, /react-rte/, 'null-loader');
 
-module.exports = myConfig.toWebpackConfig(parsedEnv);
+const configWebpack = myConfig.toWebpackConfig(parsedEnv);
+
+const mainEntry = configWebpack.entry.pop();
+configWebpack.entry.push('classlist-polyfill', './app/initializer/scripts/translation-initializer', './app/twitch', mainEntry);
+
+module.exports = configWebpack;

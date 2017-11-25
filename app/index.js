@@ -1,7 +1,3 @@
-import './initializer/scripts/translation-initializer';
-import './twitch';
-import 'classlist-polyfill';
-
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader';

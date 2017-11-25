@@ -28,7 +28,7 @@ class FFSWebsocket {
 
     checkSocket() {
         console.log('checkSocket', this.lastPong, this.lastPing);
-        if (Math.abs(this.lastPong - this.lastPing) > 5) {
+        if (Math.abs(this.lastPong - this.lastPing) > 5000) {
             try {
                 clearInterval(this.handle);
                 this.handle = null;

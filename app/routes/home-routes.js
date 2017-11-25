@@ -18,7 +18,12 @@ const routes = [
     },
     {
         path: 'live',
-        component: LiveView
+        component: LiveView,
+        onEnter: () => {
+            dispatchData('eventDetail', null);
+            dispatchData('eventRoundList', null);
+            dispatchData('eventRoundDetail', null);
+        }
     },
     {
         path: 'events',

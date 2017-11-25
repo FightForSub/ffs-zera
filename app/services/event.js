@@ -1,5 +1,5 @@
 import eventApiDriver from '@/config/server/event';
-
+import { isObject } from 'lodash/lang';
 export default {
     loadMyEvents() {
         return eventApiDriver.loadMyEvents().then(events => {
@@ -31,8 +31,19 @@ export default {
         const { id, ...toSave } = data;
         return eventApiDriver.update({ id: data.id }, toSave);
     },
-    listUsers(id) {
-        return eventApiDriver.listUsers({ id }).then(arr => {
+    listUsers(data) {
+        let id, status;
+        if (isObject(data)) {
+            id = data.id;
+            status = data.status
+        } else {
+            id = data;
+        }
+        const queryObj = {};
+        if (status) {
+            queryObj.status = status;
+        }
+        return eventApiDriver.listUsers({ id }, null, { queryObj }).then(arr => {
             return arr.sort((a, b) => ((a || {}).username || '').localeCompare(((b || {}).username || '')));
         });
     },

@@ -1,14 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader';
+import { registerPreFetchTransform } from 'focus-core/network/api-driver';
+import UserStore from 'focus-core/user/built-in-store';
+import { configure } from 'focus-core/network/config';
 
 import { initialize as beforeInit } from './initializer/before';
 import { initialize as afterInit } from './initializer/after';
-import { registerPreFetchTransform } from 'focus-core/network/api-driver';
 import Application from './application';
-import UserStore from 'focus-core/user/built-in-store';
 import errorHandling from './utilities/error-handling';
-import { configure } from 'focus-core/network/config';
 
 registerPreFetchTransform(({ urlData, data, options }) => {
     options = options || {};

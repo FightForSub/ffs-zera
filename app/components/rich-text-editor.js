@@ -4,7 +4,6 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 
-
 class EditorConvertToHTML extends Component {
     constructor(props) {
         super(props);

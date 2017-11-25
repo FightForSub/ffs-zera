@@ -105,7 +105,6 @@
         "font-awesome": "4.7.0",
         "html-to-draftjs": "1.0.1",
         "immutable": "3.8.2",
-        "jquery": "3.2.1",
         "localforage": "1.5.3",
         "lodash": "4.17.4",
         "material-design-icons-iconfont": "3.0.3",

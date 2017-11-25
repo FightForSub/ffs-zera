@@ -1,4 +1,7 @@
 export default {
+    error: {
+        twitchAuth: 'Problème d\'identification avec Twitch'
+    },
     field: {
         required: 'Le champ est requis'
     },

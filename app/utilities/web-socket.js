@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import UserStore from 'focus-core/user/built-in-store';
+import { setInterval } from 'timers';
 
 class FFSWebsocket {
 
@@ -8,6 +9,8 @@ class FFSWebsocket {
         this.eventId = eventId;
         this.identifier = uuid();
         this.onMessageCb = onMessage;
+        this.lastPong = +new Date();
+        this.lastPing = +new Date();
 
         this.onopen = this.onopen.bind(this);
         this.onerror = this.onerror.bind(this);
@@ -18,18 +21,46 @@ class FFSWebsocket {
         this.webSocket.onerror = this.onerror;
         this.webSocket.onclose = this.onclose;
         this.webSocket.onmessage = this.onmessage;
+
+        this.checkSocket = this.checkSocket.bind(this);
+        this.checkSocketId = setInterval(this.checkSocket, 10000);
+    }
+
+    checkSocket() {
+        console.log('checkSocket', this.lastPong, this.lastPing);
+        if (Math.abs(this.lastPong - this.lastPing) > 5) {
+            try {
+                clearInterval(this.handle);
+                this.handle = null;
+                this.webSocket.close()
+            } catch (e) {
+                // Fail silently
+            }
+            console.log('WS:Re-Opening Socket');
+
+            this.webSocket = new WebSocket(__WS_SOCKET_URL__);
+            this.webSocket.onopen = this.onopen;
+            this.webSocket.onerror = this.onerror;
+            this.webSocket.onclose = this.onclose;
+            this.webSocket.onmessage = this.onmessage;
+        }
     }
 
     close() {
         clearInterval(this.handle);
+        clearInterval(this.checkSocketId);
+        this.checkSocketId = null;
         this.handle = null;
+        this.webSocket.close()
     }
 
     onopen() {
         this.subscribeToEvent(this.eventId);
         this.sendMessage('PING');
+        this.lastPing = +new Date();
         this.handle = setInterval(() => {
             this.sendMessage('PING');
+            this.lastPing = +new Date();
         }, 20000);
     }
 
@@ -49,7 +80,6 @@ class FFSWebsocket {
         switch (msg.type) {
             case 'PONG':
                 this.lastPong = +new Date();
-                console.log('WS LAST PONG', this.lastPong);
                 break;
             case 'RESPONSE':
                 // TODO check subscription

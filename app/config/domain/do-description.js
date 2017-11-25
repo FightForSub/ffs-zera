@@ -1,8 +1,8 @@
-import ReactRTE from 'focus-components/components/input/rich-text';
+import Editor from '@/components/rich-text-editor';
 export default {
     type: 'text',
-    DisplayComponent: ReactRTE,
-    InputComponent: ReactRTE,
+    DisplayComponent: Editor,
+    InputComponent: Editor,
     validator: [{
         type: 'string'
         // options: {

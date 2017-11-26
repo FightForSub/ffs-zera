@@ -1,0 +1,16 @@
+.rich-text-editor.rdw-editor-main{
+    height:auto;
+    // min-height: 150px;
+}
+
+[data-mode="consult"] .rdw-editor-toolbar {
+    display: none;
+}
+
+.rich-text-wrapper {
+    border: 1px solid;
+    border-radius: 5px;
+    .rdw-editor-toolbar * {
+        color: black;
+    }
+}

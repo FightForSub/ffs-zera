@@ -6,10 +6,14 @@
 [![Dependencies Status](https://david-dm.org/Hartorn/ffs-zera.svg)](https://david-dm.org/Hartorn/ffs-zera)
 [![Dev Dependencies Status](https://david-dm.org/Hartorn/ffs-zera/dev-status.svg)](https://david-dm.org/Hartorn/ffs-zera?type=dev)
 [![Peer Dependencies Status](https://david-dm.org/Hartorn/ffs-zera/peer-status.svg)](https://david-dm.org/Hartorn/ffs-zera?type=peer)
+[![Slack Status](https://slack.fightforsub.com/badge.svg)](https://slack.fightforsub.com)
 
 These are the FFS front sources.
+
 The FFS Project is accessible from [this address](https://ffs-events.zerator.com).
+
 Theses sources will allow you to build the front binaries.
+
 By contributing or using this project, you agree to abide by the [Code of Conduct](/CODE_OF_CONDUCT.md) when interracting with a community member.
 
 ## Build and run
@@ -48,8 +52,7 @@ If you find any bugs, please report it on the [Issues](https://gitlab.com/Hartor
 
 ## Join us on Slack
 
-Discuss with us about this project on Slack:
-https://join.slack.com/t/ffs-events-zerator/shared_invite/enQtMjczMTM0NzE5MzE3LWJhZTk1ZjAyZTAyN2Y5ZDQ5MzJjMDUxODZjNjIzNzgzYTAzMWUwM2MzMzJhODQwMTM5MTAxNDgxNzA1MDYwNTM
+Discuss with us about this project on [Slack](https://slack.fightforsub.com).
 
 ## License
 

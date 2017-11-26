@@ -5,7 +5,7 @@ import DO_LABEL_LONG from './do-label-long';
 import DO_YES_NO from './do-yes-no';
 import DO_STATUS_LIST from './do-status-list';
 import DO_STATUS_USER_LIST from './do-status-user-list';
-
+import DO_ID from './do-id';
 import DO_DESCRIPTION from './do-description';
 
 export default {
@@ -16,5 +16,6 @@ export default {
     DO_YES_NO,
     DO_STATUS_LIST,
     DO_STATUS_USER_LIST,
-    DO_DESCRIPTION
+    DO_DESCRIPTION,
+    DO_ID
 };

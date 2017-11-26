@@ -1,16 +1,23 @@
 import eventApiDriver from '@/config/server/event';
-
+import { isObject } from 'lodash/lang';
 export default {
+    loadMyEvents() {
+        return eventApiDriver.loadMyEvents().then(events => {
+            return events.map(({ event, elt }) => ({ ...event, ...elt }))
+        });
+    },
     loadEvent(id) {
         return eventApiDriver.load({ id });
     },
     loadEventList(data) {
         let { status, skip, top } = data || {};
         const queryObj = {
-            // status: status || 'OPEN',
             start: skip || 0,
             end: top || 50
         };
+        if (status) {
+            queryObj.status = status;
+        }
         return eventApiDriver.search(null, null, { queryObj });
     },
     createEvent(data) {
@@ -24,8 +31,19 @@ export default {
         const { id, ...toSave } = data;
         return eventApiDriver.update({ id: data.id }, toSave);
     },
-    listUsers(id) {
-        return eventApiDriver.listUsers({ id }).then(arr => {
+    listUsers(data) {
+        let id, status;
+        if (isObject(data)) {
+            id = data.id;
+            status = data.status
+        } else {
+            id = data;
+        }
+        const queryObj = {};
+        if (status) {
+            queryObj.status = status;
+        }
+        return eventApiDriver.listUsers({ id }, null, { queryObj }).then(arr => {
             return arr.sort((a, b) => ((a || {}).username || '').localeCompare(((b || {}).username || '')));
         });
     },
@@ -61,5 +79,11 @@ export default {
     },
     getCurrentEvent() {
         return eventApiDriver.getCurrentEvent();
+    },
+    registerToEvent(id) {
+        return eventApiDriver.registerToEvent({ id });
+    },
+    unregisterFromEvent(id) {
+        return eventApiDriver.unregisterFromEvent({ id });
     }
 }

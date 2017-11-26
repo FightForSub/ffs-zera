@@ -9,17 +9,16 @@ import confirm from 'focus-core/application/confirm';
 
 
 import AddPopin from '@/views/events/add-popin';
-import UserPopin from './detail-user';
-
+import UserLine from '@/components/user-line';
 import List from '@/components/list';
-import RecapEvent from './recap-event';
-
+import { navigate } from '@/utilities/router';
+import { isAdmin } from '@/utilities/check-rights';
 import EventStore from '@/stores/event';
 import eventActions from '@/action/event';
 
+import UserPopin from './detail-user';
+import RecapEvent from './recap-event';
 import RoundListView from './round-list-view';
-import { navigate } from '@/utilities/router';
-import { isAdmin } from '@/utilities/check-rights';
 
 
 @connectToStore([{
@@ -29,7 +28,7 @@ import { isAdmin } from '@/utilities/check-rights';
 {
     store: UserStore,
     properties: ['profile']
-}], () => ({ userList: EventStore.getEventUserList() || [] }))
+}], () => ({ userList: EventStore.getEventUserList() || [], userId: (UserStore.getProfile() || {}).twitchId }))
 class DetailEventView extends React.Component {
     constructor(props) {
         super(props);
@@ -38,6 +37,11 @@ class DetailEventView extends React.Component {
             displayPopin: false
         };
         this.deleteEvent = this.deleteEvent.bind(this);
+        this.showAddParticipant = this.showAddParticipant.bind(this);
+        this.showEditParticipant = this.showEditParticipant.bind(this);
+        this.hidePopins = this.hidePopins.bind(this);
+        this.isRegistered = this.isRegistered.bind(this);
+        this.doUnregister = this.doUnregister.bind(this);
     }
 
     componentWillMount() {
@@ -48,17 +52,6 @@ class DetailEventView extends React.Component {
         this.setState({ dataList: dataList.map(elt => elt.id !== id ? elt : { ...elt, isDead }) })
     }
 
-    renderLine({ username, views, twitchId, followers }) {
-        // <div>{'TwitchId: ' + twitchId}</div>
-
-        return (
-            <span className='detail-user-line-content'>
-                <span>{username}</span>
-                <span>{'Followers: ' + followers}</span>
-                <span>{'Views: ' + views}</span>
-            </span>
-        );
-    }
     buildAction({ isDead, id }) {
         return {
             iconText: isDead ? 'restore' : 'delete',
@@ -78,18 +71,46 @@ class DetailEventView extends React.Component {
         });
     }
 
+    showAddParticipant() {
+        dispatchData('eventUserDetail', null);
+        this.setState({ createUser: true });
+    }
+
+    showEditParticipant(id) {
+        if (isAdmin()) {
+            this.setState({ twitchId: id });
+        }
+    }
+
+    unregister() {
+        return eventActions.unregisterFromEvent(this.props.params.id, this);
+    }
+
+    doUnregister() {
+        confirm(translate('label.confirmEventUnregister'))
+            .then(() => this.unregister())
+            .then(() => eventActions.listUsers(this.props.params.id))
+            .catch(() => { });
+    }
+
+    isRegistered() {
+        return (this.props.userList || []).some(({ twitchId }) => (twitchId == this.props.userId));
+    }
+
+    hidePopins() {
+        this.setState({
+            createUser: false,
+            twitchId: null,
+            displayPopin: false
+        });
+    }
+
     render() {
-        const toDisplayAlive = this.props.userList
+        const toDisplayUser = this.props.userList
             .map(elt => ({
                 logoUrl: elt.logo,
-                LineContent: this.renderLine(elt),
-                onClick: () => {
-                    if (isAdmin()) {
-                        this.setState({
-                            twitchId: elt.twitchId
-                        })
-                    }
-                }
+                LineContent: <UserLine {...elt} />,
+                onClick: () => this.showEditParticipant(elt.twitchId)
             }));
 
         return (
@@ -97,7 +118,12 @@ class DetailEventView extends React.Component {
                 <h3 className='website-title'>{translate('website.detailEvent')}</h3>
                 <div className='pad-bottom'>
                     <div className='pad-buttons'>
-                        {this.props.params.id && isAdmin() && <Button label={'label.editEvent'} onClick={() => { this.setState({ displayPopin: true }) }} />}
+                        {this.props.params.id && isAdmin() &&
+                            <Button
+                                label={'label.editEvent'}
+                                onClick={() => { this.setState({ displayPopin: true }) }}
+                            />
+                        }
                         <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.params.id}/results`) }} />
                     </div>
                     {isAdmin() && <Button label='label.deleteEvent' onClick={this.deleteEvent} />}
@@ -105,20 +131,26 @@ class DetailEventView extends React.Component {
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />
                 <h4 className='website-title'>{translate('label.users')}</h4>
-                {isAdmin() && <div>
-                    <Button label={'label.addUser'} onClick={() => { dispatchData('eventUserDetail', null); this.setState({ createUser: true }) }} />
-                </div>}
-                <List data-dd='empilable' dataList={toDisplayAlive} isWrapping />
+                <div className='pad-bottom'>
+                    {isAdmin() && <div>
+                        <Button label={'label.addUser'} onClick={this.showAddParticipant} />
+                    </div>}
+                    {this.isRegistered() && <div>
+                        <Button label={'label.unregister'} onClick={this.doUnregister} />
+                    </div>}
+                </div>
+
+                <List data-dd='empilable' dataList={toDisplayUser} isWrapping />
                 <hr />
                 <RoundListView hasForm={false} noLive id={this.props.params.id} hasLoad={false} />
-                {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
-                    <AddPopin hasLoad={false} isEdit id={this.props.params.id} onSave={() => this.setState({ displayPopin: false })} />
+                {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={this.hidePopins} >
+                    <AddPopin hasLoad={false} isEdit id={this.props.params.id} onSave={this.hidePopins} />
                 </Popin>}
-                {this.state.twitchId && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ twitchId: null })} >
-                    <UserPopin hasLoad={false} isEdit id={this.props.params.id} idUser={this.state.twitchId} onSave={() => this.setState({ twitchId: null })} />
+                {this.state.twitchId && isAdmin() && <Popin open type='from-right' onPopinClose={this.hidePopins} >
+                    <UserPopin hasLoad={false} isEdit id={this.props.params.id} idUser={this.state.twitchId} onSave={this.hidePopins} />
                 </Popin>}
-                {this.state.createUser && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ createUser: false })} >
-                    <UserPopin hasLoad={false} isEdit forCreation id={this.props.params.id} onSave={() => this.setState({ createUser: false })} />
+                {this.state.createUser && isAdmin() && <Popin open type='from-right' onPopinClose={this.hidePopins} >
+                    <UserPopin hasLoad={false} isEdit forCreation id={this.props.params.id} onSave={this.hidePopins} />
                 </Popin>}
             </div>
         );

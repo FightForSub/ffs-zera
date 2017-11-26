@@ -14,8 +14,7 @@ const filterByRoles = routes => {
             currentRoute.childRoutes = filterByRoles(currentRoute.childRoutes)
         }
         return [...acc, currentRoute];
-    }
-        , []);
+    }, []);
 };
 
 export {

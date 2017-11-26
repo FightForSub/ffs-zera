@@ -1,6 +1,5 @@
-import eventServices from '../services/event';
+import eventServices from '@/services/event';
 import actionBuilder from 'focus-core/application/action-builder';
-
 
 export default {
     load: actionBuilder({
@@ -36,6 +35,12 @@ export default {
     list: actionBuilder({
         node: 'eventList',
         service: eventServices.loadEventList,
+        shouldDumpStoreOnActionCall: true,
+        status: 'loaded'
+    }),
+    loadMyEvents: actionBuilder({
+        node: 'eventList',
+        service: eventServices.loadMyEvents,
         shouldDumpStoreOnActionCall: true,
         status: 'loaded'
     }),
@@ -96,6 +101,18 @@ export default {
     updateUserScore: actionBuilder({
         node: 'eventRoundUpdate',
         service: eventServices.updateUserScore,
+        shouldDumpStoreOnActionCall: true,
+        status: 'saved'
+    }),
+    registerToEvent: actionBuilder({
+        node: 'eventUserRegistration',
+        service: eventServices.registerToEvent,
+        shouldDumpStoreOnActionCall: true,
+        status: 'saved'
+    }),
+    unregisterFromEvent: actionBuilder({
+        node: 'eventUserRegistration',
+        service: eventServices.unregisterFromEvent,
         shouldDumpStoreOnActionCall: true,
         status: 'saved'
     })

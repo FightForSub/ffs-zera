@@ -4,6 +4,7 @@ import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
 import localForage from 'localforage';
 import { translate } from 'focus-core/translation';
+import fetch from 'focus-core/network/fetch';
 
 @connectToStore([{
     store: UserStore,
@@ -11,7 +12,11 @@ import { translate } from 'focus-core/translation';
 }], () => UserStore.getValue())
 class UserInfos extends React.Component {
     doLogout() {
-        Twitch.logout(error => console.warn(error));
+        const token = this.props.profile && this.props.profile.token;
+        if (token) {
+            fetch({ url: `https://api.twitch.tv/kraken/oauth2/revoke?client_id=${__CLIENT_ID__}&token=${token}`, method: 'POST' })
+                .catch(error => { });
+        }
         localForage.clear();
         dispatchData('profile', null);
     }

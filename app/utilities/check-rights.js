@@ -4,6 +4,10 @@ const getGrade = () => {
     return (UserStore.getProfile() || {}).grade || 0;
 }
 
+const isAuthenticated = () => {
+    return getGrade() >= 1000;
+}
+
 const isAdmin = () => {
     return getGrade() >= 3000;
 }
@@ -14,5 +18,6 @@ const isModo = () => {
 
 export {
     isAdmin,
-    isModo
+    isModo,
+    isAuthenticated
 }

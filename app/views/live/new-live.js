@@ -6,7 +6,6 @@ import RoundListView from '@/views/events/detail/round-list-view';
 import eventActions from '@/action/event';
 import EventStore from '@/stores/event';
 
-
 export default connectToStore([{
     store: EventStore,
     properties: ['eventDetail']
@@ -23,7 +22,7 @@ export default connectToStore([{
         },
         componentWillReceiveProps(nextProps) {
             if (nextProps.eventDetail && nextProps.eventDetail.id && (!this.props.eventDetail || !this.props.eventDetail.id || nextProps.eventDetail.id !== this.props.eventDetail.id)) {
-                eventActions.listUsers(nextProps.eventDetail.id);
+                eventActions.listUsers({ id: nextProps.eventDetail.id, status: 'VALIDATED' });
             }
         },
 

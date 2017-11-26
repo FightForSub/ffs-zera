@@ -5,6 +5,7 @@ import AppContent from '@/components/app-content';
 import DevTools from '@/components/dev-tools';
 import LoadingBar from 'focus-components/components/layout/header-loading-bar';
 import ConfirmWrapper from 'focus-components/components/confirm';
+import MessageCenter from 'focus-components/components/message-center';
 
 const CustomLayout = (props) => (
     <div className='app-layout'>
@@ -15,6 +16,7 @@ const CustomLayout = (props) => (
         </AppContent>
         {__DEV__ && <DevTools />}
         <ConfirmWrapper />
+        <MessageCenter />
     </div >
 );
 CustomLayout.displayName = 'CustomAppLayout';

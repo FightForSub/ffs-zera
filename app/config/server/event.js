@@ -2,6 +2,10 @@ import apiDriverBuilder from 'focus-core/network/api-driver';
 import { apiRoot } from './index'
 
 export default apiDriverBuilder({
+    loadMyEvents: {
+        url: apiRoot + 'me/events',
+        method: 'GET'
+    },
     create: {
         url: apiRoot + 'events',
         method: 'POST'
@@ -64,5 +68,13 @@ export default apiDriverBuilder({
     getCurrentEvent: {
         url: apiRoot + 'event/current',
         method: 'GET'
+    },
+    registerToEvent: {
+        url: apiRoot + 'event/${id}/register',
+        method: 'POST'
+    },
+    unregisterFromEvent: {
+        url: apiRoot + 'event/${id}/register',
+        method: 'DELETE'
     }
 });

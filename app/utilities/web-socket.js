@@ -1,6 +1,5 @@
 import { v4 as uuid } from 'uuid';
 import UserStore from 'focus-core/user/built-in-store';
-import { setInterval } from 'timers';
 
 class FFSWebsocket {
 

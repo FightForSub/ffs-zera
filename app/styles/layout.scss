@@ -164,24 +164,6 @@ button{
     }
 }
 
-[data-app="inscription-page"] {
-    .logo-login {
-        height: 300px;
-        width: 300px;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-
-    .header {
-        display: flex;
-        align-items: center;
-
-        .data {
-            flex-grow: 1;
-        }
-    }
-}
-
 [data-focus="selection-list"] [data-focus="sl-line"] {
 	background-color: #212121;
 }
@@ -342,15 +324,6 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
     }
 }
 
-// Inscription
-.recap-info {
-    display: flex;
-    align-items: center;
-    padding-bottom: 15px;
-    .form {
-        flex-grow: 1
-    }
-}
 // Live Popin
 [data-focus='popin'].twitch-popin {
 

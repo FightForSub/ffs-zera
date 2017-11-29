@@ -3,8 +3,9 @@ import React from 'react';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
 import connectToStore from 'focus-components/behaviours/store/connect';
+import Radio from 'focus-components/components/input/radio';
 import UserStore from 'focus-core/user/built-in-store';
-import { addSuccessMessage } from 'focus-core/message';
+import { addSuccessMessage, addErrorMessage } from 'focus-core/message';
 import { navigate } from '@/utilities/router';
 
 import EventStore from '@/stores/event';
@@ -26,7 +27,13 @@ const InscriptionView = React.createClass({
     ],
     componentWillMount() {
         actions.list({ status: 'OPEN' });
-        this.action.save = () => actions.registerToEvent(this.state.event, this);
+        this.action.save = () => {
+            if (!this.state.event) {
+                addErrorMessage('error.selectEvent');
+                return;
+            }
+            return actions.registerToEvent(this.state.event, this);
+        };
     },
 
     afterChange(changeInfos) {
@@ -36,6 +43,22 @@ const InscriptionView = React.createClass({
                 navigate('event/' + this.state.event);
             }
         }
+    },
+    renderCustomRadio({ id, name, reservedToPartners, reservedToAffiliates }, key) {
+        return (
+            <div
+                key={key}
+                className={'radio-elt' + (this.state.event === id ? ' selected' : '')}
+                onClick={() => this.setState({ event: id })}
+            >
+                <Radio value={this.state.event === id} onChange={(isChecked) => { if (isChecked) this.setState({ event: id }) }} />
+                <div className={`event-info ${this.state.event === id ? 'selected' : ''}`}>
+                    <div className='event-name'>{name}</div>
+                    <div className='event-condition'>
+                        {translate(reservedToPartners && reservedToAffiliates ? 'inscription.condition.partnersAndAffiliates' : reservedToAffiliates ? 'inscription.condition.affiliates' : reservedToPartners ? 'inscription.condition.partners' : 'inscription.condition.all')}
+                    </div>
+                </div>
+            </div>);
     },
 
     /** @inheritDoc */
@@ -47,28 +70,42 @@ const InscriptionView = React.createClass({
 
         return (
             <div data-app='inscription-page'>
-                <h3 className='website-title'>{translate('label.inscription')}</h3>
                 <Article>
-                    <Section title={translate('inscription.titles.explication')}>
+                    <div><h3 className='website-title'>{translate('label.inscription')}</h3>
+                        <div>{translate('label.joinEvent')}</div>
+                    </div>
+                    <Section >
+                        <h3 className='subheading title-green'>{translate('inscription.titles.howto')}</h3>
                         <ul>
                             {procedure}
                         </ul>
                     </Section>
-                    <Section title={translate('inscription.titles.recap')}>
-                        <div className='recap-info'>
-                            <div className='logo-login' style={{ backgroundImage: this.props.profile.logo ? `url(${this.props.profile.logo}` : null }} />
-                            <div className='form'>
-                                {this.fieldFor('twitchId', { value: this.props.profile.twitchId, isEdit: false })}
-                                {this.fieldFor('username', { value: this.props.profile.username, isEdit: false })}
-                                {this.fieldFor('email', { value: this.props.profile.email, isEdit: false })}
-                                {this.fieldFor('event', { values: (this.props.eventList || []).map(({ name, id }) => ({ code: id, label: name })) })}
-                                {this.buttonSave()}
-
-                            </div>
+                    <Section >
+                        <h3 className='subheading title-green'>{translate('inscription.titles.choose')}</h3>
+                        <div className='radio-container'>
+                            {(this.props.eventList || []).map((elt, idx) => this.renderCustomRadio(elt, idx))}
                         </div>
                     </Section>
-                </Article>
-            </div>
+                    <Section >
+                        <h3 className='subheading title-green'>{translate('inscription.titles.recap')}</h3>
+
+                        <div className='recap'>
+                            <div>{translate('inscription.recapPresentation')}</div>
+                            <div className='recap-info'>
+                                <div className='logo-login' style={{ backgroundImage: this.props.profile.logo ? `url(${this.props.profile.logo}` : null }} />
+                                <div className='info'>
+                                    {this.fieldFor('username', { value: this.props.profile.username, isEdit: false, hasLabel: false })}
+                                    {this.fieldFor('email', { value: this.props.profile.email, isEdit: false, hasLabel: false })}
+                                </div>
+                            </div>
+                            <div>{translate('inscription.remind')}</div>
+                            <div>{translate('inscription.unsubscribe')}</div>
+                            <br />
+                            {this.buttonSave()}
+                        </div>
+                    </Section >
+                </Article >
+            </div >
         );
     }
 });

@@ -1,0 +1,83 @@
+[data-app='inscription-page']{
+
+    .radio-container {
+        display: flex;
+        .radio-elt {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border: 1px solid grey;
+            border-radius: 5px;
+            margin-right: 20px;
+
+            > label {
+                margin: 0 20px !important;
+                padding: 0;
+                width: 24px;
+                height: 32px;
+                .mdl-radio__outer-circle {
+                    width: 24px;
+                    height: 24px;    
+                }
+                .mdl-radio__inner-circle {
+                    width: 16px;
+                    height: 16px;    
+                }
+            }
+
+            &.selected {
+                border-color:#4a9433;
+                background-color: #2c342a;
+            }
+
+            .event-info {
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                padding-left: 0px;
+                
+                
+                .event-name {
+                    text-transform: uppercase;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    .recap {
+        
+        margin-bottom: 10px;
+        
+        button {
+            background-color: rgb(74, 148, 51);
+        }
+        
+        .recap-info {
+            border: 1px solid grey;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            background-color: #2c342a;
+            margin: 10px 0;
+            // background: linear-gradient(to right,#2c342a, #454D43, #4e4c4c);            
+        }
+
+        $logo-size:100px;
+
+        .logo-login {
+            height: $logo-size;
+            width: $logo-size;
+            border-radius: $logo-size/2;
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 10px;
+        }
+
+        .recap {
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+}

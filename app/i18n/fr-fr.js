@@ -1,6 +1,7 @@
 export default {
     error: {
-        twitchAuth: 'Problème d\'identification avec Twitch'
+        twitchAuth: 'Problème d\'identification avec Twitch',
+        selectEvent: 'Merci de sélectionner un évènement'
     },
     field: {
         required: 'Le champ est requis'
@@ -49,6 +50,7 @@ export default {
         home: 'Fight for Sub'
     },
     label: {
+        joinEvent: 'Rejoindre un évènement',
         registerSuccess: 'Vous avez bien été inscrit',
         confirmEventUnregister: 'Êtes-vous sur de vouloir vous désinscrire ?',
         unregister: 'Se désinscrire',
@@ -94,17 +96,27 @@ export default {
         }
     },
     inscription: {
+        condition: {
+            all: 'Ouvert à tous',
+            partnersAndAffiliates: 'Uniquement pour les affiliés et les partenaires Twitch',
+            affiliates: 'Uniquement pour les affiliés Twitch',
+            partners: 'Uniquement pour les partenaires Twitch'
+
+        },
         titles: {
             explication: 'Procédure d\'inscription',
-            recap: 'Récapitulatif et formulaire'
+            recap: 'Récapitulatif & Validation',
+            howto: 'Comment s\'inscrire ?',
+            choose: 'À quel évènement souhaitez-vous participer ?'
         },
+        recapPresentation: 'Vous allez participer à l\'évènement avec le compte suivant :',
+        remind: 'Un rappel avec les détails de l\'évènement vous sera envoyé peu de temps avant le début de celui-ci.',
+        unsubscribe: 'Vous pouvez vous désinscrire d\'un évènement depuis la page de détail de l\'évènement.',
         explication: {
             detail: [
-                'Sélectionnez l\'évènement dans la liste et validez',
-                'Après l\'inscription, vous allez recevoir un mail de confirmation, sur l\'adresse affichée dans le récapitulatif',
-                'Après validation par les administrateurs de votre inscription, vous recevrez un autre mail',
-                'Un rappel avec le détail de l\'évènement vous sera envoyé avant l\'évènement',
-                'Enfin, il vous est possible de vous désinscrire d\'un évènement en allant sur la page de détail de l\'évènement'
+                'Sélectionnez ci-dessous l\'évènement auquel vous souhaitez participer puis validez',
+                'Après validation, vous allez recevoir un mail de confirmation sur l\'adresse affichée dans le récapitulatif',
+                'Une fois votre inscription validée par les administrateurs, vous recevrez un second mail. Vous êtes alors inscrit !'
             ]
         }
     },

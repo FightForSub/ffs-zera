@@ -92,7 +92,7 @@ const InscriptionView = React.createClass({
                         <div className='recap'>
                             <div>{translate('inscription.recapPresentation')}</div>
                             <div className='recap-info'>
-                                <div className='logo-login' style={{ backgroundImage: this.props.profile.logo ? `url(${this.props.profile.logo}` : null }} />
+                                <div className='logo-login' style={{ backgroundImage: this.props.profile.logo ? `url(${this.props.profile.logo})` : null }} />
                                 <div className='info'>
                                     {this.fieldFor('username', { value: this.props.profile.username, isEdit: false, hasLabel: false })}
                                     {this.fieldFor('email', { value: this.props.profile.email, isEdit: false, hasLabel: false })}

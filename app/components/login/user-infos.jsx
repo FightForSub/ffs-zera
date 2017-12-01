@@ -27,7 +27,7 @@ class UserInfos extends React.Component {
             <div className='user-infos'>
                 <div
                     className='user-infos-image'
-                    style={{ backgroundImage: `url(${logo}` }}
+                    style={{ backgroundImage: `url(${logo})` }}
                 />
                 <div className='user-infos-name'>
                     <div className='user-infos-name-welcome'>

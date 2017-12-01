@@ -15,7 +15,7 @@ const LineComponent = React.createClass({
         return (
             <div data-app='line-results'>
                 {this.fieldFor('rank')}
-                {!logo ? <i /> : <i className={'mdl-list__item-avatar'} style={{ backgroundImage: `url(${logo}`, backgroundSize: 'contain' }} />}
+                {!logo ? <i /> : <i className={'mdl-list__item-avatar'} style={{ backgroundImage: `url(${logo})`, backgroundSize: 'contain' }} />}
                 {this.fieldFor('username')}
                 {Array(this.props.nbRounds).fill(0).map((elt, idx) => this.fieldFor('round' + (idx + 1)))}
                 {this.fieldFor('total')}

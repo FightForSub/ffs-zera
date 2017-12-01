@@ -31,7 +31,10 @@ const routes = [
     },
     {
         path: 'myevents',
-        component: (props) => (<EventsView userOnly {...props} />)
+        component: (props) => (<EventsView userOnly {...props} />),
+        onEnter: () => {
+            dispatchData('eventList', null);
+        }
     },
     {
         path: 'event/:id',

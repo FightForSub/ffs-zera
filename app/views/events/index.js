@@ -22,7 +22,7 @@ import AddPopin from './add-popin';
 {
     store: UserStore,
     properties: ['profile']
-}], () => ({ eventList: EventStore.getEventList() }))
+}], () => ({ eventList: EventStore.getEventList(), profile: UserStore.getProfile() || {} }))
 class EventsView extends React.Component {
 
     constructor(props) {
@@ -31,9 +31,19 @@ class EventsView extends React.Component {
     }
     componentWillMount() {
         if (this.props.userOnly) {
-            actions.loadMyEvents();
+            if (this.props.profile.apiToken) {
+                this.hasLoadMine = true;
+                actions.loadMyEvents();
+            }
         } else {
             actions.list();
+        }
+    }
+
+    componentWillReceiveProps({ profile }) {
+        if (this.props.userOnly && !this.hasLoadMine && profile.apiToken && !this.props.profile.apiToken) {
+            this.hasLoadMine = true;
+            actions.loadMyEvents();
         }
     }
 

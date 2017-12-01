@@ -1,0 +1,21 @@
+.button{
+    display: inline-block;
+    text-decoration: none;
+
+    &.bordered{
+        border-radius: 3px;
+        border: 1px solid;
+        padding: 16px;
+        text-transform: uppercase;
+
+        &.green{
+            border-color: $vert-zera;
+            background-color: rgba($vert-zera, 0.05);
+            
+            &:hover{
+                background-color: rgba($vert-zera, 0.2);
+            }
+        }
+
+    }
+}

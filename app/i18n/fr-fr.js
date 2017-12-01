@@ -148,5 +148,16 @@ export default {
                 'Pas d\'utilisation ni de 8x, ni de 15x'
             ]
         }
+    },
+    events: {
+        titles: {
+            noEvent: 'Aucun événement'
+        },
+        paragraphs: {
+            noEvent: 'Vous n\'êtes pas inscrit ou n\'avez participé à aucun événement pour le moment.'
+        },
+        buttons: {
+            signInEvent: 'S\'inscrire à un événement'
+        }
     }
 };

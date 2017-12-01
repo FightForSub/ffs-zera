@@ -70,7 +70,7 @@ class EventsView extends React.Component {
                     }}
                 />
 
-                {(this.props.eventList || []).length === 0 && <NoEvents />}
+                {this.props.eventList && this.props.eventList.length === 0 && <NoEvents />}
 
                 {!this.props.userOnly && this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
                     <AddPopin hasLoad={false} hasForm={false} isEdit forCreation />

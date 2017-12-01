@@ -12,7 +12,7 @@ class SideMenuHead extends React.Component {
         return (
             <div className='side-menu-head'>
                 <div className='side-menu-head-logo'>
-                    <Link>
+                    <Link to='home'>
                         <AppLogo />
                     </Link>
                 </div>

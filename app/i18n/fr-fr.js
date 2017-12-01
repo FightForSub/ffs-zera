@@ -93,6 +93,16 @@ export default {
     global: {
         login: {
             twitch: 'Se connecter'
+        },
+        sidemenu: {
+            buttons: {
+                github: 'Contribuer',
+                status: 'Status'
+            },
+            labels: {
+                github: 'Contribuer au code source',
+                status: 'Status des serveurs Unexpected'
+            }
         }
     },
     inscription: {

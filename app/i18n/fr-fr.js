@@ -154,7 +154,8 @@ export default {
             noEvent: 'Aucun événement'
         },
         paragraphs: {
-            noEvent: 'Vous n\'êtes pas inscrit ou n\'avez participé à aucun événement pour le moment.'
+            noEvent: 'Vous n\'êtes pas inscrit ou n\'avez participé à aucun événement pour le moment.',
+            noEventItem: 'Aucun événement disponible actuellement.'
         },
         buttons: {
             signInEvent: 'S\'inscrire à un événement'

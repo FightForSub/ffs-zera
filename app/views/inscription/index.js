@@ -13,6 +13,7 @@ import actions from '@/action/event';
 
 import Article from '@/components/article';
 import Section from '@/components/article/section';
+import NoEventItem from '@/components/events/no-event-item';
 
 const InscriptionView = React.createClass({
     displayName: 'InscriptionView',
@@ -43,6 +44,13 @@ const InscriptionView = React.createClass({
                 navigate('event/' + this.state.event);
             }
         }
+    },
+    renderRadioContainer() {
+        return (
+            <div className='radio-container'>
+                {(this.props.eventList || []).map((elt, idx) => this.renderCustomRadio(elt, idx))}
+            </div>
+        );
     },
     renderCustomRadio({ id, name, reservedToPartners, reservedToAffiliates }, key) {
         return (
@@ -81,13 +89,16 @@ const InscriptionView = React.createClass({
                         </ul>
                     </Section>
                     <Section >
-                        <h3 className='subheading title-green'>{translate('inscription.titles.choose')}</h3>
-                        <div className='radio-container'>
-                            {(this.props.eventList || []).map((elt, idx) => this.renderCustomRadio(elt, idx))}
-                        </div>
+                        <h3 className='subheading title-green'>
+                            {translate('inscription.titles.choose')}
+                        </h3>
+                        {(this.props.eventList || []).length === 0 && <NoEventItem />}
+                        {(this.props.eventList || []).length > 0 && this.renderRadioContainer()}
                     </Section>
                     <Section >
-                        <h3 className='subheading title-green'>{translate('inscription.titles.recap')}</h3>
+                        <h3 className='subheading title-green'>
+                            {translate('inscription.titles.recap')}
+                        </h3>
 
                         <div className='recap'>
                             <div>{translate('inscription.recapPresentation')}</div>

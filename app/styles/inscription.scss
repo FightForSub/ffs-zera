@@ -74,7 +74,6 @@
     }
 
     .recap {
-        
         margin-bottom: 10px;
         
         button {
@@ -82,13 +81,12 @@
         }
         
         .recap-info {
-            border: 1px solid grey;
+            border: 1px solid $vert-zera;
             display: flex;
             align-items: center;
-            border-radius: 5px;
-            background-color: #2c342a;
+            border-radius: 3px;
+            background-color: rgba(darken($vert-zera, 15%), 0.2);
             margin: 10px 0;
-            // background: linear-gradient(to right,#2c342a, #454D43, #4e4c4c);            
         }
 
         $logo-size: 80px;

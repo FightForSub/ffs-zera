@@ -2,13 +2,17 @@
 
     .radio-container {
         display: flex;
+        flex-wrap: wrap;
+
         .radio-elt {
             cursor: pointer;
             display: flex;
             align-items: center;
             border: 1px solid grey;
             border-radius: 5px;
-            margin-right: 20px;
+            margin-right: 16px;
+            margin-bottom: 16px;
+            width: 30%;
 
             > label {
                 margin: 0 20px !important;
@@ -16,6 +20,7 @@
                 width: 24px;
                 height: 32px;
                 .mdl-radio__outer-circle {
+                    border: 2px solid grey;
                     width: 24px;
                     height: 24px;    
                 }
@@ -25,9 +30,21 @@
                 }
             }
 
-            &.selected {
-                border-color:#4a9433;
-                background-color: #2c342a;
+            &.selected{
+                border-color: $vert-zera;
+                background-color: rgba(darken($vert-zera, 15%), 0.2);
+                
+                &:hover, &:hover .mdl-radio__outer-circle{
+                    border-color: lighten($vert-zera, 10%) !important;
+                }
+                
+                .mdl-radio__outer-circle{
+                    border-color: $vert-zera;
+                }
+            }
+
+            &:hover, &:hover .mdl-radio__outer-circle{
+                border-color: lighten(grey, 20%) !important;
             }
 
             .event-info {
@@ -38,16 +55,25 @@
                 
                 
                 .event-name {
+                    color: white;
                     text-transform: uppercase;
                     font-size: 16px;
                     font-weight: 500;
+                }
+
+                .event-condition{
+                    color: rgba(white, 0.7);
+                    margin-top: 8px;
                 }
             }
         }
     }
 
+    .no-event-item{
+        margin-bottom: 16px;
+    }
+
     .recap {
-        
         margin-bottom: 10px;
         
         button {
@@ -55,29 +81,51 @@
         }
         
         .recap-info {
-            border: 1px solid grey;
+            border: 1px solid $vert-zera;
             display: flex;
             align-items: center;
-            border-radius: 5px;
-            background-color: #2c342a;
+            border-radius: 3px;
+            background-color: rgba(darken($vert-zera, 15%), 0.2);
             margin: 10px 0;
-            // background: linear-gradient(to right,#2c342a, #454D43, #4e4c4c);            
         }
 
-        $logo-size:100px;
+        $logo-size: 80px;
 
         .logo-login {
             height: $logo-size;
             width: $logo-size;
-            border-radius: $logo-size/2;
+            border-radius: 100%;
             background-size: contain;
             background-repeat: no-repeat;
-            margin: 10px;
+            margin: 16px;
+        }
+
+        .info{
+            & > div:first-child{
+                font-size: 14pt;
+            }
         }
 
         .recap {
             font-size: 20px;
             font-weight: 500;
+        }
+    }
+}
+
+@media only screen and (max-width: 980px){
+    .radio-container{
+        .radio-elt{
+            width: calc(50% - 16px) !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 420px){
+    .radio-container{
+        .radio-elt{
+            width: 100% !important;
+            margin-right: 0 !important;
         }
     }
 }

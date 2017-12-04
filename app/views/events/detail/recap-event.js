@@ -35,6 +35,8 @@ export default React.createClass({
                     {this.fieldFor('status')}
                     {this.fieldFor('reservedToAffiliates', this.buildBooleanProps('reservedToAffiliates'))}
                     {this.fieldFor('reservedToPartners', this.buildBooleanProps('reservedToPartners'))}
+                    {this.fieldFor('minimumViews')}
+                    {this.fieldFor('minimumFollowers')}
                     {this.fieldFor('current', this.buildBooleanProps('current'))}
                 </div>
             </div>

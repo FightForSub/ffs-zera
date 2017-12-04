@@ -105,7 +105,7 @@ export default React.createClass({
         return (
             <div data-app='live-page' onKeyUp={this.saveOnEnter}>
                 <h3 className='website-title'>{translate(!this.props.forCreation ? 'label.updateUser' : 'label.createUser')}</h3>
-                {!this.props.forCreation && <Button label='label.deleteParticipant' onClick={this.deleteParticipant} />}
+                {!this.props.forCreation && <Button type='button' label='label.deleteParticipant' onClick={this.deleteParticipant} />}
                 <div>
                     {this.props.forCreation && this.fieldFor('usersearch', { isEdit: true, onKeyUp: this.searchUser })}
                     {this.fieldFor('twitchId', { isEdit: this.props.forCreation || false })}

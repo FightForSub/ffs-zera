@@ -31,7 +31,7 @@ const builtInComponentsMixin = {
         options = assign({}, {
             isEdit: this.props.isEdit,
             hasLabel: false,
-            value: this.props.data[name],
+            value: options && options.value !== undefined ? options.value : this.props.data[name],
             refContainer: options && options.refContainer || def.refContainer || this.props.reference,
             style: { className: 'form-list' }
         }, options);

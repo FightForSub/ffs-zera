@@ -1,5 +1,4 @@
 import React from 'react';
-import { locale } from 'moment';
 import localeForage from 'localforage';
 import { addErrorMessage } from 'focus-core/message';
 import { dispatchData } from 'focus-core/dispatcher';

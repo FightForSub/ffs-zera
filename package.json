@@ -62,7 +62,7 @@
                 "MINIMIFY": "true",
                 "DROP_CONSOLE": "true",
                 "NODE_ENV": "production",
-                "ROOT_URL": "https://hartorn.github.io/ffs-zera",
+                "ROOT_URL": "https://fightforsub.github.io/ffs-zera",
                 "CLIENT_ID": "c8ax3vskq7wdxsxf1t4whhl9c3f9bd",
                 "USE_CACHE": "false",
                 "PARALLEL_BUILD": "true"

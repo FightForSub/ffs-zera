@@ -1,4 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router'
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
-export default (props) => (<Link to={`${__BASE_URL__}${props.to?props.to:''}`} onClick={props.onClick}>{props.children}</Link>);
+const CustomLink = (props) => {
+    return (
+        <Link
+            to={`${__BASE_URL__}${props.to ? props.to : ''}`}
+            onClick={props.onClick}
+            className={props.className}
+        >
+            {props.children}
+        </Link>
+    );
+};
+
+CustomLink.defaultProps = {
+    className: null
+};
+
+CustomLink.propTypes = {
+    to: PropTypes.string.isRequired,
+    className: PropTypes.string
+};
+
+export default CustomLink;

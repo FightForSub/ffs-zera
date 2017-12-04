@@ -13,6 +13,7 @@ import actions from '@/action/event';
 
 import Article from '@/components/article';
 import Section from '@/components/article/section';
+import NoEventItem from '@/components/events/no-event-item';
 
 const InscriptionView = React.createClass({
     displayName: 'InscriptionView',
@@ -44,7 +45,14 @@ const InscriptionView = React.createClass({
             }
         }
     },
-    renderCustomRadio({ id, name, reservedToPartners, reservedToAffiliates }, key) {
+    renderRadioContainer() {
+        return (
+            <div className='radio-container'>
+                {this.filteredEvents().map((elt, idx) => this.renderCustomRadio(elt, idx))}
+            </div>
+        );
+    },
+    renderCustomRadio({ id, name, reservedToPartners, reservedToAffiliates, minimumViews, minimumFollowers }, key) {
         return (
             <div
                 key={key}
@@ -57,8 +65,25 @@ const InscriptionView = React.createClass({
                     <div className='event-condition'>
                         {translate(reservedToPartners && reservedToAffiliates ? 'inscription.condition.partnersAndAffiliates' : reservedToAffiliates ? 'inscription.condition.affiliates' : reservedToPartners ? 'inscription.condition.partners' : 'inscription.condition.all')}
                     </div>
+                    {!!minimumViews && <div className='event-condition'>
+                        {translate('event.minimumViews') + ' : ' + minimumViews}
+                    </div>}
+                    {!!minimumFollowers && <div className='event-condition'>
+                        {translate('event.minimumFollowers') + ' : ' + minimumFollowers}
+                    </div>}
                 </div>
             </div>);
+    },
+    filteredEvents() {
+        const { followers: myFollowers, views: myViews, broadcasterType } = this.props.profile || {};
+        return (this.props.eventList || [])
+            .filter(({ minimumViews, minimumFollowers }) => minimumFollowers <= myFollowers && minimumViews <= myViews)
+            .filter(({ reservedToAffiliates, reservedToPartners }) => {
+                let isAllowed = !reservedToAffiliates && !reservedToPartners;
+                isAllowed |= reservedToAffiliates && broadcasterType === 'affiliate';
+                isAllowed |= reservedToPartners && broadcasterType === 'partner';
+                return isAllowed;
+            });
     },
 
     /** @inheritDoc */
@@ -67,7 +92,7 @@ const InscriptionView = React.createClass({
             .map((rule, i) => {
                 return <li key={i}>{rule}</li>;
             });
-
+        const events = this.filteredEvents();
         return (
             <div data-app='inscription-page'>
                 <Article>
@@ -81,18 +106,21 @@ const InscriptionView = React.createClass({
                         </ul>
                     </Section>
                     <Section >
-                        <h3 className='subheading title-green'>{translate('inscription.titles.choose')}</h3>
-                        <div className='radio-container'>
-                            {(this.props.eventList || []).map((elt, idx) => this.renderCustomRadio(elt, idx))}
-                        </div>
+                        <h3 className='subheading title-green'>
+                            {translate('inscription.titles.choose')}
+                        </h3>
+                        {events.length === 0 && <NoEventItem />}
+                        {events.length > 0 && this.renderRadioContainer()}
                     </Section>
                     <Section >
-                        <h3 className='subheading title-green'>{translate('inscription.titles.recap')}</h3>
+                        <h3 className='subheading title-green'>
+                            {translate('inscription.titles.recap')}
+                        </h3>
 
                         <div className='recap'>
                             <div>{translate('inscription.recapPresentation')}</div>
                             <div className='recap-info'>
-                                <div className='logo-login' style={{ backgroundImage: this.props.profile.logo ? `url(${this.props.profile.logo}` : null }} />
+                                <div className='logo-login' style={{ backgroundImage: this.props.profile.logo ? `url(${this.props.profile.logo})` : null }} />
                                 <div className='info'>
                                     {this.fieldFor('username', { value: this.props.profile.username, isEdit: false, hasLabel: false })}
                                     {this.fieldFor('email', { value: this.props.profile.email, isEdit: false, hasLabel: false })}

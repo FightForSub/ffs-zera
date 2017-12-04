@@ -1,0 +1,14 @@
+.events{
+    &-empty-state{
+        text-align: center;
+        padding: 32px 16px;
+        width: 400px;
+        background-color: rgba(white, 0.05);
+        margin: 0 auto;
+        margin-top: 32px;
+
+        .subheading{
+            margin: 0;
+        }
+    }
+}

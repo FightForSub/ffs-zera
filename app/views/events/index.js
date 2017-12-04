@@ -14,6 +14,7 @@ import { isAdmin } from '@/utilities/check-rights';
 
 import LineComponent from './line';
 import AddPopin from './add-popin';
+import NoEvents from './no-events';
 
 @connectToStore([{
     store: EventStore,
@@ -22,7 +23,7 @@ import AddPopin from './add-popin';
 {
     store: UserStore,
     properties: ['profile']
-}], () => ({ eventList: EventStore.getEventList() }))
+}], () => ({ eventList: EventStore.getEventList(), profile: UserStore.getProfile() || {} }))
 class EventsView extends React.Component {
 
     constructor(props) {
@@ -31,9 +32,19 @@ class EventsView extends React.Component {
     }
     componentWillMount() {
         if (this.props.userOnly) {
-            actions.loadMyEvents();
+            if (this.props.profile.apiToken) {
+                this.hasLoadMine = true;
+                actions.loadMyEvents();
+            }
         } else {
             actions.list();
+        }
+    }
+
+    componentWillReceiveProps({ profile }) {
+        if (this.props.userOnly && !this.hasLoadMine && profile.apiToken && !this.props.profile.apiToken) {
+            this.hasLoadMine = true;
+            actions.loadMyEvents();
         }
     }
 
@@ -41,11 +52,26 @@ class EventsView extends React.Component {
     render() {
         return (
             <div data-app='events-page'>
-                <h3 className='website-title'>{translate('label.events')}</h3>
+                <h3 className='website-title'>
+                    {this.props.userOnly ? translate('label.myEventsPage') : translate('label.events')}
+                </h3>
+
                 <div className='pad-bottom'>
                     {!this.props.userOnly && isAdmin() && <Button label='label.createEvent' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />}
                 </div>
-                <List data={this.props.eventList || []} LineComponent={LineComponent} isSelection={false} onLineClick={data => { dispatchData('eventRoundList', null); dispatchData('eventRoundDetail', null); navigate(`event/${data.id}`) }} />
+                <List
+                    data={this.props.eventList || []}
+                    LineComponent={LineComponent}
+                    isSelection={false}
+                    onLineClick={data => {
+                        dispatchData('eventRoundList', null);
+                        dispatchData('eventRoundDetail', null);
+                        navigate(`event/${data.id}`);
+                    }}
+                />
+
+                {this.props.eventList && this.props.eventList.length === 0 && <NoEvents />}
+
                 {!this.props.userOnly && this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={() => this.setState({ displayPopin: false })} >
                     <AddPopin hasLoad={false} hasForm={false} isEdit forCreation />
                 </Popin>}

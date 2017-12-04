@@ -17,7 +17,7 @@
         "recette": "better-npm-run recette",
         "build": "npm run production",
         "start": "better-npm-run webpack-dev-server-npm-focus",
-        "patch": "cp ./patch/built-in-components.js ./node_modules/focus-components/list/mixin && cp ./patch/menu.js ./node_modules/focus-components/components/menu/index.js && cp ./patch/fetch.js ./node_modules/focus-core/network/fetch.js",
+        "patch": "cp-cli ./patch/built-in-components.js ./node_modules/focus-components/list/mixin/built-in-components.js && cp-cli ./patch/menu.js ./node_modules/focus-components/components/menu/index.js && cp-cli ./patch/fetch.js ./node_modules/focus-core/network/fetch.js",
         "postinstall": "npm run patch"
     },
     "main": "app/index.js",
@@ -95,6 +95,7 @@
     "devDependencies": {
         "better-npm-run": "0.1.0",
         "classlist-polyfill": "1.2.0",
+        "cp-cli": "^1.1.0",
         "draft-js": "0.10.4",
         "draftjs-to-html": "0.7.6",
         "eslint-config-focus": "0.6.0",

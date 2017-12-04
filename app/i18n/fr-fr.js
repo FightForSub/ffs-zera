@@ -18,7 +18,11 @@ export default {
         name: 'Nom',
         description: 'Description',
         status: 'Statut',
-        current: 'Évènement en cours'
+        current: 'Évènement en cours',
+        minimumFollowers: 'Minimum de followers',
+        minimumViews: 'Minimum de vues',
+        minimumViewsShort: "Min. vues",
+        minimumFollowersShort: "Min. followers"
     },
     user: {
         twitchId: 'Identifiant Twitch',
@@ -165,7 +169,7 @@ export default {
         },
         paragraphs: {
             noEvent: 'Vous n\'êtes pas inscrit ou n\'avez participé à aucun événement pour le moment.',
-            noEventItem: 'Aucun événement disponible actuellement.'
+            noEventItem: 'Vous n\'êtes éligible à aucun événement disponible actuellement.'
         },
         buttons: {
             signInEvent: 'S\'inscrire à un événement'

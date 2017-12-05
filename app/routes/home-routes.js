@@ -1,5 +1,4 @@
 import React from 'react';
-import { locale } from 'moment';
 import localeForage from 'localforage';
 import { addErrorMessage } from 'focus-core/message';
 import { dispatchData } from 'focus-core/dispatcher';
@@ -31,7 +30,10 @@ const routes = [
     },
     {
         path: 'myevents',
-        component: (props) => (<EventsView userOnly {...props} />)
+        component: (props) => (<EventsView userOnly {...props} />),
+        onEnter: () => {
+            dispatchData('eventList', null);
+        }
     },
     {
         path: 'event/:id',

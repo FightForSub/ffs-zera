@@ -67,8 +67,8 @@ class SideMenuLinks extends React.Component {
             });
 
         return (
-            <nav>
-                <ul className='side-menu-links'>
+            <nav className='side-menu-links'>
+                <ul>
                     {items}
                 </ul>
             </nav>

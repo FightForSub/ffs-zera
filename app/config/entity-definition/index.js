@@ -67,6 +67,14 @@ export default {
         date: {
             required: true,
             domain: 'DO_DATE'
+        },
+        minimumViews: {
+            required: false,
+            domain: 'DO_ENTIER'
+        },
+        minimumFollowers: {
+            required: false,
+            domain: 'DO_ENTIER'
         }
     },
     inscription: {

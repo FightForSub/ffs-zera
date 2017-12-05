@@ -18,7 +18,11 @@ export default {
         name: 'Nom',
         description: 'Description',
         status: 'Statut',
-        current: 'Évènement en cours'
+        current: 'Évènement en cours',
+        minimumFollowers: 'Minimum de followers',
+        minimumViews: 'Minimum de vues',
+        minimumViewsShort: "Min. vues",
+        minimumFollowersShort: "Min. followers"
     },
     user: {
         twitchId: 'Identifiant Twitch',
@@ -93,6 +97,16 @@ export default {
     global: {
         login: {
             twitch: 'Se connecter'
+        },
+        sidemenu: {
+            buttons: {
+                github: 'Contribuer',
+                status: 'Status'
+            },
+            labels: {
+                github: 'Contribuer au code source',
+                status: 'Status des serveurs Unexpected'
+            }
         }
     },
     inscription: {
@@ -129,12 +143,12 @@ export default {
         },
         paragraphs: {
             game: 'Une centaine de streamers s\'affrontent lors d\'une compétition tous les mois sur le jeu PlayerUnknow\'s Battlegrounds, organisée et commentée par Zerator.',
-            sub: 'Tous les participants de la compétition doivent s\'abonner à la chaine Twitch du vainqueur.',
+            sub: 'Tous les participants de la compétition doivent s\'abonner à la chaîne Twitch du vainqueur.',
             rules: [
                 '3 parties (4 en cas d\'égalité au bout de 3 parties)',
                 'Une fois par mois',
                 'Uniquement des streamers (affiliate ou partner)',
-                'La moyenne de votre classement dans les 3 games détermine votre place finale (ce qui veut dire que quelqu\'un qui fait TOP 3 - TOP 3 - TOP 3 gagnes face à quelqu\'un qui fait TOP 1 / TOP 1 / TOP 10)',
+                'La moyenne de votre classement dans les 3 games détermine votre place finale (ce qui veut dire que quelqu\'un qui fait TOP 3 - TOP 3 - TOP 3 gagne face à quelqu\'un qui fait TOP 1 / TOP 1 / TOP 10)',
                 'Les kills ne changent rien aux points',
                 'Mode : TPP (non FPP)',
                 'Solo only, pas de duo ni de squad',
@@ -144,9 +158,21 @@ export default {
             handicaps: [
                 'Pas de stuff T2 / T3 SAUF casque T2',
                 'Pas d\'utilisation de Painkiller/Boissons/Adrenaline Syringe',
-                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objects suivants (AWM, M24, Mk14 EBR, M249, Groza, Ghillie Suit)',
+                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants (AWM, M24, Mk14 EBR, M249, Groza, Ghillie Suit)',
                 'Pas d\'utilisation ni de 8x, ni de 15x'
             ]
+        }
+    },
+    events: {
+        titles: {
+            noEvent: 'Aucun événement'
+        },
+        paragraphs: {
+            noEvent: 'Vous n\'êtes pas inscrit ou n\'avez participé à aucun événement pour le moment.',
+            noEventItem: 'Vous n\'êtes éligible à aucun événement disponible actuellement.'
+        },
+        buttons: {
+            signInEvent: 'S\'inscrire à un événement'
         }
     }
 };

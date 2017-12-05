@@ -15,11 +15,12 @@ import { navigate } from '@/utilities/router';
 import { isAdmin } from '@/utilities/check-rights';
 import EventStore from '@/stores/event';
 import eventActions from '@/action/event';
+import eventServices from '@/services/event';
 
 import UserPopin from './detail-user';
 import RecapEvent from './recap-event';
 import RoundListView from './round-list-view';
-
+import Dropdown from 'focus-components/components/dropdown';
 
 @connectToStore([{
     store: EventStore,
@@ -34,7 +35,9 @@ class DetailEventView extends React.Component {
         super(props);
         this.state = {
             dataList: [],
-            displayPopin: false
+            displayPopin: false,
+            filtreLabel: 'select.all',
+            filtre: null
         };
         this.deleteEvent = this.deleteEvent.bind(this);
         this.showAddParticipant = this.showAddParticipant.bind(this);
@@ -42,6 +45,7 @@ class DetailEventView extends React.Component {
         this.hidePopins = this.hidePopins.bind(this);
         this.isRegistered = this.isRegistered.bind(this);
         this.doUnregister = this.doUnregister.bind(this);
+        this.buildDropdownValues = this.buildDropdownValues.bind(this);
     }
 
     componentWillMount() {
@@ -105,8 +109,46 @@ class DetailEventView extends React.Component {
         });
     }
 
+    loadUserFiltered(status) {
+        eventServices.listUsers({ id: this.props.params.id, status }).then(data => {
+            this.setState({
+                filteredUser: data
+            });
+        }).catch(() => { });
+    }
+
+    buildDropdown(filtre, label) {
+        return {
+            label,
+            action: () => { if (filtre) { this.loadUserFiltered(filtre); } this.setState({ filtre: filtre, filtreLabel: label }); }
+        };
+    }
+
+    buildDropdownValues() {
+        return [
+            {
+                label: 'select.all',
+                filtre: null
+            },
+            {
+                label: 'select.validated',
+                filtre: 'VALIDATED'
+            },
+            {
+                label: 'select.awaitingEmailValidation',
+                filtre: 'AWAITING_FOR_EMAIL_VALIDATION'
+            }, {
+                label: 'select.awaitingAdminValidation',
+                filtre: 'AWAITING_FOR_ADMIN_VALIDATION'
+            }, {
+                label: 'select.refused',
+                filtre: 'REFUSED'
+            }
+        ].map(({ label, filtre }) => this.buildDropdown(filtre, label));
+    }
+
     render() {
-        const toDisplayUser = this.props.userList
+        const toDisplayUser = (this.state.filtre ? this.state.filteredUser || [] : this.props.userList)
             .map(elt => ({
                 logoUrl: elt.logo,
                 LineContent: <UserLine {...elt} />,
@@ -138,6 +180,10 @@ class DetailEventView extends React.Component {
                     {this.isRegistered() && <div>
                         <Button label={'label.unregister'} onClick={this.doUnregister} />
                     </div>}
+                    <div className='filter-container'>
+                        <Dropdown position='left' iconProps={{ name: 'filter_list' }} operationList={this.buildDropdownValues()} />
+                        <div>{`Filtre: ${translate(this.state.filtreLabel)}`}</div>
+                    </div>
                 </div>
 
                 <List data-dd='empilable' dataList={toDisplayUser} isWrapping />

@@ -16,9 +16,7 @@
         "production": "npm run patch && better-npm-run production",
         "recette": "better-npm-run recette",
         "build": "npm run production",
-        "start": "better-npm-run webpack-dev-server-npm-focus",
-        "patch": "cp-cli ./patch/built-in-components.js ./node_modules/focus-components/list/mixin/built-in-components.js && cp-cli ./patch/menu.js ./node_modules/focus-components/components/menu/index.js && cp-cli ./patch/fetch.js ./node_modules/focus-core/network/fetch.js",
-        "postinstall": "npm run patch"
+        "start": "better-npm-run webpack-dev-server-npm-focus"
     },
     "main": "app/index.js",
     "betterScripts": {
@@ -91,17 +89,16 @@
             }
         }
     },
-    "license": " GPL-3.0",
+    "license": "GPL-3.0",
     "devDependencies": {
         "better-npm-run": "0.1.0",
         "classlist-polyfill": "1.2.0",
-        "cp-cli": "^1.1.0",
         "draft-js": "0.10.4",
         "draftjs-to-html": "0.7.6",
         "eslint-config-focus": "0.6.0",
         "eslint-import-resolver-webpack": "0.8.3",
-        "focus-components": "2.2.2",
-        "focus-core": "2.2.0",
+        "focus-components": "2.2.3-beta1",
+        "focus-core": "2.2.1-beta1",
         "focus-devtools": "0.4.1",
         "font-awesome": "4.7.0",
         "html-to-draftjs": "1.0.1",

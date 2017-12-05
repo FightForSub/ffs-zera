@@ -36,6 +36,7 @@ export default {
         event: 'Évènement'
     },
     select: {
+        all: 'Tous',
         unSelected: '-',
         oui: 'Oui',
         non: 'Non',

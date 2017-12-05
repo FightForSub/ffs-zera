@@ -52,7 +52,7 @@ class StatsView extends React.Component {
 
     componentWillMount() {
         const eventId = this.props.params.id;
-        eventServices.listUsers(eventId).then(res => this.setState({ participants: res }));
+        eventServices.listUsers({ id: eventId, status: 'VALIDATED' }).then(res => this.setState({ participants: res }));
         this.loadData();
         this.eventWs = new FFSWebSocket(this.props.params.id, (data, topics) => this.onWsUpdate(data));
     }

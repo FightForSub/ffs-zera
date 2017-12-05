@@ -55,6 +55,10 @@ export default {
         home: 'Fight for Sub'
     },
     label: {
+        confirmationSuccess: "Votre inscription a bien été confirmée",
+        confirmInscription: "Confirmer votre inscription",
+        loginPls: "Merci de bien vouloir vous connecter pour confirmer votre inscription",
+        confirmationEvent: 'Confirmation de votre inscription',
         joinEvent: 'Rejoindre un évènement',
         registerSuccess: 'Vous avez bien été inscrit',
         confirmEventUnregister: 'Êtes-vous sur de vouloir vous désinscrire ?',

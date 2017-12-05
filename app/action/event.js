@@ -110,6 +110,12 @@ export default {
         shouldDumpStoreOnActionCall: true,
         status: 'saved'
     }),
+    confirmEvent: actionBuilder({
+        node: 'eventUserRegistration',
+        service: eventServices.confirmEvent,
+        shouldDumpStoreOnActionCall: true,
+        status: 'saved'
+    }),
     unregisterFromEvent: actionBuilder({
         node: 'eventUserRegistration',
         service: eventServices.unregisterFromEvent,

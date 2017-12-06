@@ -6,6 +6,7 @@ import { dispatchData } from 'focus-core/dispatcher';
 import StatsView from '@/views/stats';
 import LiveView from '@/views/live/new-live';
 import DetailView from '@/views/events/detail';
+import ConfirmationView from '@/views/confirmation'
 
 import InscriptionView from '@/views/inscription';
 import EventsView from '@/views/events';
@@ -46,6 +47,10 @@ const routes = [
     {
         path: 'inscription',
         component: () => (<InscriptionView hasLoad={false} isEdit />)
+    },
+    {
+        path: 'confirmation/:id/:token',
+        component: ({ params }) => <ConfirmationView id={params.id} token={params.token} />
     },
     {
         path: ':token',

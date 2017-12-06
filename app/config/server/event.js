@@ -73,6 +73,10 @@ export default apiDriverBuilder({
         url: apiRoot + 'event/${id}/register',
         method: 'POST'
     },
+    confirmEvent: {
+        url: apiRoot + 'event/${id}/register',
+        method: 'PUT'
+    },
     unregisterFromEvent: {
         url: apiRoot + 'event/${id}/register',
         method: 'DELETE'

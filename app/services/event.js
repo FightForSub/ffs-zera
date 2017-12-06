@@ -83,6 +83,9 @@ export default {
     registerToEvent(id) {
         return eventApiDriver.registerToEvent({ id });
     },
+    confirmEvent({ id, token }) {
+        return eventApiDriver.confirmEvent({ id }, { key: token });
+    },
     unregisterFromEvent(id) {
         return eventApiDriver.unregisterFromEvent({ id });
     }

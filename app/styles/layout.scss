@@ -383,3 +383,16 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 [data-focus="snackbar-message-center"][data-message-type="success"] {
     background-color: #4a9433;
 }
+
+.filter-container {
+    display: flex;
+    align-items: center;
+}
+
+.button-confirm-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+}

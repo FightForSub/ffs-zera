@@ -5,6 +5,7 @@ import { dispatchData } from 'focus-core/dispatcher';
 import localForage from 'localforage';
 import { translate } from 'focus-core/translation';
 import fetch from 'focus-core/network/fetch';
+import { navigate } from '@/utilities/router';
 
 @connectToStore([{
     store: UserStore,
@@ -19,6 +20,7 @@ class UserInfos extends React.Component {
         }
         localForage.clear();
         dispatchData('profile', null);
+        navigate('home');
     }
 
     render() {

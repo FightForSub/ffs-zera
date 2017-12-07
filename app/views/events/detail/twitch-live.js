@@ -1,18 +1,19 @@
 import React from 'react';
 import Overlay from './overlay';
 import buildQueryString from '@/utilities/build-query-string';
-
+import { throttle } from 'lodash/function';
 class TwitchLive extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = { showChat: true };
         this.closeOnEscape = this.closeOnEscape.bind(this);
+        this.handleResize = this.handleResize.bind(this);
+        this.throttledResize = throttle(this.handleResize, 100);
+        window.addEventListener('resize', this.throttledResize);
     }
 
     componentWillMount() {
-        console.log(document, document.documentElement, document.documentElement.requestFullscreen);
-
         if (document.documentElement.requestFullscreen) {
             document.documentElement.requestFullscreen();
         } else if (document.documentElement.webkitRequestFullscreen) {
@@ -36,11 +37,14 @@ class TwitchLive extends React.Component {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
+        window.removeEventListener('resize', this.throttledResize);
+    }
 
+    handleResize() {
+        this.forceUpdate();
     }
 
     closeOnEscape(evt) {
-        console.log('KEY', evt.key, evt.keyCode);
         if (evt.key === 'Escape') {
             evt.preventDefault();
             evt.stopPropagation();
@@ -62,19 +66,13 @@ class TwitchLive extends React.Component {
         const params = {
             darkpopout: true,
             'te-theme': 'dark'
-            // player: 'twitch_everywhere'
         };
         return `https://www.twitch.tv/embed/${channel}/chat?${buildQueryString(params)}`
     }
 
 
     render() {
-        //https://player.twitch.tv/?allowfullscreen=false&playsinline&player=twitch_everywhere&targetOrigin=https%3A%2F%2Fembed.twitch.tv&channel=zerator
-        //https://www.twitch.tv/embed/zerator/chat?darkpopout=true&te-theme=dark&origin=https%3A%2F%2Fembed.twitch.tv
-        // <TwitchEmbed channel={this.props.channel} width='100%' height='100%' />
-        // <iframe src={this.buildVideoUrl(this.props.channel)} />
-        // <iframe src={this.buildChatUrl(this.props.channel)} />
-
+        const shouldRenderChat = document.documentElement.clientWidth >= 720;
         return (
             <div className='twitch-popin' data-focus='popin' data-type='from-right'>
                 <Overlay show clickHandler={() => { }} >
@@ -84,11 +82,11 @@ class TwitchLive extends React.Component {
                         </div>
                         <div className='live-iframe-container'>
                             <div className='twitch-header'>
-                                <i className='material-icons' onClick={() => this.setState({ showChat: !this.state.showChat })} data-focus='popin-window-chat'>chat</i>
+                                {shouldRenderChat && <i className='material-icons' onClick={() => this.setState({ showChat: !this.state.showChat })} data-focus='popin-window-chat'>chat</i>}
                                 <i className='material-icons' onClick={() => this.props.onPopinClose()} data-focus='popin-window-close'>close</i>
                             </div>
                             <iframe className='video' src={this.buildVideoUrl(this.props.channel)} />
-                            {this.state.showChat && <iframe className='chat' src={this.buildChatUrl(this.props.channel)} />}
+                            {shouldRenderChat && this.state.showChat && <iframe className='chat' src={this.buildChatUrl(this.props.channel)} />}
                         </div>
                     </div>
                 </Overlay>

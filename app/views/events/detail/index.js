@@ -220,8 +220,8 @@ class DetailEventView extends React.Component {
         let isEligible = !reservedToAffiliates && !reservedToPartners;
         isEligible |= reservedToAffiliates && broadcasterType === 'affiliate';
         isEligible |= reservedToPartners && broadcasterType === 'partner';
-
-        return isEligible && (minimumFollowers <= myFollowers && minimumViews <= myViews);
+        isEligible &= (minimumFollowers <= myFollowers && minimumViews <= myViews);
+        return !!isEligible;
     }
 
     render() {

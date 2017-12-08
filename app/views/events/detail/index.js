@@ -45,7 +45,9 @@ class DetailEventView extends React.Component {
             filtreLabel: 'select.all',
             filtre: null,
             triLabel: 'user.views',
-            tri: 'views'
+            tri: 'views',
+            triLabelValidated: 'user.username',
+            triValidate: 'username'
 
         };
         this.deleteEvent = this.deleteEvent.bind(this);
@@ -64,9 +66,6 @@ class DetailEventView extends React.Component {
 
     loadData() {
         eventActions.listUsers(this.props.params.id);
-        if (this.state.filtre) {
-            this.loadUserFiltered(this.state.filtre);
-        }
     }
 
     updateState(id, isDead) {
@@ -113,9 +112,6 @@ class DetailEventView extends React.Component {
             if (EventStore.getStatusEventUserRegistration().name === 'saved') {
                 addSuccessMessage('label.registerSuccess');
                 eventActions.listUsers(this.props.params.id);
-                if (this.state.filtre) {
-                    this.loadUserFiltered(this.state.filtre);
-                }
                 return data;
             }
         });
@@ -144,25 +140,23 @@ class DetailEventView extends React.Component {
 
     }
 
-    loadUserFiltered(status) {
-        eventServices.listUsers({ id: this.props.params.id, status }).then(data => {
-            this.setState({
-                filteredUser: data
-            });
-        }).catch(() => { });
-    }
-
     buildDropdown(filtre, label) {
         return {
             label,
-            action: () => { if (filtre) { this.loadUserFiltered(filtre); } this.setState({ filtre: filtre, filtreLabel: label }); }
+            action: () => { this.setState({ filtre: filtre, filtreLabel: label }); }
         };
     }
 
-    buildSortDropdown(sort, sortLabel) {
+    buildSortDropdown(sort, sortLabel, forValidated) {
+        if (!forValidated) {
+            return {
+                label: sortLabel,
+                action: () => { this.setState({ tri: sort, triLabel: sortLabel }); }
+            };
+        }
         return {
             label: sortLabel,
-            action: () => { this.setState({ tri: sort, triLabel: sortLabel }); }
+            action: () => { this.setState({ triValidated: sort, triLabelValidated: sortLabel }); }
         };
     }
 
@@ -172,10 +166,10 @@ class DetailEventView extends React.Component {
                 label: 'select.all',
                 filtre: null
             },
-            {
-                label: 'select.validated',
-                filtre: 'VALIDATED'
-            },
+            // {
+            //     label: 'select.validated',
+            //     filtre: 'VALIDATED'
+            // },
             {
                 label: 'select.awaitingEmailValidation',
                 filtre: 'AWAITING_FOR_EMAIL_VALIDATION'
@@ -190,7 +184,7 @@ class DetailEventView extends React.Component {
     }
 
 
-    buildSortDropdownValues() {
+    buildSortDropdownValues(forValidated) {
         return [
             {
                 label: 'user.username',
@@ -204,7 +198,7 @@ class DetailEventView extends React.Component {
                 label: 'user.views',
                 sort: 'views'
             }
-        ].map(({ label, sort }) => this.buildSortDropdown(sort, label));
+        ].map(({ label, sort }) => this.buildSortDropdown(sort, label, forValidated));
     }
 
     compare(a, b, tri) {
@@ -225,9 +219,18 @@ class DetailEventView extends React.Component {
     }
 
     render() {
-        const { tri } = this.state;
+        const { tri, triValidate } = this.state;
+        const toDisplayValidatedUser = (this.props.userList || [])
+            .filter(({ status }) => status === 'VALIDATED')
+            .sort((a, b) => this.compare(a, b, triValidate))
+            .map(elt => ({
+                logoUrl: elt.logo,
+                LineContent: <UserLine {...elt} />,
+                onClick: () => this.showEditParticipant(elt.twitchId)
+            }));
 
-        const toDisplayUser = (this.state.filtre ? this.state.filteredUser || [] : this.props.userList)
+        const toDisplayUser = (this.props.userList || [])
+            .filter(({ status }) => status !== 'VALIDATED' && (!this.state.filtre || status === this.state.filtre))
             .sort((a, b) => this.compare(a, b, tri))
             .map(elt => ({
                 logoUrl: elt.logo,
@@ -265,15 +268,24 @@ class DetailEventView extends React.Component {
                     {!this.isRegistered() && this.isEligible() && <div>
                         <Button label={'label.register'} onClick={this.register} />
                     </div>}
+                </div>
+                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.validated')}</em></h4>
+                <div className='filter-container'>
+                    <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues()} />
+                    <div>{`Tri: ${translate(this.state.triLabelValidated)}`}</div>
+                </div>
+                <List data-dd='empilable' dataList={toDisplayValidatedUser} isWrapping />
+
+                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.waitingValidation')}</em></h4>
+
+                <div className='filter-container'>
                     <div className='filter-container'>
-                        <div className='filter-container'>
-                            <Dropdown position='left' iconProps={{ name: 'filter_list' }} operationList={this.buildDropdownValues()} />
-                            <div>{`Filtre: ${translate(this.state.filtreLabel)}`}</div>
-                        </div>
-                        <div className='filter-container'>
-                            <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues()} />
-                            <div>{`Tri: ${translate(this.state.triLabel)}`}</div>
-                        </div>
+                        <Dropdown position='left' iconProps={{ name: 'filter_list' }} operationList={this.buildDropdownValues()} />
+                        <div>{`Filtre: ${translate(this.state.filtreLabel)}`}</div>
+                    </div>
+                    <div className='filter-container'>
+                        <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues()} />
+                        <div>{`Tri: ${translate(this.state.triLabel)}`}</div>
                     </div>
                 </div>
 

@@ -13,3 +13,13 @@
         }
     }
 }
+
+@media only screen and (orientation:portrait) and (max-width: 720px){
+    [data-focus='popin'].twitch-popin .live-popin-container {  
+      height: 100vw;
+      width: 100vh;
+      transform: rotate(90deg) translateX(-100vw);
+      transform-origin: left bottom;  
+    }  
+}
+  

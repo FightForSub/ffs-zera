@@ -13,7 +13,7 @@
         "npm": "3.10.x"
     },
     "scripts": {
-        "production": "npm run patch && better-npm-run production",
+        "production": "better-npm-run production",
         "recette": "better-npm-run recette",
         "build": "npm run production",
         "start": "better-npm-run webpack-dev-server-npm-focus"

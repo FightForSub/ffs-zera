@@ -55,6 +55,10 @@ export default {
         home: 'Fight for Sub'
     },
     label: {
+        validated: "Validés",
+        waitingValidation: "En attente de validation",
+        notEligible: "Vous n'êtes pas éligible à cet événement.",
+        userRegistered: "Vous êtes inscrit à cet évènement",
         confirmationSuccess: "Votre inscription a bien été confirmée",
         confirmInscription: "Confirmer votre inscription",
         loginPls: "Merci de bien vouloir vous connecter pour confirmer votre inscription",
@@ -63,6 +67,7 @@ export default {
         registerSuccess: 'Vous avez bien été inscrit',
         confirmEventUnregister: 'Êtes-vous sur de vouloir vous désinscrire ?',
         unregister: 'Se désinscrire',
+        register: 'S\'inscrire',
         confirmRoundDeletion: 'Confirmez-vous la suppression du round ?',
         confirmEventDeletion: 'Confirmez-vous la suppression de l\'évènement ?',
         events: 'Évènements',

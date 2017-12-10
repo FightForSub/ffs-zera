@@ -6,6 +6,8 @@ import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
 import confirm from 'focus-core/application/confirm';
+import Dropdown from 'focus-components/components/dropdown';
+import { addSuccessMessage } from 'focus-core/message';
 
 
 import AddPopin from '@/views/events/add-popin';
@@ -15,13 +17,10 @@ import { navigate } from '@/utilities/router';
 import { isAdmin } from '@/utilities/check-rights';
 import EventStore from '@/stores/event';
 import eventActions from '@/action/event';
-import eventServices from '@/services/event';
 
 import UserPopin from './detail-user';
 import RecapEvent from './recap-event';
 import RoundListView from './round-list-view';
-import Dropdown from 'focus-components/components/dropdown';
-import { addSuccessMessage } from 'focus-core/message';
 
 @connectToStore([{
     store: EventStore,
@@ -47,7 +46,7 @@ class DetailEventView extends React.Component {
             triLabel: 'user.views',
             tri: 'views',
             triLabelValidated: 'user.username',
-            triValidate: 'username'
+            triValidated: 'username'
 
         };
         this.deleteEvent = this.deleteEvent.bind(this);
@@ -219,10 +218,10 @@ class DetailEventView extends React.Component {
     }
 
     render() {
-        const { tri, triValidate } = this.state;
+        const { tri, triValidated } = this.state;
         const toDisplayValidatedUser = (this.props.userList || [])
             .filter(({ status }) => status === 'VALIDATED')
-            .sort((a, b) => this.compare(a, b, triValidate))
+            .sort((a, b) => this.compare(a, b, triValidated))
             .map(elt => ({
                 logoUrl: elt.logo,
                 LineContent: <UserLine {...elt} />,
@@ -255,7 +254,7 @@ class DetailEventView extends React.Component {
                 </div>
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />
-                <h4 className='website-title'>{translate('label.users')}{this.props.event.status === 'OPEN' ? <em>{' - ' + translate('label.waitingValidation')}</em> : ''}</h4>
+                <h4 className='website-title'>{translate('label.users') + ` (${toDisplayValidatedUser.length + toDisplayUser.length})`}</h4>
                 {this.isRegistered() && <h5>{translate('label.userRegistered')}</h5>}
                 {!!this.props.profile.apiToken && !this.isRegistered() && !this.isEligible() && <h5>{translate('label.notEligible')}</h5>}
                 <div className='pad-bottom'>
@@ -269,14 +268,14 @@ class DetailEventView extends React.Component {
                         <Button label={'label.register'} onClick={this.register} />
                     </div>}
                 </div>
-                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.validated')}</em></h4>
+                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.validated') + ` (${toDisplayValidatedUser.length})`}</em></h4>
                 <div className='filter-container'>
-                    <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues()} />
+                    <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues(true)} />
                     <div>{`Tri: ${translate(this.state.triLabelValidated)}`}</div>
                 </div>
                 <List data-dd='empilable' dataList={toDisplayValidatedUser} isWrapping />
 
-                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.waitingValidation')}</em></h4>
+                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.waitingValidation') + ` (${toDisplayUser.length})`}</em></h4>
 
                 <div className='filter-container'>
                     <div className='filter-container'>
@@ -290,8 +289,8 @@ class DetailEventView extends React.Component {
                 </div>
 
                 <List data-dd='empilable' dataList={toDisplayUser} isWrapping />
-                <hr />
-                <RoundListView hasForm={false} noLive id={this.props.params.id} hasLoad={false} />
+                {this.props.event.status !== 'OPEN' && <hr />}
+                {this.props.event.status !== 'OPEN' && <RoundListView hasForm={false} noLive id={this.props.params.id} hasLoad={false} />}
                 {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={this.hidePopins} >
                     <AddPopin hasLoad={false} isEdit id={this.props.params.id} onSave={() => this.hidePopins(true)} />
                 </Popin>}

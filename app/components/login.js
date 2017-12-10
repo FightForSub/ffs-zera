@@ -60,7 +60,17 @@ class LoginButton extends React.Component {
         }
 
         if (token && !username) {
-            return <div className='login-container'>{'Loading'}</div>
+            return (<div className='login-container'>
+                <div className='user-infos user-infos-loading'>
+                    <div
+                        className='user-infos-image'
+                    />
+                    <div className='user-infos-name'>
+                        <div className='user-infos-name-welcome' />
+                        <div className='user-infos-name-value' />
+                    </div>
+                </div>
+            </div>)
         }
 
         return (

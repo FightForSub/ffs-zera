@@ -255,7 +255,7 @@ class DetailEventView extends React.Component {
                 </div>
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />
-                <h4 className='website-title'>{translate('label.users')}{this.props.event.status === 'OPEN' ? <em>{' - ' + translate('label.waitingValidation')}</em> : ''}</h4>
+                <h4 className='website-title'>{translate('label.users')}</h4>
                 {this.isRegistered() && <h5>{translate('label.userRegistered')}</h5>}
                 {!!this.props.profile.apiToken && !this.isRegistered() && !this.isEligible() && <h5>{translate('label.notEligible')}</h5>}
                 <div className='pad-bottom'>

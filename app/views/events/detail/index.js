@@ -6,6 +6,8 @@ import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
 import confirm from 'focus-core/application/confirm';
+import Dropdown from 'focus-components/components/dropdown';
+import { addSuccessMessage } from 'focus-core/message';
 
 
 import AddPopin from '@/views/events/add-popin';
@@ -15,13 +17,10 @@ import { navigate } from '@/utilities/router';
 import { isAdmin } from '@/utilities/check-rights';
 import EventStore from '@/stores/event';
 import eventActions from '@/action/event';
-import eventServices from '@/services/event';
 
 import UserPopin from './detail-user';
 import RecapEvent from './recap-event';
 import RoundListView from './round-list-view';
-import Dropdown from 'focus-components/components/dropdown';
-import { addSuccessMessage } from 'focus-core/message';
 
 @connectToStore([{
     store: EventStore,
@@ -47,7 +46,7 @@ class DetailEventView extends React.Component {
             triLabel: 'user.views',
             tri: 'views',
             triLabelValidated: 'user.username',
-            triValidate: 'username'
+            triValidated: 'username'
 
         };
         this.deleteEvent = this.deleteEvent.bind(this);
@@ -219,10 +218,10 @@ class DetailEventView extends React.Component {
     }
 
     render() {
-        const { tri, triValidate } = this.state;
+        const { tri, triValidated } = this.state;
         const toDisplayValidatedUser = (this.props.userList || [])
             .filter(({ status }) => status === 'VALIDATED')
-            .sort((a, b) => this.compare(a, b, triValidate))
+            .sort((a, b) => this.compare(a, b, triValidated))
             .map(elt => ({
                 logoUrl: elt.logo,
                 LineContent: <UserLine {...elt} />,

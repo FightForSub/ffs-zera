@@ -30,7 +30,18 @@ button{
         &-header{
             height: 150px;
             background-image: url('assets/img/header_pubg2.png');
+            background-position: center;
             background-size: cover;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .app-layout{
+        .app-content{
+            &-content{
+                padding: 0;
+            }
         }
     }
 }

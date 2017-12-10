@@ -271,7 +271,7 @@ class DetailEventView extends React.Component {
                 </div>
                 <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.validated')}</em></h4>
                 <div className='filter-container'>
-                    <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues()} />
+                    <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues(true)} />
                     <div>{`Tri: ${translate(this.state.triLabelValidated)}`}</div>
                 </div>
                 <List data-dd='empilable' dataList={toDisplayValidatedUser} isWrapping />

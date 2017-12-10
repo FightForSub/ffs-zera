@@ -41,7 +41,7 @@ const List = (props) => {
                                     <i className={`${avatar.className || 'material-icons'} mdl-list__item-avatar`}>{avatar.iconText}</i>
                                 }
                                 {
-                                    <i className={'mdl-list__item-avatar'} style={{ backgroundImage: logoUrl ? `url(${logoUrl})` : null, backgroundSize: 'contain' }} />
+                                    <img className={'mdl-list__item-avatar'} src={logoUrl ? logoUrl : undefined} />
                                 }
                                 <span>
                                     {LineContent}

@@ -119,7 +119,7 @@ class EventsView extends React.Component {
 
                 <div className='pad-bottom'>
                     {!this.props.userOnly && isAdmin() && <Button label='label.createEvent' onClick={() => { dispatchData('eventDetail', null); this.setState({ displayPopin: true }) }} />}
-                    <div className='filter-container'>
+                    {this.props.eventList && this.props.eventList.length !== 0 && <div className='filter-container'>
                         <div className='filter-container'>
                             <Dropdown position='left' iconProps={{ name: 'filter_list' }} operationList={this.buildDropdownValues()} />
                             <div>{`Filtre: ${translate(this.state.filtreLabel)}`}</div>
@@ -128,7 +128,7 @@ class EventsView extends React.Component {
                             <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues()} />
                             <div>{`Tri: ${translate(this.state.triLabel)}`}</div>
                         </div>
-                    </div>
+                    </div>}
                 </div>
                 <List
                     data={filteredList}

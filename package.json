@@ -67,7 +67,7 @@
             }
         },
         "webpack-dev-server-npm-focus": {
-            "command": "focus-dev-server",
+            "command": "node ./dev-server.js",
             "env": {
                 "ANCHOR_CLASS": "demo-app",
                 "BABELIFIED_PATH": "./app",
@@ -78,8 +78,9 @@
                 "API_ROOT": "http://localhost:4000/v1/",
                 "WS_SOCKET_URL": "wss://pubsub-ffs-test.zerator.com/",
                 "BASE_URL": "/",
-                "ROOT_URL": "http://localhost:3000/",
-                "CLIENT_ID": "cs5900eog2wajva8rnvf2jtx6gazsvd",
+                "DEV_SERVER_PROTOCOL": "https",
+                "ROOT_URL": "https://localhost:3000/",
+                "CLIENT_ID": "vi0lol57q48bpz95new6bnus3fj1ix",
                 "NODE_ENV": "development",
                 "HOT_RELOAD": "true",
                 "GENERATE_HTML": "true",

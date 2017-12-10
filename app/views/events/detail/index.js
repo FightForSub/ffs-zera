@@ -255,7 +255,7 @@ class DetailEventView extends React.Component {
                 </div>
                 {this.props.params.id && <RecapEvent isEdit={false} id={this.props.params.id} />}
                 <hr />
-                <h4 className='website-title'>{translate('label.users')}</h4>
+                <h4 className='website-title'>{translate('label.users') + ` (${toDisplayValidatedUser.length + toDisplayUser.length})`}</h4>
                 {this.isRegistered() && <h5>{translate('label.userRegistered')}</h5>}
                 {!!this.props.profile.apiToken && !this.isRegistered() && !this.isEligible() && <h5>{translate('label.notEligible')}</h5>}
                 <div className='pad-bottom'>
@@ -269,14 +269,14 @@ class DetailEventView extends React.Component {
                         <Button label={'label.register'} onClick={this.register} />
                     </div>}
                 </div>
-                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.validated')}</em></h4>
+                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.validated') + ` (${toDisplayValidatedUser.length})`}</em></h4>
                 <div className='filter-container'>
                     <Dropdown position='left' iconProps={{ name: 'sort' }} operationList={this.buildSortDropdownValues(true)} />
                     <div>{`Tri: ${translate(this.state.triLabelValidated)}`}</div>
                 </div>
                 <List data-dd='empilable' dataList={toDisplayValidatedUser} isWrapping />
 
-                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.waitingValidation')}</em></h4>
+                <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.waitingValidation') + ` (${toDisplayUser.length})`}</em></h4>
 
                 <div className='filter-container'>
                     <div className='filter-container'>
@@ -290,8 +290,8 @@ class DetailEventView extends React.Component {
                 </div>
 
                 <List data-dd='empilable' dataList={toDisplayUser} isWrapping />
-                <hr />
-                <RoundListView hasForm={false} noLive id={this.props.params.id} hasLoad={false} />
+                {this.props.event.status !== 'OPEN' && <hr />}
+                {this.props.event.status !== 'OPEN' && <RoundListView hasForm={false} noLive id={this.props.params.id} hasLoad={false} />}
                 {this.state.displayPopin && isAdmin() && <Popin open type='from-right' onPopinClose={this.hidePopins} >
                     <AddPopin hasLoad={false} isEdit id={this.props.params.id} onSave={() => this.hidePopins(true)} />
                 </Popin>}

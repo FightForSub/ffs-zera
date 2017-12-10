@@ -13,6 +13,7 @@ export default {
         }
     },
     event: {
+        id: 'Id',
         reservedToAffiliates: 'Affiliés',
         reservedToPartners: 'Partenaires',
         name: 'Nom',

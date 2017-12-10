@@ -2,12 +2,12 @@ import React from 'react';
 import { component as List } from 'focus-components/list/selection/list';
 import { translate } from 'focus-core/translation';
 import Button from 'focus-components/components/button';
-import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import { dispatchData } from 'focus-core/dispatcher';
 import UserStore from 'focus-core/user/built-in-store';
 import Dropdown from 'focus-components/components/dropdown';
 
+import { component as Popin } from '@/components/popin';
 import EventStore from '@/stores/event';
 import actions from '@/action/event';
 import { navigate } from '@/utilities/router';

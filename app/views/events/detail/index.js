@@ -1,7 +1,6 @@
 import React from 'react';
 import { translate } from 'focus-core/translation';
 import Button from 'focus-components/components/button';
-import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
@@ -9,7 +8,7 @@ import confirm from 'focus-core/application/confirm';
 import Dropdown from 'focus-components/components/dropdown';
 import { addSuccessMessage } from 'focus-core/message';
 
-
+import { component as Popin } from '@/components/popin';
 import AddPopin from '@/views/events/add-popin';
 import UserLine from '@/components/user-line';
 import List from '@/components/list';

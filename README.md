@@ -1,11 +1,11 @@
 # Fight For Subs Front Sources
 
-[![master](https://travis-ci.org/Hartorn/ffz-zera.svg?branch=master)](https://travis-ci.org/Hartorn/ffs-zera)
-[![development](https://travis-ci.org/Hartorn/ffs-zera.svg?branch=development)](https://travis-ci.org/Hartorn/ffs-zera)
+[![master](https://travis-ci.org/FightForSub/ffs-zera.svg?branch=master)](https://travis-ci.org/FightForSub/ffs-zera)
+[![development](https://travis-ci.org/FightForSub/ffs-zera.svg?branch=development)](https://travis-ci.org/FightForSub/ffs-zera)
 
-[![Dependencies Status](https://david-dm.org/Hartorn/ffs-zera.svg)](https://david-dm.org/Hartorn/ffs-zera)
-[![Dev Dependencies Status](https://david-dm.org/Hartorn/ffs-zera/dev-status.svg)](https://david-dm.org/Hartorn/ffs-zera?type=dev)
-[![Peer Dependencies Status](https://david-dm.org/Hartorn/ffs-zera/peer-status.svg)](https://david-dm.org/Hartorn/ffs-zera?type=peer)
+[![Dependencies Status](https://david-dm.org/FightForSub/ffs-zera.svg)](https://david-dm.org/FightForSub/ffs-zera)
+[![Dev Dependencies Status](https://david-dm.org/FightForSub/ffs-zera/dev-status.svg)](https://david-dm.org/FightForSub/ffs-zera?type=dev)
+[![Peer Dependencies Status](https://david-dm.org/FightForSub/ffs-zera/peer-status.svg)](https://david-dm.org/FightForSub/ffs-zera?type=peer)
 [![Slack Status](https://slack.fightforsub.com/badge.svg)](https://slack.fightforsub.com)
 
 These are the FFS front sources.
@@ -23,7 +23,7 @@ You need a working installation of Node.js, version > 6.10.x
 * Clone the project
 
 ```bash
-git clone https://github.com/Hartorn/ffs-zera.git
+git clone https://github.com/FightForSub/ffs-zera.git
 ```
 
 * Switch to development branche
@@ -44,11 +44,11 @@ npm i
 npm run start
 ```
 
-And that's it ! Site can be accessed from `http://localhost:3000`
+And that's it ! Site can be accessed from `https://localhost:3000`
 
 ## Bug Report
 
-If you find any bugs, please report it on the [Issues](https://gitlab.com/Hartorn/ffz-zera/issues) page of the project
+If you find any bugs, please report it on the [Issues](https://gitlab.com/FightForSub/ffz-zera/issues) page of the project
 
 ## Join us on Slack
 

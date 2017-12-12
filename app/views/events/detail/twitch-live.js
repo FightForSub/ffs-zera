@@ -1,5 +1,5 @@
 import React from 'react';
-import Overlay from './overlay';
+import Overlay from '@/components/popin/overlay';
 import buildQueryString from '@/utilities/build-query-string';
 import { throttle } from 'lodash/function';
 class TwitchLive extends React.Component {

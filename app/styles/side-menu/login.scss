@@ -5,6 +5,30 @@
     height: 60px;
     // border-bottom: 10px solid lighten($vert-zera, 3%);
 
+    &-loading{
+        .user-infos{
+            &-image{
+                background-color: #3e822b;
+                background-image: none;
+            }
+
+            &-name{
+                &-welcome{
+                    width: 50%;
+                    height: 10pt;
+                    background-color: rgba(white, 0.2);
+                }
+                
+                &-value{
+                    width: 80%;
+                    height: 10pt;
+                    margin-top: 8px;
+                    background-color: rgba(white, 0.5);
+                }
+            }
+        }
+    }
+
     &-image{
         height: 45px;
         width: 45px;

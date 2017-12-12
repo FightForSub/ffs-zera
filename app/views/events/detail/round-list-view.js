@@ -7,9 +7,9 @@ import { translate } from 'focus-core/translation';
 
 import { mixin as formPreset } from 'focus-components/common/form';
 import Button from 'focus-components/components/button';
-import { component as Popin } from 'focus-components/application/popin';
 import connectToStore from 'focus-components/behaviours/store/connect';
 
+import { component as Popin } from '@/components/popin';
 import List from '@/components/list';
 import Tabs from '@/components/tab';
 import UserLine from '@/components/user-line';

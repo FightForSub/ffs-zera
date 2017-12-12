@@ -18,14 +18,14 @@ const Overlay = React.createClass({
     * @private
     */
     _hideBodyOverflow() {
-        document.body.style['overflow-y'] = 'hidden';
+        document.body.classList.add('overflow-y-hidden');
     },
     /**
     * Restore body overflow property
     * @private
     */
     _restoreBodyOverflow() {
-        document.body.style['overflow-y'] = 'visible';
+        document.body.classList.remove('overflow-y-hidden');
     },
     componentWillMount() {
         this._hideBodyOverflow();

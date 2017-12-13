@@ -67,7 +67,7 @@
             }
         },
         "webpack-dev-server-npm-focus": {
-            "command": "node ./dev-server.js",
+            "command": "focus-dev-server",
             "env": {
                 "ANCHOR_CLASS": "demo-app",
                 "BABELIFIED_PATH": "./app",

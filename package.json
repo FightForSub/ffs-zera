@@ -78,7 +78,6 @@
                 "API_ROOT": "http://localhost:4000/v1/",
                 "WS_SOCKET_URL": "wss://pubsub-ffs-test.zerator.com/",
                 "BASE_URL": "/",
-                "DEV_SERVER_PROTOCOL": "https",
                 "ROOT_URL": "http://localhost:3000/",
                 "CLIENT_ID": "79brz2zw9wfogw1edykq86hojhk08b",
                 "NODE_ENV": "development",

@@ -260,6 +260,10 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
     font-size: 16pt;
 }
 
+.title{
+    font-size: 14pt;
+}
+
 .green{
     color: $vert-zera;
 }
@@ -400,3 +404,13 @@ div[data-focus="field"][data-mode="consult"][data-domain="DO_DESCRIPTION"] [data
 .overflow-y-hidden {
     overflow-y: hidden;
 }
+
+.warning-box{
+    background-color: #a92e28;
+    padding: 16px;
+}
+
+.section-inner{
+    padding-left: 32px;
+}
+

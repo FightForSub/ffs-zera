@@ -11,7 +11,11 @@ export default React.createClass({
             .map((rule, i) => {
                 return <li key={i}>{rule}</li>;
             });
-        const handicaps = translate('home.paragraphs.handicaps', { returnObjects: true })
+        const handicapsT1 = translate('home.paragraphs.handicapsT1', { returnObjects: true })
+            .map((handi, i) => {
+                return <li key={i}>{handi}</li>;
+            });
+        const handicapsT2 = translate('home.paragraphs.handicapsT2', { returnObjects: true })
             .map((handi, i) => {
                 return <li key={i}>{handi}</li>;
             });
@@ -37,12 +41,26 @@ export default React.createClass({
                         <ul>
                             {rules}
                         </ul>
-                        <h3 className='subheading title-green'>
-                            {translate('home.titles.handicap')}
+                        <p className='warning-box'>
+                            {translate('home.paragraphs.vocalWarning')}
+                        </p>
+                        <h3 className='subheading title-blue'>
+                            {translate('home.titles.handicaps')}
                         </h3>
-                        <ul>
-                            {handicaps}
-                        </ul>
+                        <div className='section-inner'>
+                            <h4 className='title title-green'>
+                                {translate('home.titles.handicapT1')}
+                            </h4>
+                            <ul>
+                                {handicapsT1}
+                            </ul>
+                            <h4 className='title title-green'>
+                                {translate('home.titles.handicapT2')}
+                            </h4>
+                            <ul>
+                                {handicapsT2}
+                            </ul>
+                        </div>
                     </Section>
                 </Article>
             </div >

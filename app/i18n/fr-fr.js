@@ -150,14 +150,18 @@ export default {
             whatIsIt: 'Qu\'est-ce que Fight for Sub ?',
             rules: 'Les règles',
             basicRules: 'Les règles de base',
-            handicap: 'Handicap pour certains joueurs'
+            handicaps: 'Handicaps',
+            handicapT1: 'Tier 1 pour certains joueurs (validé avec les concernés):',
+            handicapT2: 'Tier 2 pour certains joueurs (validé avec les concernés):'
         },
         paragraphs: {
             game: 'Une centaine de streamers s\'affrontent lors d\'une compétition tous les mois sur le jeu PlayerUnknow\'s Battlegrounds, organisée et commentée par Zerator.',
             sub: 'Tous les participants de la compétition doivent s\'abonner à la chaîne Twitch du vainqueur.',
+            vocalWarning: 'Être en discussion vocal avec une autre personne est strictement interdit pendant tout le long de la partie. On vous invite donc à vous mute/couper le son du Discord dès que la partie commence, sous peine d\'avoir votre score annulé. Cependant, si vous mourrez, vous pouvez vous démute. Seulement, vous pouvez discuter qu\'avec une autre personne morte elle aussi.',
             rules: [
-                '3 parties (4 en cas d\'égalité au bout de 3 parties)',
-                'Une fois par mois',
+                '3 parties (4 en cas d\'égalité au bout de 3 game)',
+                'Début à 20h',
+                '1 fois par mois',
                 'Uniquement des streamers (affiliate ou partner)',
                 'La moyenne de votre classement dans les 3 games détermine votre place finale (ce qui veut dire que quelqu\'un qui fait TOP 3 - TOP 3 - TOP 3 gagne face à quelqu\'un qui fait TOP 1 / TOP 1 / TOP 10)',
                 'Les kills ne changent rien aux points',
@@ -166,10 +170,15 @@ export default {
                 'Si vous êtes dans le top 15, vous devez fermer votre t\'chat de stream.',
                 'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de cut le live'
             ],
-            handicaps: [
-                'Pas de stuff T2 / T3 SAUF casque T2',
-                'Pas d\'utilisation de Painkiller/Boissons/Adrenaline Syringe',
-                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants (AWM, M24, Mk14 EBR, M249, Groza, Ghillie Suit)',
+            handicapsT1: [
+                'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
+                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants(AWM, M24, Mk14 ERB)',
+                'Pas d\'utilisation ni de 8x, ni de 15x'
+            ],
+            handicapsT2: [
+                'Pas de stuff T2/T3 sauf casque T2',
+                'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
+                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants(AWM, M24, Mk14 ERB, M249, Groza, Aug A3, Ghillie Suit)',
                 'Pas d\'utilisation ni de 8x, ni de 15x'
             ]
         }

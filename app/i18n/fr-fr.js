@@ -149,38 +149,47 @@ export default {
         titles: {
             whatIsIt: 'Qu\'est-ce que Fight for Sub ?',
             rules: 'Les règles',
+            tmRules: 'Règlement du FFS #4 sur Trackmania',
             basicRules: 'Les règles de base',
             handicaps: 'Handicaps',
             handicapT1: 'Tier 1 pour certains joueurs (validé avec les concernés):',
             handicapT2: 'Tier 2 pour certains joueurs (validé avec les concernés):'
         },
         paragraphs: {
-            game: 'Une centaine de streamers s\'affrontent lors d\'une compétition tous les mois sur le jeu PlayerUnknow\'s Battlegrounds, organisée et commentée par Zerator.',
+            game: 'Une centaine de streamers s\'affrontent lors d\'une compétition tous les mois sur un jeu, organisée et commentée par Zerator.',
             sub: 'Tous les participants de la compétition doivent s\'abonner à la chaîne Twitch du vainqueur.',
-            vocalWarning: 'Être en discussion vocal avec une autre personne est strictement interdit pendant tout le long de la partie. On vous invite donc à vous mute/couper le son du Discord dès que la partie commence, sous peine d\'avoir votre score annulé. Cependant, si vous mourrez, vous pouvez vous démute. Seulement, vous pouvez discuter qu\'avec une autre personne morte elle aussi.',
+            vocalWarning: 'Être en discussion vocale avec une autre personne est strictement interdit pendant tout le long de la partie. On vous invite donc à vous mute/couper le son du Discord dès que la partie commence, sous peine d\'avoir votre score annulé. Cependant, si vous mourrez, vous pouvez vous démute. Seulement, vous pouvez discuter qu\'avec une autre personne morte elle aussi.',
             rules: [
-                '3 parties (4 en cas d\'égalité au bout de 3 game)',
-                'Début à 20h',
-                '1 fois par mois',
-                'Uniquement des streamers (affiliate ou partner)',
-                'La moyenne de votre classement dans les 3 games détermine votre place finale (ce qui veut dire que quelqu\'un qui fait TOP 3 - TOP 3 - TOP 3 gagne face à quelqu\'un qui fait TOP 1 / TOP 1 / TOP 10)',
-                'Les kills ne changent rien aux points',
-                'Mode : TPP (non FPP)',
-                'Solo only, pas de duo ni de squad',
-                'Si vous êtes dans le top 15, vous devez fermer votre t\'chat de stream.',
-                'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de cut le live'
+                'Quel que soit le jeu, l\'inscription au FFS se fait toujours de la même façon',
+                'La sélection des joueurs parmi les participants est basé exclusivement sur "nombre de vues" sur Twitch. C\'est la façon la plus équitable de sélectionner',
+                'Ainsi, si vous avez une petite communauté et que vous êtes persévérant sur Twitch, vous pouvez tout à fait avoir une chance de participer !',
+                'Vous devez vous connecter au Discord que ZeratoR vous envoie en MP quelques jours avant l\'évènement pour avoir le mot de passe du serveur',
+                'Utilisez en jeu le pseudonyme de votre chaîne Twitch'
             ],
-            handicapsT1: [
-                'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
-                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants(AWM, M24, Mk14 ERB)',
-                'Pas d\'utilisation ni de 8x, ni de 15x'
-            ],
-            handicapsT2: [
-                'Pas de stuff T2/T3 sauf casque T2',
-                'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
-                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants(AWM, M24, Mk14 ERB, M249, Groza, Aug A3, Ghillie Suit)',
-                'Pas d\'utilisation ni de 8x, ni de 15x'
+            tmRules: [
+                '2 soirées de FFS',
+                'Lancement du match à 21h précises. Si vous n\'êtes pas là, le match se lancera quand même sans vous !',
+                'Première soirée "casual" dans laquelle nous retirerons les joueurs inscrits avec un très bon niveau avec 100 participants au total (le retrait sera décidé avec les joueurs eux-mêmes + quelques personnes)',
+                'Deuxième soirée "inscriptions libres" avec 150 participants',
+                'Mode ROUND, chaque personne qui termine la course remporte des points en fonction de sa position',
+                'Quand quelqu\'un termine la course, vous avez 30 secondes pour terminer et engranger des points aussi! N\'abandonnez pas, un point peut être précieux !',
+                'Il y aura 4 maps (mise en ligne sur le serveur en ligne Trackmania [ZrT FFS Server 1&2])',
+                '1 warmup (tour de chauffe) et 5 rounds par map',
+                'Toutes les maps seront jouées 2 fois (map 1,2,3,4 puis map 1,2,3,4)',
+                'A la fin de tous les rounds, c\'est celui qui a le plus haut score qui remporte le FFS',
+                'Tous les participants doivent s\'abonner à la chaîne Twitch du vainqueur'
             ]
+            // handicapsT1: [
+            //     'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
+            //     'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants(AWM, M24, Mk14 ERB)',
+            //     'Pas d\'utilisation ni de 8x, ni de 15x'
+            // ],
+            // handicapsT2: [
+            //     'Pas de stuff T2/T3 sauf casque T2',
+            //     'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
+            //     'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants(AWM, M24, Mk14 ERB, M249, Groza, Aug A3, Ghillie Suit)',
+            //     'Pas d\'utilisation ni de 8x, ni de 15x'
+            // ]
         }
     },
     events: {

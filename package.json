@@ -117,6 +117,6 @@
         "react-fontawesome": "1.6.1",
         "react-router": "3.0.5",
         "typeface-roboto": "0.0.45",
-        "webpack-focus": "1.0.0"
+        "webpack-focus": "1.0.3"
     }
 }

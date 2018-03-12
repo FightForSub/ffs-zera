@@ -11,14 +11,18 @@ export default React.createClass({
             .map((rule, i) => {
                 return <li key={i}>{rule}</li>;
             });
-        const handicapsT1 = translate('home.paragraphs.handicapsT1', { returnObjects: true })
+        const tmRules = translate('home.paragraphs.tmRules', { returnObjects: true })
             .map((handi, i) => {
                 return <li key={i}>{handi}</li>;
             });
-        const handicapsT2 = translate('home.paragraphs.handicapsT2', { returnObjects: true })
-            .map((handi, i) => {
-                return <li key={i}>{handi}</li>;
-            });
+        // const handicapsT1 = translate('home.paragraphs.handicapsT1', { returnObjects: true })
+        //     .map((handi, i) => {
+        //         return <li key={i}>{handi}</li>;
+        //     });
+        // const handicapsT2 = translate('home.paragraphs.handicapsT2', { returnObjects: true })
+        //     .map((handi, i) => {
+        //         return <li key={i}>{handi}</li>;
+        //     });
 
         return (
             <div data-app='home-page'>
@@ -41,13 +45,21 @@ export default React.createClass({
                         <ul>
                             {rules}
                         </ul>
-                        <p className='warning-box'>
+                        {/* <p className='warning-box'>
                             {translate('home.paragraphs.vocalWarning')}
-                        </p>
+                        </p> */}
                         <h3 className='subheading title-blue'>
-                            {translate('home.titles.handicaps')}
+                            {translate('home.titles.tmRules')}
                         </h3>
                         <div className='section-inner'>
+                            <ul>
+                                {tmRules}
+                            </ul>
+                        </div>
+                        {/* <h3 className='subheading title-blue'>
+                            {translate('home.titles.handicaps')}
+                        </h3> */}
+                        {/* <div className='section-inner'>
                             <h4 className='title title-green'>
                                 {translate('home.titles.handicapT1')}
                             </h4>
@@ -60,7 +72,7 @@ export default React.createClass({
                             <ul>
                                 {handicapsT2}
                             </ul>
-                        </div>
+                        </div> */}
                     </Section>
                 </Article>
             </div >

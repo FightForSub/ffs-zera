@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
 import EventStore from '@/stores/event';
 import eventActions from '@/action/event';
 
-export default React.createClass({
+export default createReactClass({
     displayName: 'EventDetailView',
     mixins: [formPreset],
     definitionPath: 'event',

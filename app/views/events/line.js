@@ -1,7 +1,8 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import { mixin as lineMixin } from 'focus-components/list/selection/line';
 
-export default React.createClass({
+export default createReactClass({
     displayName: 'EventLineView',
     mixins: [lineMixin],
     definitionPath: 'event',

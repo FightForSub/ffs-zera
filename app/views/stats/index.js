@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import { translate } from 'focus-core/translation';
 import { component as List } from 'focus-components/list/selection/list';
 import { mixin as lineMixin } from 'focus-components/list/selection/line';
@@ -6,7 +7,7 @@ import { mixin as lineMixin } from 'focus-components/list/selection/line';
 import eventServices from '@/services/event';
 import FFSWebSocket from '@/utilities/web-socket';
 
-const LineComponent = React.createClass({
+const LineComponent = createReactClass({
     displayName: 'ResultLineView',
     mixins: [lineMixin],
     definitionPath: 'results',

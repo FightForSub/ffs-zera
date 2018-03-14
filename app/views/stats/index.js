@@ -126,12 +126,11 @@ class StatsView extends React.Component {
     }
 
     refreshResult = () => {
-        let results = this.buildResults();
         if (isAdmin()) {
-            results.forEach(line => {
-                if (line.twitchId !== undefined) {
-                     eventServices.updateUserRank({ id: this.props.params.id, idUser: line.twitchId, rank: line.rank });
-                }
+            let results = this.buildResults();
+            results.shift();
+            results.forEach(({twitchId, rank}) => {
+                eventServices.updateUserRank({id: this.props.params.id, idUser: twitchId, rank: rank});
             });
         }
     };

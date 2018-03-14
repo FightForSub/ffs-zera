@@ -3,9 +3,11 @@ import createReactClass from 'create-react-class';
 import { translate } from 'focus-core/translation';
 import { component as List } from 'focus-components/list/selection/list';
 import { mixin as lineMixin } from 'focus-components/list/selection/line';
+import {addSuccessMessage} from 'focus-core/message';
 
 import eventServices from '@/services/event';
 import FFSWebSocket from '@/utilities/web-socket';
+import {isAdmin} from "@/utilities/check-rights";
 
 const LineComponent = createReactClass({
     displayName: 'ResultLineView',
@@ -119,6 +121,14 @@ class StatsView extends React.Component {
             });
 
         toReturn.unshift(firstLine);
+
+        if (isAdmin()) {
+            toReturn.forEach(line => {
+                if (line.twitchId !== undefined) {
+                    eventServices.updateUserRank({ id: this.props.params.id, idUser: line.twitchId, rank: line.rank });
+                }
+            });
+        }
 
         return toReturn;
     }

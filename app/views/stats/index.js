@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class';
 import { translate } from 'focus-core/translation';
 import { component as List } from 'focus-components/list/selection/list';
 import { mixin as lineMixin } from 'focus-components/list/selection/line';
-import {addSuccessMessage} from 'focus-core/message';
+import Button from 'focus-components/components/button';
 
 import eventServices from '@/services/event';
 import FFSWebSocket from '@/utilities/web-socket';
@@ -122,16 +122,19 @@ class StatsView extends React.Component {
 
         toReturn.unshift(firstLine);
 
+        return toReturn;
+    }
+
+    refreshResult = () => {
+        let results = this.buildResults();
         if (isAdmin()) {
-            toReturn.forEach(line => {
+            results.forEach(line => {
                 if (line.twitchId !== undefined) {
-                    eventServices.updateUserRank({ id: this.props.params.id, idUser: line.twitchId, rank: line.rank });
+                     eventServices.updateUserRank({ id: this.props.params.id, idUser: line.twitchId, rank: line.rank });
                 }
             });
         }
-
-        return toReturn;
-    }
+    };
 
 
     /** @inheritDoc */
@@ -140,6 +143,7 @@ class StatsView extends React.Component {
         return (
             <div data-app='results-page' >
                 <h3 className='website-title'>{translate('label.results')}</h3>
+                {isAdmin() && <div><Button label='label.refreshResult' onClick={this.refreshResult} /></div>}
                 <List nbRounds={this.state.results && this.state.results.length || 0} data={results} LineComponent={LineComponent} isSelection={false} onLineClick={() => { }} />
             </div >
         );

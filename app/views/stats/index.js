@@ -3,9 +3,11 @@ import createReactClass from 'create-react-class';
 import { translate } from 'focus-core/translation';
 import { component as List } from 'focus-components/list/selection/list';
 import { mixin as lineMixin } from 'focus-components/list/selection/line';
+import Button from 'focus-components/components/button';
 
 import eventServices from '@/services/event';
 import FFSWebSocket from '@/utilities/web-socket';
+import {isAdmin} from "@/utilities/check-rights";
 
 const LineComponent = createReactClass({
     displayName: 'ResultLineView',
@@ -123,6 +125,16 @@ class StatsView extends React.Component {
         return toReturn;
     }
 
+    refreshResult = () => {
+        if (isAdmin()) {
+            let results = this.buildResults();
+            results.shift();
+            results.forEach(({twitchId, rank}) => {
+                eventServices.updateUserRank({id: this.props.params.id, idUser: twitchId, rank: rank});
+            });
+        }
+    };
+
 
     /** @inheritDoc */
     render() {
@@ -130,6 +142,7 @@ class StatsView extends React.Component {
         return (
             <div data-app='results-page' >
                 <h3 className='website-title'>{translate('label.results')}</h3>
+                {isAdmin() && <div><Button label='label.refreshResult' onClick={this.refreshResult} /></div>}
                 <List nbRounds={this.state.results && this.state.results.length || 0} data={results} LineComponent={LineComponent} isSelection={false} onLineClick={() => { }} />
             </div >
         );

@@ -121,5 +121,11 @@ export default {
         service: eventServices.unregisterFromEvent,
         shouldDumpStoreOnActionCall: true,
         status: 'saved'
+    }),
+    updateUserRank: actionBuilder({
+        node: 'eventUserRankUpdate',
+        service: eventServices.updateUserRank,
+        shouldDumpStoreOnActionCall: true,
+        status: 'saved'
     })
 }

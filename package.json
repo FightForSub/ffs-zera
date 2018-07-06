@@ -10,7 +10,7 @@
     },
     "engines": {
         "node": "6.9.x",
-        "npm": "3.10.x"
+        "npm": "6.1.x"
     },
     "scripts": {
         "production": "better-npm-run production",

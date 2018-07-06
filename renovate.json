@@ -1,5 +1,6 @@
 {
   "assignees": ["Hartorn"],
+  "baseBranches": ["development"]
   "separateMinorPatch": true,
   "rebaseStalePrs": true,
   "semanticCommits": true,

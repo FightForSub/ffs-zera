@@ -95,7 +95,7 @@
         "classlist-polyfill": "1.2.0",
         "create-react-class": "15.6.3",
         "draft-js": "0.10.5",
-        "draftjs-to-html": "0.8.3",
+        "draftjs-to-html": "0.8.4",
         "eslint-config-focus": "0.6.1",
         "eslint-import-resolver-webpack": "0.8.4",
         "focus-components": "2.3.0-beta4",

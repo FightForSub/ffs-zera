@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
 import Button from 'focus-components/components/button';
@@ -8,7 +9,7 @@ import eventActions from '@/action/event';
 import { navigate } from '@/utilities/router';
 import twitchFetch from '@/utilities/twitch-fetch';
 
-export default React.createClass({
+export default createReactClass({
     displayName: 'UserCreationView',
     mixins: [formPreset],
     definitionPath: 'user',

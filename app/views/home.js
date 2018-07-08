@@ -4,8 +4,9 @@ import { translate } from 'focus-core/translation';
 import Article from '@/components/article';
 import Section from '@/components/article/section';
 
-export default React.createClass({
-    displayName: 'HomeView',
+export default class extends React.Component {
+    static displayName = 'HomeView';
+
     render() {
         const rules = translate('home.paragraphs.rules', { returnObjects: true })
             .map((rule, i) => {
@@ -78,4 +79,4 @@ export default React.createClass({
             </div >
         );
     }
-});
+}

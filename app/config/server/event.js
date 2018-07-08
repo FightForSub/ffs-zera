@@ -80,5 +80,9 @@ export default apiDriverBuilder({
     unregisterFromEvent: {
         url: apiRoot + 'event/${id}/register',
         method: 'DELETE'
+    },
+    updateUserRank: {
+        url: apiRoot + 'event/${id}/user/${idUser}/rank',
+        method: 'PUT'
     }
 });

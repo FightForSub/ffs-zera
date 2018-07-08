@@ -1,5 +1,7 @@
 import React from 'react';
 
+import createReactClass from 'create-react-class';
+
 import { mixin as formPreset } from 'focus-components/common/form';
 import { translate } from 'focus-core/translation';
 import connectToStore from 'focus-components/behaviours/store/connect';
@@ -15,7 +17,7 @@ import Article from '@/components/article';
 import Section from '@/components/article/section';
 import NoEventItem from '@/components/events/no-event-item';
 
-const InscriptionView = React.createClass({
+const InscriptionView = createReactClass({
     displayName: 'InscriptionView',
     mixins: [formPreset],
     definitionPath: 'user',

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import createReactClass from 'create-react-class';
+
 import UserStore from 'focus-core/user/built-in-store';
 import { dispatchData } from 'focus-core/dispatcher';
 import confirm from 'focus-core/application/confirm';
@@ -28,7 +30,7 @@ export default connectToStore([{
     store: UserStore,
     properties: ['profile']
 }], () => ({ eventRoundList: EventStore.getEventRoundList(), eventRoundDetail: EventStore.getEventRoundDetail(), userList: EventStore.getEventUserList() || [] }))
-(React.createClass({
+(createReactClass({
     displayName: 'RoundListView',
     mixins: [formPreset],
     definitionPath: 'user',

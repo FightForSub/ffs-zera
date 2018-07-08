@@ -88,5 +88,8 @@ export default {
     },
     unregisterFromEvent(id) {
         return eventApiDriver.unregisterFromEvent({ id });
+    },
+    updateUserRank({ id, idUser, rank }) {
+        return eventApiDriver.updateUserRank({ id, idUser }, { rank });
     }
 }

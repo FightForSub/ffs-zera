@@ -57,28 +57,28 @@ const HomeView = () => {
                     <h3 className='subheading title-blue'>
                         {translate('home.titles.pubgRules')}
                     </h3>
-                    <div className='section-inner'>
-                        <ul>
-                            {pubgRules}
-                        </ul>
-                    </div>
+                    {/* <div className='section-inner'> */}
+                    <ul>
+                        {pubgRules}
+                    </ul>
+                    {/* </div> */}
                     <h3 className='subheading title-blue'>
                         {translate('home.titles.handicaps')}
                     </h3>
-                    <div className='section-inner'>
-                        {/* <h4 className='title title-green'>
+                    {/* <div className='section-inner'> */}
+                    {/* <h4 className='title title-green'>
                             {translate('home.titles.handicap')}
                         </h4> */}
-                        <ul>
-                            {handicaps}
-                        </ul>
-                        {/* <h4 className='title title-green'>
+                    <ul>
+                        {handicaps}
+                    </ul>
+                    {/* <h4 className='title title-green'>
                                 {translate('home.titles.handicapT2')}
                             </h4>
                             <ul>
                                 {handicapsT2}
                             </ul> */}
-                    </div>
+                    {/* </div> */}
                 </Section>
             </Article>
         </div >

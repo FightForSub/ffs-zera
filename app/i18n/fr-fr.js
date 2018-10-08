@@ -149,9 +149,9 @@ export default {
         titles: {
             whatIsIt: 'Qu\'est-ce que Fight for Sub ?',
             rules: 'Les règles',
-            tmRules: 'Règlement du FFS #4 sur Trackmania',
+            pubgRules: 'Règlement du FFS #5 sur PUBG',
             basicRules: 'Les règles de base',
-            handicaps: 'Handicaps',
+            handicaps: 'Handicaps pour les pros',
             handicapT1: 'Tier 1 pour certains joueurs (validé avec les concernés):',
             handicapT2: 'Tier 2 pour certains joueurs (validé avec les concernés):'
         },
@@ -166,18 +166,38 @@ export default {
                 'Vous devez vous connecter au Discord que ZeratoR vous envoie en MP quelques jours avant l\'évènement pour avoir le mot de passe du serveur',
                 'Utilisez en jeu le pseudonyme de votre chaîne Twitch'
             ],
-            tmRules: [
-                '2 soirées de FFS',
-                'Lancement du match à 21h précises. Si vous n\'êtes pas là, le match se lancera quand même sans vous !',
-                'Première soirée "casual" dans laquelle nous retirerons les joueurs inscrits avec un très bon niveau avec 100 participants au total (le retrait sera décidé avec les joueurs eux-mêmes + quelques personnes)',
-                'Deuxième soirée "inscriptions libres" avec 150 participants',
-                'Mode ROUND, chaque personne qui termine la course remporte des points en fonction de sa position',
-                'Quand quelqu\'un termine la course, vous avez 30 secondes pour terminer et engranger des points aussi! N\'abandonnez pas, un point peut être précieux !',
-                'Il y aura 4 maps (mise en ligne sur le serveur en ligne Trackmania [ZrT FFS Server 1&2])',
-                '1 warmup (tour de chauffe) et 5 rounds par map',
-                'Toutes les maps seront jouées 2 fois (map 1,2,3,4 puis map 1,2,3,4)',
-                'A la fin de tous les rounds, c\'est celui qui a le plus haut score qui remporte le FFS',
-                'Tous les participants doivent s\'abonner à la chaîne Twitch du vainqueur'
+            pubgRules: [
+                'Début à 20h',
+                '4 parties dans l\'ordre suivant : Erangel, Sanhok, Miramar, Sanhok ',
+                'Pas de météo dynamique, ça sera en Sunny',
+                'Shrink un peu plus rapide (voir twitter ZeratoR & Discord FFS)',
+                'La survie donne des points',
+                'LES KILLS COMPTENT ÉGALEMENT',
+                'Mode : FPP (non TPP)',
+                'Si vous êtes dans le top15, vous devez fermer votre t\'chat de stream',
+                'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de couper votre stream'
+            ],
+
+            // tmRules: [
+            //     '2 soirées de FFS',
+            //     'Lancement du match à 21h précises. Si vous n\'êtes pas là, le match se lancera quand même sans vous !',
+            //     'Première soirée "casual" dans laquelle nous retirerons les joueurs inscrits avec un très bon niveau avec 100 participants au total (le retrait sera décidé avec les joueurs eux-mêmes + quelques personnes)',
+            //     'Deuxième soirée "inscriptions libres" avec 150 participants',
+            //     'Mode ROUND, chaque personne qui termine la course remporte des points en fonction de sa position',
+            //     'Quand quelqu\'un termine la course, vous avez 30 secondes pour terminer et engranger des points aussi! N\'abandonnez pas, un point peut être précieux !',
+            //     'Il y aura 4 maps (mise en ligne sur le serveur en ligne Trackmania [ZrT FFS Server 1&2])',
+            //     '1 warmup (tour de chauffe) et 5 rounds par map',
+            //     'Toutes les maps seront jouées 2 fois (map 1,2,3,4 puis map 1,2,3,4)',
+            //     'A la fin de tous les rounds, c\'est celui qui a le plus haut score qui remporte le FFS',
+            //     'Tous les participants doivent s\'abonner à la chaîne Twitch du vainqueur'
+            // ],
+            handicaps: [
+                'Pas de stuff T2/T3 sauf casque et sac T2',
+                'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
+                'Pas le droit de loot le drop ni de loot sur quelqu\'un les objects suivants: AWM, Mk14 EBR, M249, Groza, Aug A3, Ghillie Suit',
+                'Pas d\'utilisation de 4x, 6x, 8x et de 15x',
+                'Pas d\'utilisation de poignée Vertical, Coudée, Demi et Légère',
+                'Votre barème de "kills nécessaires" est doublé'
             ]
             // handicapsT1: [
             //     'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',

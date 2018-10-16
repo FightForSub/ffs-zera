@@ -7,7 +7,7 @@ import Button from 'focus-components/components/button';
 
 import eventServices from '@/services/event';
 import FFSWebSocket from '@/utilities/web-socket';
-import {isAdmin} from "@/utilities/check-rights";
+import { isAdmin } from '@/utilities/check-rights';
 
 const LineComponent = createReactClass({
     displayName: 'ResultLineView',
@@ -99,7 +99,7 @@ class StatsView extends React.Component {
 
             this.state.results
                 .forEach((arrRes, idx) => {
-                    part['round' + (idx + 1)] = arrRes.filter(elt => elt.id === twitchId).reduce((acc, elt) => (elt.score || '?'), '?');
+                    part['round' + (idx + 1)] = arrRes.filter(elt => elt.id === twitchId).reduce((acc, elt) => (Math.abs(elt.score) || '?'), '?');
                 });
             part.total = this.state.results
                 .map((arrRes) => +((arrRes.find(elt => elt.id === twitchId) || {}).score || 0))
@@ -108,6 +108,8 @@ class StatsView extends React.Component {
             part.hiddenTotal = this.state.results
                 .map((arrRes) => +((arrRes.find(elt => elt.id === twitchId) || {}).score || 1000))
                 .reduce((acc, score) => acc + score, 0);
+
+            part.total = Math.abs(part.total);
 
             return part;
         })
@@ -129,8 +131,8 @@ class StatsView extends React.Component {
         if (isAdmin()) {
             let results = this.buildResults();
             results.shift();
-            results.forEach(({twitchId, rank}) => {
-                eventServices.updateUserRank({id: this.props.params.id, idUser: twitchId, rank: rank});
+            results.forEach(({ twitchId, rank }) => {
+                eventServices.updateUserRank({ id: this.props.params.id, idUser: twitchId, rank: rank });
             });
         }
     };

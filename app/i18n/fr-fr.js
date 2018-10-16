@@ -193,11 +193,12 @@ export default {
             // ],
             handicaps: [
                 'Pas de stuff T2/T3 sauf casque et sac T2',
-                'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
+                'Vous pouvez loot les gilets T2 sur les cadavres des joueurs',
+                'Painkiller / Boissons / Adrenaline Syringe interdits, les MedKits sont autorisés afin de vous heal à 100%',
                 'Pas le droit de loot le drop ni de loot sur quelqu\'un les objects suivants: AWM, Mk14 EBR, M249, Groza, Aug A3, Ghillie Suit',
                 'Pas d\'utilisation de 4x, 6x, 8x et de 15x',
-                'Pas d\'utilisation de poignée Vertical, Coudée, Demi et Légère',
-                'Votre barème de "kills nécessaires" est doublé'
+                'Pas d\'utilisation de poignée Verticale, Coudée, Demie et Légère',
+                'Votre barème de "kills nécessaires" est triplé (3Kills=2Points)'
             ]
             // handicapsT1: [
             //     'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',

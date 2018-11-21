@@ -150,15 +150,17 @@ export default {
             whatIsIt: 'Qu\'est-ce que Fight for Sub ?',
             rules: 'Les règles',
             pubgRules: 'Règlement du FFS #5 sur PUBG',
+            h1z1Rules: 'Règlement du FFS #6 sur H1Z1',
             basicRules: 'Les règles de base',
             handicaps: 'Handicaps pour les pros',
+            h1z1Handicaps: 'MALUS pour les joueurs PRO',
             handicapT1: 'Tier 1 pour certains joueurs (validé avec les concernés):',
             handicapT2: 'Tier 2 pour certains joueurs (validé avec les concernés):'
         },
         paragraphs: {
             game: 'Une centaine de streamers s\'affrontent lors d\'une compétition tous les mois sur un jeu, organisée et commentée par Zerator.',
             sub: 'Tous les participants de la compétition doivent s\'abonner à la chaîne Twitch du vainqueur.',
-            vocalWarning: 'Être en discussion vocale avec une autre personne est strictement interdit pendant tout le long de la partie. On vous invite donc à vous mute/couper le son du Discord dès que la partie commence, sous peine d\'avoir votre score annulé. Cependant, si vous mourrez, vous pouvez vous démute. Seulement, vous pouvez discuter qu\'avec une autre personne morte elle aussi.',
+            vocalWarning: 'Être en discussion vocale avec une autre personne est strictement interdit pendant tout le long de la partie. Nous vous invitons donc à vous mute/couper le son du Discord dès que la partie commence, sous peine d\'avoir votre score annulé. Cependant, si vous mourrez, vous pouvez vous demute. Seulement, vous pouvez discuter qu\'avec une autre personne morte elle aussi.',
             rules: [
                 'Quel que soit le jeu, l\'inscription au FFS se fait toujours de la même façon',
                 'La sélection des joueurs parmi les participants est basé exclusivement sur "nombre de vues" sur Twitch. C\'est la façon la plus équitable de sélectionner',
@@ -176,6 +178,16 @@ export default {
                 'Mode : FPP (non TPP)',
                 'Si vous êtes dans le top15, vous devez fermer votre t\'chat de stream',
                 'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de couper votre stream'
+            ],
+
+            h1z1Rules: [
+                'Début à 20h',
+                '4 parties avec la météo suivante : Jour, Jour, Nuit, Jour ',
+				'Settings shrink vanilla',
+				'La survie donne des points',
+				'LES KILLS COMPTENT ÉGALEMENT',
+				'Si vous êtes dans le top15, vous devez fermer votre t\'chat de stream.',
+				'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de couper votre stream.'
             ],
 
             // tmRules: [
@@ -199,7 +211,16 @@ export default {
                 'Pas d\'utilisation de 4x, 6x, 8x et de 15x',
                 'Pas d\'utilisation de poignée Verticale, Coudée, Demie et Légère',
                 'Votre barème de "kills nécessaires" est triplé (3Kills=2Points)'
+            ],
+
+            h1z1Handicaps: [
+            	'Pas de casque',
+				'Pas de Makeshit/Kevlar',
+				'Pas le droit d\'utiliser les véhicules',
+				'Pas de smoke',
+				'Pas de snipe'
             ]
+
             // handicapsT1: [
             //     'Pas d\'utilisation de Painkiller / Boissons / Adrenaline Syringe',
             //     'Pas le droit de loot le drop ni de loot sur quelqu\'un les objets suivants(AWM, M24, Mk14 ERB)',

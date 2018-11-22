@@ -153,9 +153,8 @@ export default {
             h1z1Rules: 'Règlement du FFS #6 sur H1Z1',
             basicRules: 'Les règles de base',
             handicaps: 'Handicaps pour les pros',
-            h1z1Handicaps: 'MALUS pour les joueurs PRO',
-            h1z1HandicapsT1: 'MALUS TIER 1',
-            h1z1HandicapsT2: 'MALUS TIER 2',
+            h1z1HandicapsT1: 'Malus tier 1',
+            h1z1HandicapsT2: 'Malus tier 2',
             handicapT1: 'Tier 1 pour certains joueurs (validé avec les concernés):',
             handicapT2: 'Tier 2 pour certains joueurs (validé avec les concernés):'
         },
@@ -185,11 +184,11 @@ export default {
             h1z1Rules: [
                 'Début à 20h',
                 '4 parties avec la météo suivante : Jour, Jour, Nuit, Jour ',
-				'Settings shrink vanilla',
-				'La survie donne des points',
-				'LES KILLS COMPTENT ÉGALEMENT',
-				'Si vous êtes dans le top15, vous devez fermer votre t\'chat de stream.',
-				'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de couper votre stream.'
+                'Settings shrink vanilla',
+                'La survie donne des points',
+                'LES KILLS COMPTENT ÉGALEMENT',
+                'Si vous êtes dans le top15, vous devez fermer votre t\'chat de stream.',
+                'Quand le gagnant sera désigné, il faudra vous abonner à lui EN LIVE devant vos viewers avant de couper votre stream.'
             ],
 
             // tmRules: [
@@ -216,17 +215,17 @@ export default {
             ],
 
             h1z1HandicapsT1: [
-            	'Pas de Makeshit/Kevlar',
-				'Pas le droit d\'utiliser les véhicules',
-				'Pas de smoke'
+                'Pas de Makeshit/Kevlar',
+                'Pas le droit d\'utiliser les véhicules',
+                'Pas de smoke'
             ],
 
             h1z1HandicapsT2: [
-            	'Droit d\'utiliser 1 seul casque pour toute la partie',
-				'Pas de Makeshit/Kevlar',
-				'Pas de véhicules',
-				'Pas de smoke',
-				'Pas de snipe',
+                'Droit d\'utiliser 1 seul casque pour toute la partie',
+                'Pas de Makeshit/Kevlar',
+                'Pas de véhicules',
+                'Pas de smoke',
+                'Pas de snipe'
             ]
 
             // handicapsT1: [

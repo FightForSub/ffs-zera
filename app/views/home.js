@@ -71,22 +71,23 @@ const HomeView = () => {
                     </ul>
                     {/* </div> */}
                     <h3 className='subheading title-blue'>
-                        {translate('home.titles.h1z1HandicapsT1')}
+                        {translate('home.titles.handicaps')}
                     </h3>
-                    <ul>
-                        {h1z1HandicapsT1}
-                    </ul>
-                    <h3 className='subheading title-blue'>
-                        {translate('home.titles.h1z1HandicapsT2')}
-                    </h3>
-                    <ul>
-                        {h1z1HandicapsT2}
-                    </ul>
-                    {/* </div> */}
+
+                    <div className='section-inner'>
+                        <h4 className='subheading title-green'>
+                            {translate('home.titles.h1z1HandicapsT1')}
+                        </h4>
+                        <ul>{h1z1HandicapsT1}</ul>
+                        <h4 className='subheading title-green'>
+                            {translate('home.titles.h1z1HandicapsT2')}
+                        </h4>
+                        <ul>{h1z1HandicapsT2}</ul>
+                    </div>
                 </Section>
             </Article>
-        </div >
+        </div>
     );
-}
+};
 
 export default HomeView;

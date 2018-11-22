@@ -154,6 +154,8 @@ export default {
             basicRules: 'Les règles de base',
             handicaps: 'Handicaps pour les pros',
             h1z1Handicaps: 'MALUS pour les joueurs PRO',
+            h1z1HandicapsT1: 'MALUS TIER 1',
+            h1z1HandicapsT2: 'MALUS TIER 2',
             handicapT1: 'Tier 1 pour certains joueurs (validé avec les concernés):',
             handicapT2: 'Tier 2 pour certains joueurs (validé avec les concernés):'
         },
@@ -213,12 +215,18 @@ export default {
                 'Votre barème de "kills nécessaires" est triplé (3Kills=2Points)'
             ],
 
-            h1z1Handicaps: [
-            	'Pas de casque',
-				'Pas de Makeshit/Kevlar',
+            h1z1HandicapsT1: [
+            	'Pas de Makeshit/Kevlar',
 				'Pas le droit d\'utiliser les véhicules',
+				'Pas de smoke'
+            ],
+
+            h1z1HandicapsT2: [
+            	'Droit d\'utiliser 1 seul casque pour toute la partie',
+				'Pas de Makeshit/Kevlar',
+				'Pas de véhicules',
 				'Pas de smoke',
-				'Pas de snipe'
+				'Pas de snipe',
             ]
 
             // handicapsT1: [

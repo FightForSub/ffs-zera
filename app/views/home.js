@@ -24,19 +24,19 @@ const HomeView = () => {
     //     .map((handi, i) => {
     //         return <li key={i}>{handi}</li>;
     //     });
-    const h1z1Handicaps = translate('home.paragraphs.h1z1Handicaps', { returnObjects: true })
+    // const h1z1Handicaps = translate('home.paragraphs.h1z1Handicaps', { returnObjects: true })
+    //     .map((handi, i) => {
+    //         return <li key={i}>{handi}</li>;
+    //     });
+
+    const h1z1HandicapsT1 = translate('home.paragraphs.h1z1HandicapsT1', { returnObjects: true })
         .map((handi, i) => {
             return <li key={i}>{handi}</li>;
         });
-
-    // const handicapsT1 = translate('home.paragraphs.handicapsT1', { returnObjects: true })
-    //     .map((handi, i) => {
-    //         return <li key={i}>{handi}</li>;
-    //     });
-    // const handicapsT2 = translate('home.paragraphs.handicapsT2', { returnObjects: true })
-    //     .map((handi, i) => {
-    //         return <li key={i}>{handi}</li>;
-    //     });
+    const h1z1HandicapsT2 = translate('home.paragraphs.h1z1HandicapsT2', { returnObjects: true })
+        .map((handi, i) => {
+            return <li key={i}>{handi}</li>;
+        });
 
     return (
         <div data-app='home-page'>
@@ -71,21 +71,17 @@ const HomeView = () => {
                     </ul>
                     {/* </div> */}
                     <h3 className='subheading title-blue'>
-                        {translate('home.titles.h1z1Handicaps')}
+                        {translate('home.titles.h1z1HandicapsT1')}
                     </h3>
-                    {/* <div className='section-inner'> */}
-                    {/* <h4 className='title title-green'>
-                            {translate('home.titles.handicap')}
-                        </h4> */}
                     <ul>
-                        {h1z1Handicaps}
+                        {h1z1HandicapsT1}
                     </ul>
-                    {/* <h4 className='title title-green'>
-                                {translate('home.titles.handicapT2')}
-                            </h4>
-                            <ul>
-                                {handicapsT2}
-                            </ul> */}
+                    <h3 className='subheading title-blue'>
+                        {translate('home.titles.h1z1HandicapsT2')}
+                    </h3>
+                    <ul>
+                        {h1z1HandicapsT2}
+                    </ul>
                     {/* </div> */}
                 </Section>
             </Article>

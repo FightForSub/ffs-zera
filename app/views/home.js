@@ -5,29 +5,14 @@ import Article from '@/components/article';
 import Section from '@/components/article/section';
 
 const HomeView = () => {
-    // static displayName = 'HomeView';
-
-    // render() {
     const rules = translate('home.paragraphs.rules', { returnObjects: true })
         .map((rule, i) => {
             return <li key={i}>{rule}</li>;
         });
-    // const pubgRules = translate('home.paragraphs.pubgRules', { returnObjects: true })
-    //     .map((handi, i) => {
-    //         return <li key={i}>{handi}</li>;
-    //     });
     const h1z1Rules = translate('home.paragraphs.h1z1Rules', { returnObjects: true })
         .map((handi, i) => {
             return <li key={i}>{handi}</li>;
         });
-    // const handicaps = translate('home.paragraphs.handicaps', { returnObjects: true })
-    //     .map((handi, i) => {
-    //         return <li key={i}>{handi}</li>;
-    //     });
-    // const h1z1Handicaps = translate('home.paragraphs.h1z1Handicaps', { returnObjects: true })
-    //     .map((handi, i) => {
-    //         return <li key={i}>{handi}</li>;
-    //     });
 
     const h1z1HandicapsT1 = translate('home.paragraphs.h1z1HandicapsT1', { returnObjects: true })
         .map((handi, i) => {

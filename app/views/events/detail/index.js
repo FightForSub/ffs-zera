@@ -13,13 +13,36 @@ import AddPopin from '@/views/events/add-popin';
 import UserLine from '@/components/user-line';
 import List from '@/components/list';
 import { navigate } from '@/utilities/router';
-import { isAdmin } from '@/utilities/check-rights';
+import { isAdmin, isModo } from '@/utilities/check-rights';
 import EventStore from '@/stores/event';
 import eventActions from '@/action/event';
 
 import UserPopin from './detail-user';
 import RecapEvent from './recap-event';
 import RoundListView from './round-list-view';
+
+/* Credits to https://github.com/kennethjiang/react-file-download */
+const downloadData = (data, filename, typeMime) => {
+    const blob = new Blob([data], {
+        type: typeMime
+    });
+    if (typeof window.navigator.msSaveBlob !== 'undefined') {
+        // IE workaround for "HTML7007: One or more blob URLs were 
+        // revoked by closing the blob for which they were created. 
+        // These URLs will no longer resolve as the data backing 
+        // the URL has been freed."
+        window.navigator.msSaveBlob(blob, filename);
+    } else {
+        const csvURL = window.URL.createObjectURL(blob);
+        const tempLink = document.createElement('a');
+        tempLink.href = csvURL;
+        tempLink.setAttribute('download', filename);
+        tempLink.setAttribute('target', '_blank');
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+    }
+};
 
 @connectToStore([{
     store: EventStore,
@@ -56,6 +79,20 @@ class DetailEventView extends React.Component {
         this.doUnregister = this.doUnregister.bind(this);
         this.register = this.register.bind(this);
         this.buildDropdownValues = this.buildDropdownValues.bind(this);
+        this.exportValidated = this.exportValidated.bind(this);
+    }
+
+    exportValidated() {
+        const header = ['Pseudo;NbVue;NbFollow;UrlTwitch'];
+        const data = (this.props.userList || [])
+            .filter(({ status }) => status === 'VALIDATED')
+            .sort((a, b) => this.compare(a, b, this.state.triValidated))
+            .map(({ username, views, followers, url }) =>
+                `${username};${views};${followers};${url}`
+            );
+        const fileName = `${this.props.event.name}.csv`.replace(/ /g, '_');
+
+        downloadData(header.concat(data).join('\n'), fileName, 'text/csv');
     }
 
     componentWillMount() {
@@ -265,6 +302,9 @@ class DetailEventView extends React.Component {
                     </div>}
                     {!this.isRegistered() && this.isEligible() && <div>
                         <Button label={'label.register'} onClick={this.register} />
+                    </div>}
+                    {isModo() && <div>
+                        <Button label={'label.exportValidated'} onClick={this.exportValidated} />
                     </div>}
                 </div>
                 <h4 className='website-title'>{translate('label.users') + ' - '}<em>{translate('label.validated') + ` (${toDisplayValidatedUser.length})`}</em></h4>

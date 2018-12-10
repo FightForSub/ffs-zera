@@ -56,6 +56,7 @@ export default {
         home: 'Fight for Sub'
     },
     label: {
+        exportValidated: "Exporter au format CSV",
         validated: "Validés",
         waitingValidation: "En attente de validation",
         notEligible: "Vous n'êtes pas éligible à cet événement.",

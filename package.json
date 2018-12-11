@@ -98,7 +98,7 @@
         "draftjs-to-html": "0.8.4",
         "eslint-config-focus": "0.6.1",
         "eslint-import-resolver-webpack": "0.10.1",
-        "focus-components": "2.3.0-beta4",
+        "focus-components": "3.3.3",
         "focus-core": "2.3.0-beta1",
         "focus-devtools": "1.0.0",
         "font-awesome": "4.7.0",

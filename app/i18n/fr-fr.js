@@ -56,6 +56,8 @@ export default {
         home: 'Fight for Sub'
     },
     label: {
+        exportScore: "Exporter les scores en CSV",
+        importScore: "Importer les scores en CSV",
         exportValidated: "Exporter au format CSV",
         validated: "Validés",
         waitingValidation: "En attente de validation",

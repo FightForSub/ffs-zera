@@ -13,6 +13,7 @@ import AddPopin from '@/views/events/add-popin';
 import UserLine from '@/components/user-line';
 import List from '@/components/list';
 import { navigate } from '@/utilities/router';
+import downloadData from '@/utilities/download-data';
 import { isAdmin, isModo } from '@/utilities/check-rights';
 import EventStore from '@/stores/event';
 import eventActions from '@/action/event';
@@ -20,29 +21,6 @@ import eventActions from '@/action/event';
 import UserPopin from './detail-user';
 import RecapEvent from './recap-event';
 import RoundListView from './round-list-view';
-
-/* Credits to https://github.com/kennethjiang/react-file-download */
-const downloadData = (data, filename, typeMime) => {
-    const blob = new Blob([data], {
-        type: typeMime
-    });
-    if (typeof window.navigator.msSaveBlob !== 'undefined') {
-        // IE workaround for "HTML7007: One or more blob URLs were 
-        // revoked by closing the blob for which they were created. 
-        // These URLs will no longer resolve as the data backing 
-        // the URL has been freed."
-        window.navigator.msSaveBlob(blob, filename);
-    } else {
-        const csvURL = window.URL.createObjectURL(blob);
-        const tempLink = document.createElement('a');
-        tempLink.href = csvURL;
-        tempLink.setAttribute('download', filename);
-        tempLink.setAttribute('target', '_blank');
-        document.body.appendChild(tempLink);
-        tempLink.click();
-        document.body.removeChild(tempLink);
-    }
-};
 
 @connectToStore([{
     store: EventStore,
@@ -90,7 +68,7 @@ class DetailEventView extends React.Component {
             .map(({ username, views, followers, url }) =>
                 `${username};${views};${followers};${url}`
             );
-        const fileName = `${this.props.event.name}.csv`.replace(/ /g, '_');
+        const fileName = `${this.props.event.name}_validated.csv`.replace(/ /g, '_');
 
         downloadData(header.concat(data).join('\n'), fileName, 'text/csv');
     }

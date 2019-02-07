@@ -164,8 +164,8 @@ export default connectToStore([{
             const text = reader.result;
             text.replace(/\r/g, '').split('\n').map(elt => elt.split(';'))
                 .forEach(([userId, , score], idx) => {
-                    // Skipping header
-                    if (idx === 0) {
+                    // Skipping header or empty line
+                    if (idx === 0 || !userId) {
                         return;
                     }
 

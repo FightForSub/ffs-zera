@@ -161,7 +161,7 @@ export default {
             mcRules: "Règlement du FFS #7 sur Minecraft",
             mcDropContent: "Contenu des drops",
             basicRules: "Les règles de base",
-            handicaps: "Handicaps pour les pros",
+            handicaps: "Malus pour les pros",
             h1z1HandicapsT1: "Malus tier 1",
             h1z1HandicapsT2: "Malus tier 2",
             handicapT1: "Tier 1 pour certains joueurs (validé avec les concernés):",
@@ -172,6 +172,8 @@ export default {
                 "Une centaine de streamers s'affrontent lors d'une compétition tous les mois sur un jeu, organisée et commentée par Zerator.",
             sub:
                 "Tous les participants de la compétition doivent s'abonner à la chaîne Twitch du vainqueur.",
+            discordWarning:
+                "Merci de ne pas quitter le serveur Discord FFS quand vous y avez déjà eu accès.",
             vocalWarning:
                 "Être en discussion vocale avec une autre personne est strictement interdit pendant tout le long de la partie. Nous vous invitons donc à vous mute/couper le son du Discord dès que la partie commence, sous peine d'avoir votre score annulé. Cependant, si vous mourrez, vous pouvez vous demute. Seulement, vous pouvez discuter qu'avec une autre personne morte elle aussi.",
             rules: [
@@ -221,7 +223,7 @@ export default {
                 "Une potion d'Absorption",
                 "Deux potions de poison lançables",
                 "Une Rotten Flesh",
-                "Un os renommmé 'BON TOUTOU'"
+                "Un os renommmé \"BON TOUTOU\""
             ],
 
             // tmRules: [

@@ -42,6 +42,10 @@ const HomeView = () => {
                     <h3 className='subheading title-blue'>
                         {translate('home.titles.basicRules')}
                     </h3>
+                    <p className='warning-box'>
+                        {translate('home.paragraphs.discordWarning')}
+                    </p>
+
                     <ul>{rules}</ul>
                     <p className='warning-box'>
                         {translate('home.paragraphs.vocalWarning')}

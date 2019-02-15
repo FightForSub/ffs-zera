@@ -193,7 +193,7 @@ export default connectToStore([{
                     < div className='pad-bottom' >
                         <div className='pad-buttons' >
                             <Button label='label.goToResults' onClick={() => { navigate(`event/${this.props.id}/results`) }} />
-                            {this.props.id && this.state.roundId && <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />}
+                            {/* {this.props.id && this.state.roundId && <Button label='label.refreshResult' onClick={() => { actions.getRoundScore({ id: this.props.id, idRound: this.state.roundId }); }} />} */}
                         </div>
                         {isAdmin() && <div><Button label='label.addRound' onClick={this.addRound} /></div>}
                         {isModo() && <div>

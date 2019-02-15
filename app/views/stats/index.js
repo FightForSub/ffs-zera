@@ -153,15 +153,15 @@ class StatsView extends React.Component {
         return toReturn;
     }
 
-    refreshResult = () => {
-        if (isAdmin()) {
-            let results = this.buildResults();
-            results.shift();
-            results.forEach(({ twitchId, rank }) => {
-                eventServices.updateUserRank({ id: this.props.params.id, idUser: twitchId, rank: rank });
-            });
-        }
-    };
+    // refreshResult = () => {
+    //     if (isAdmin()) {
+    //         let results = this.buildResults();
+    //         results.shift();
+    //         results.forEach(({ twitchId, rank }) => {
+    //             eventServices.updateUserRank({ id: this.props.params.id, idUser: twitchId, rank: rank });
+    //         });
+    //     }
+    // };
 
 
     /** @inheritDoc */
@@ -170,7 +170,7 @@ class StatsView extends React.Component {
         return (
             <div data-app='results-page' >
                 <h3 className='website-title'>{translate('label.results')}</h3>
-                {isAdmin() && <div><Button label='label.refreshResult' onClick={this.refreshResult} /></div>}
+                {/* {isAdmin() && <div><Button label='label.refreshResult' onClick={this.refreshResult} /></div>} */}
                 <List nbRounds={this.state.results && this.state.results.length || 0} data={results} LineComponent={LineComponent} isSelection={false} onLineClick={() => { }} />
             </div >
         );

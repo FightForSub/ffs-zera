@@ -23,11 +23,12 @@ export default createReactClass({
         this.action.save = this.save;
     },
     save() {
-        const { date, reference, isEdit, isLoading, eventDetail, reservedToAffiliates, reservedToPartners, minimumViews, minimumFollowers, ...dataToSave } = this.state;
+        const { date, reference, isEdit, isLoading, eventDetail, reservedToAffiliates, reservedToPartners, minimumViews, minimumFollowers, rankingType, ...dataToSave } = this.state;
         dataToSave.reserved_to_affiliates = reservedToAffiliates;
         dataToSave.reserved_to_partners = reservedToPartners;
         dataToSave.minimum_views = minimumViews;
         dataToSave.minimum_followers = minimumFollowers;
+        dataToSave.ranking_type = rankingType;
 
         if (this.props.forCreation) {
             eventActions.create(dataToSave, this);
@@ -78,6 +79,7 @@ export default createReactClass({
                     {this.fieldFor('name')}
                     {this.fieldFor('description')}
                     {this.fieldFor('status')}
+                    {this.fieldFor('rankingType')}
                     {this.fieldFor('reservedToAffiliates', this.buildBooleanProps('reservedToAffiliates'))}
                     {this.fieldFor('reservedToPartners', this.buildBooleanProps('reservedToPartners'))}
                     {this.fieldFor('minimumViews')}

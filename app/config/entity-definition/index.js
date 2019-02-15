@@ -48,6 +48,10 @@ export default {
             required: true,
             domain: 'DO_DESCRIPTION'
         },
+        rankingType: {
+            required: true,
+            domain: 'DO_RANKING_SORT_LIST'
+        },
         reservedToAffiliates: {
             required: true,
             domain: 'DO_YES_NO'

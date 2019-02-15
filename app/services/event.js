@@ -63,6 +63,9 @@ export default {
         return eventApiDriver.deleteUser({ id, idUser });
     },
     getRounds(id) {
+        return eventApiDriver.getRounds({ id }).then((elt) => Object.keys(elt));
+    },
+    getRoundsWithScore(id) {
         return eventApiDriver.getRounds({ id });
     },
     getRoundScore({ id, idRound }) {

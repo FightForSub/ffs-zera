@@ -34,6 +34,7 @@ export default createReactClass({
                     {this.fieldFor('name')}
                     {this.fieldFor('description')}
                     {this.fieldFor('status')}
+                    {this.fieldFor('rankingType')}
                     {this.fieldFor('reservedToAffiliates', this.buildBooleanProps('reservedToAffiliates'))}
                     {this.fieldFor('reservedToPartners', this.buildBooleanProps('reservedToPartners'))}
                     {this.fieldFor('minimumViews')}

@@ -61,12 +61,12 @@ class DetailEventView extends React.Component {
     }
 
     exportValidated() {
-        const header = ['Pseudo;NbVue;NbFollow;UrlTwitch'];
+        const header = ['TwitchId;Pseudo;NbVue;NbFollow;UrlTwitch'];
         const data = (this.props.userList || [])
             .filter(({ status }) => status === 'VALIDATED')
             .sort((a, b) => this.compare(a, b, this.state.triValidated))
-            .map(({ username, views, followers, url }) =>
-                `${username};${views};${followers};${url}`
+            .map(({ twitchId, username, views, followers, url }) =>
+                `${twitchId};${username};${views};${followers};${url}`
             );
         const fileName = `${this.props.event.name}_validated.csv`.replace(/ /g, '_');
 

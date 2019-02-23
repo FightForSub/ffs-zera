@@ -1,0 +1,7 @@
+[production staging]
+> 1%
+not ie < 12
+
+[development]
+last 1 chrome version
+last 1 firefox version

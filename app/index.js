@@ -32,7 +32,7 @@ const renderApplication = Component => {
         <AppContainer>
             <Component />
         </AppContainer>,
-        document.getElementsByClassName(`${__ANCHOR_CLASS__}`)[0]
+        document.getElementById('main-content-app')
     );
 }
 

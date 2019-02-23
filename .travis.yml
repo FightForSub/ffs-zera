@@ -1,8 +1,10 @@
 sudo: false
 language: node_js
 node_js:
-- 6
-- node
+  - lts/*
+  - node
+install:
+  - npm ci
 branches:
   only:
   - master

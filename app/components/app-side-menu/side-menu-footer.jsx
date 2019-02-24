@@ -1,7 +1,7 @@
 import React from 'react';
 import { translate } from 'focus-core/translation';
 
-const SideMenuFooter = () => {
+function SideMenuFooter() {
     return (
         <div className='side-menu-footer'>
             <ul>
@@ -19,6 +19,6 @@ const SideMenuFooter = () => {
             </ul>
         </div>
     );
-};
+}
 
 export default SideMenuFooter;

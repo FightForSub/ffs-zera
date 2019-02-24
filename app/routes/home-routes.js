@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import localeForage from 'localforage';
 import { addErrorMessage } from 'focus-core/message';
 import { dispatchData } from 'focus-core/dispatcher';
+
+import { UserContext } from '@/providers/user';
+import { navigate } from '@/utilities/router';
 
 import StatsView from '@/views/stats';
 import LiveView from '@/views/live/new-live';
@@ -55,26 +58,57 @@ const routes = [
     {
         path: ':token',
         indexRoute: {
-            onEnter: ({ params }, replace) => {
-                if (params.token) {
-                    const twitchResponse = params.token.split('&').reduce((acc, elt) => {
-                        const [key, value] = elt.split('=');
-                        acc[key] = value;
-                        return acc;
-                    }, {});
+            // onEnter: ({ params }, replace) => {
+            //     if (params.token) {
+            //         const twitchResponse = params.token.split('&').reduce((acc, elt) => {
+            //             const [key, value] = elt.split('=');
+            //             acc[key] = value;
+            //             return acc;
+            //         }, {});
 
-                    localeForage.getItem('nonce').then(nonce => {
-                        const { scope, access_token: token, state } = twitchResponse;
-                        if (state !== nonce) {
-                            addErrorMessage('error.twitchAuth');
-                            localeForage.clear();
-                        } else {
-                            dispatchData('profile', { scope, token });
-                            localeForage.setItem('twitch_data', { token, scope });
-                        }
-                    })
-                    replace(`${__BASE_URL__}home`);
-                }
+            //         localeForage.getItem('nonce').then(nonce => {
+            //             const { scope, access_token: token, state } = twitchResponse;
+            //             if (state !== nonce) {
+            //                 addErrorMessage('error.twitchAuth');
+            //                 localeForage.clear();
+            //             } else {
+            //                 dispatchData('profile', { scope, token });
+            //                 localeForage.setItem('twitch_data', { token, scope });
+            //             }
+            //         })
+            //         replace(`${__BASE_URL__}home`);
+            //     }
+            // },
+            component: ({ params }) => {
+                const { dispatchUser } = useContext(UserContext);
+
+                useEffect(() => {
+                    // console.log('params', params.token, profile, dispatchUser);
+                    if (params.token) {
+                        const twitchResponse = params.token.split('&').reduce((acc, elt) => {
+                            const [key, value] = elt.split('=');
+                            acc[key] = value;
+                            return acc;
+                        }, {});
+
+                        localeForage.getItem('nonce').then(nonce => {
+                            const { scope, access_token: token, state } = twitchResponse;
+                            if (state !== nonce) {
+                                dispatchUser({ type: 'reset' });
+                                addErrorMessage('error.twitchAuth');
+                                localeForage.clear();
+                            } else {
+                                dispatchUser({ type: 'merge', payload: { scope, token } });
+                                dispatchData('profile', { scope, token });
+                                localeForage.setItem('twitch_data', { token, scope });
+                            }
+                        })
+                        navigate('home')
+                        // replace(`${__BASE_URL__}home`);
+                    }
+
+                }, [params.token]);
+                return null;
             }
         }
     }

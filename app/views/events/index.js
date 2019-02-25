@@ -7,13 +7,15 @@ import { dispatchData } from 'focus-core/dispatcher';
 import UserStore from 'focus-core/user/built-in-store';
 import Dropdown from 'focus-components/components/dropdown';
 
+import ClassicList from '@/components/classic-list';
+
 import { component as Popin } from '@/components/popin';
 import EventStore from '@/stores/event';
 import actions from '@/action/event';
 import { navigate } from '@/utilities/router';
 import { isAdmin } from '@/utilities/check-rights';
 
-import LineComponent from './line';
+import LineComponent, { NewEventLineView } from './line';
 import AddPopin from './add-popin';
 import NoEvents from './no-events';
 
@@ -130,6 +132,13 @@ class EventsView extends React.Component {
                         </div>
                     </div>}
                 </div>
+
+                <ClassicList
+                    dataList={filteredList}
+                    ContentLine={NewEventLineView}
+                // LineComponent={LineComponent}
+                />
+
                 <List
                     data={filteredList}
                     LineComponent={LineComponent}

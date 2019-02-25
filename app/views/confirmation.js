@@ -12,6 +12,16 @@ import Button from 'focus-components/components/button';
 import actions from '@/action/event';
 
 
+function confirmInscription({ id, token, profile }) {
+    actions.confirmEvent({ id, token })
+        .then(() => {
+            if (EventStore.getStatus('eventUserRegistration').name === 'saved') {
+                addSuccessMessage('label.confirmationSuccess');
+                navigate('event/' + id);
+            }
+        });
+}
+
 const ConfirmationView = ({ id, token, profile }) => {
     return (
         <div data-app='live-page'>
@@ -19,7 +29,7 @@ const ConfirmationView = ({ id, token, profile }) => {
             <RecapEvent id={id} />
             <div className='button-confirm-container'>
                 {!profile.apiToken && <div>{translate('label.loginPls')}</div>}
-                {profile.apiToken && <Button label='label.confirmInscription' onClick={() => { actions.confirmEvent({ id, token }).then(() => { if (EventStore.getStatus('eventUserRegistration').name === 'saved') { addSuccessMessage('label.confirmationSuccess'); navigate('event/' + id); } }); }} />}
+                {profile.apiToken && <Button label='label.confirmInscription' onClick={() => confirmInscription({ id, token, profile })} />}
             </div>
         </div >
     );

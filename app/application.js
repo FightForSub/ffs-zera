@@ -5,16 +5,22 @@ import Routes from './routes';
 
 import { filterByRoles } from '@/utilities/router'
 import UserProvider from '@/providers/user';
+import DomainProvider from '@/providers/domain';
+import EntityProvider from '@/providers/entity';
 /**
  * Root component of the application.
  * @returns {any} the root component of the application
  */
 const Application = () => (
     <UserProvider>
-        <Router
-            history={hashHistory}
-            routes={filterByRoles(Routes)}
-        />
+        <DomainProvider>
+            <EntityProvider>
+                <Router
+                    history={hashHistory}
+                    routes={filterByRoles(Routes)}
+                />
+            </EntityProvider>
+        </DomainProvider>
     </UserProvider>
 );
 

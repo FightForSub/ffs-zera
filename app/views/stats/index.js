@@ -4,10 +4,12 @@ import { translate } from 'focus-core/translation';
 import { component as List } from 'focus-components/list/selection/list';
 import { mixin as lineMixin } from 'focus-components/list/selection/line';
 import Button from 'focus-components/components/button';
+import { flatMap } from 'lodash/collection';
 
 import eventServices from '@/services/event';
 import FFSWebSocket from '@/utilities/web-socket';
 import { isAdmin } from '@/utilities/check-rights';
+import { compare, defaultValue } from '@/utilities/ranking-sort';
 
 const LineComponent = createReactClass({
     displayName: 'ResultLineView',
@@ -39,23 +41,40 @@ class StatsView extends React.Component {
 
     loadData() {
         const eventId = this.props.params.id;
-        const servicesCall = eventServices.getRounds(eventId)
+        eventServices.getRoundsWithScore(eventId)
             .then(eventRoundList => {
-                this.setState({ eventRoundList });
-                return (eventRoundList || [])
-                    .map(elt => {
-                        return eventServices.getRoundScore({ id: eventId, idRound: elt });
+
+                const sortedRounds = Object.entries(eventRoundList)
+                    .map(([id, scores]) => [+id, scores])
+                    .sort(([a,], [b,]) => a - b);
+
+                const participants = [];
+                const ids = new Set();
+                flatMap(sortedRounds, ([, scores]) => scores)
+                    .forEach(({ id, logo, url, username }) => {
+                        if (!ids.has(id)) {
+                            ids.add(id);
+                            participants.push({
+                                id,
+                                logo,
+                                username,
+                                url
+                            });
+                        }
                     });
-            });
-        servicesCall.then(arrayPromise => Promise.all(arrayPromise))
-            .then(arrResult => {
-                this.setState({ results: arrResult });
+
+                this.setState({
+                    eventRoundList: sortedRounds.map(([id,]) => id),
+                    results: sortedRounds.map(([, scores]) => scores),
+                    participants
+                });
             });
     }
 
     componentWillMount() {
-        const eventId = this.props.params.id;
-        eventServices.listUsers({ id: eventId, status: 'VALIDATED' }).then(res => this.setState({ participants: res }));
+        // const eventId = this.props.params.id;
+        // eventServices.listUsers({ id: eventId, status: 'VALIDATED' }).then(res => this.setState({ participants: res }));
+        eventServices.loadEvent(this.props.params.id).then(res => this.setState({ event: res }));
         this.loadData();
         this.eventWs = new FFSWebSocket(this.props.params.id, (data, topics) => this.onWsUpdate(data));
     }
@@ -77,10 +96,10 @@ class StatsView extends React.Component {
                         }
                     })
                     if (!found) {
-                        const part = participants.find(elt => elt.twitchId === user_id);
+                        const part = participants.find(elt => elt.id === user_id);
                         if (part) {
-                            const { username, url, logo, twitchId } = part;
-                            roundScore.push({ id: twitchId, username, url, logo, score });
+                            const { username, url, logo, id } = part;
+                            roundScore.push({ id, username, url, logo, score });
                         }
                     }
                     return { results };
@@ -94,7 +113,14 @@ class StatsView extends React.Component {
     }
 
     buildResults() {
-        const toReturn = (this.state.participants || []).map(({ logo, twitchId, username }) => {
+        if (!this.state.event) {
+            return [];
+        }
+        const rankingType = this.state.event.rankingType;
+        const compareRanks = compare[rankingType];
+        const defaultScore = defaultValue[rankingType];
+
+        const toReturn = (this.state.participants || []).map(({ logo, id: twitchId, username }) => {
             const part = { logo, twitchId, username };
 
             this.state.results
@@ -106,14 +132,14 @@ class StatsView extends React.Component {
                 .reduce((acc, score) => acc + score, 0);
 
             part.hiddenTotal = this.state.results
-                .map((arrRes) => +((arrRes.find(elt => elt.id === twitchId) || {}).score || 1000))
+                .map((arrRes) => +((arrRes.find(elt => elt.id === twitchId) || {}).score || defaultScore))
                 .reduce((acc, score) => acc + score, 0);
 
             part.total = Math.abs(part.total);
 
             return part;
         })
-            .sort((a, b) => a.hiddenTotal - b.hiddenTotal)
+            .sort((a, b) => compareRanks(a.hiddenTotal, b.hiddenTotal))
             .map((elt, idx) => ({ ...elt, rank: idx + 1 }));
 
         const firstLine = { total: 'Total', username: 'Pseudo', rank: 'Classement' };
@@ -127,15 +153,15 @@ class StatsView extends React.Component {
         return toReturn;
     }
 
-    refreshResult = () => {
-        if (isAdmin()) {
-            let results = this.buildResults();
-            results.shift();
-            results.forEach(({ twitchId, rank }) => {
-                eventServices.updateUserRank({ id: this.props.params.id, idUser: twitchId, rank: rank });
-            });
-        }
-    };
+    // refreshResult = () => {
+    //     if (isAdmin()) {
+    //         let results = this.buildResults();
+    //         results.shift();
+    //         results.forEach(({ twitchId, rank }) => {
+    //             eventServices.updateUserRank({ id: this.props.params.id, idUser: twitchId, rank: rank });
+    //         });
+    //     }
+    // };
 
 
     /** @inheritDoc */
@@ -144,7 +170,7 @@ class StatsView extends React.Component {
         return (
             <div data-app='results-page' >
                 <h3 className='website-title'>{translate('label.results')}</h3>
-                {isAdmin() && <div><Button label='label.refreshResult' onClick={this.refreshResult} /></div>}
+                {/* {isAdmin() && <div><Button label='label.refreshResult' onClick={this.refreshResult} /></div>} */}
                 <List nbRounds={this.state.results && this.state.results.length || 0} data={results} LineComponent={LineComponent} isSelection={false} onLineClick={() => { }} />
             </div >
         );

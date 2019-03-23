@@ -7,6 +7,7 @@ import DO_STATUS_LIST from './do-status-list';
 import DO_STATUS_USER_LIST from './do-status-user-list';
 import DO_ID from './do-id';
 import DO_DESCRIPTION from './do-description';
+import DO_RANKING_SORT_LIST from './do-ranking-sort-list';
 
 export default {
     DO_COMMENT,
@@ -17,5 +18,6 @@ export default {
     DO_STATUS_LIST,
     DO_STATUS_USER_LIST,
     DO_DESCRIPTION,
-    DO_ID
+    DO_ID,
+    DO_RANKING_SORT_LIST
 };

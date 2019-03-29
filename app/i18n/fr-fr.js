@@ -188,8 +188,9 @@ export default {
       ],
       pubgRules: [
         "Début à 20h",
-        "4 parties dans l'ordre suivant : Sanhok, Vikendi, Sanhok, Vikendi  ",
+        "4 parties dans l'ordre suivant : Sanhok, Vikendi, Sanhok, Vikendi",
         "Pas de météo dynamique, ça sera en Sunny",
+        "Shrink normal",
         "La survie donne des points",
         "LES KILLS COMPTENT ÉGALEMENT",
         "Mode : FPP (non TPP)",
@@ -242,13 +243,13 @@ export default {
       //     'Tous les participants doivent s\'abonner à la chaîne Twitch du vainqueur'
       // ],
       handicaps: [
-        "Pas de stuff T2/T3 sauf casque et sac T2",
-        "Vous pouvez loot les gilets T2 sur les cadavres des joueurs",
-        "Painkiller / Boissons / Adrenaline Syringe interdits, les MedKits sont autorisés afin de vous heal à 100%",
-        "Pas le droit de loot le drop ni de loot sur quelqu'un les objects suivants: AWM, Mk14 EBR, M249, Groza, Aug A3, Ghillie Suit",
-        "Vous avez le droit au Flare Gun pour UNIQUEMENT faire un drop de vehicule",
+        "Pas de stuff T2/T3 SAUF casque et sac T2",
+        "Painkiller/Boissons/Adrenaline Syringe INTERDITS, les MedKits sont autorisés afin de vous heal à 100% Hp",
+        "Pas le droit de loot le drop ni de loot sur quelqu'un les objects suivants: AWM, Mk14 EBR, M249, OTs-14 Groza, AUG A3, Ghillie Suit",
+        "Vous avez le droit au Flare Gun pour UNIQUEMENT faire un drop de véhicule",
+        "Pas d'utilisation de Grenade à fragmentation",
         "Pas d'utilisation de 4x, 6x, 8x et de 15x",
-        "Pas d'utilisation de poignée Verticale, Coudée, Demie et Légère",
+        "Pas d'utilisation de poignée Vertical, Coudée, Demi et Légère",
         'Votre barème de "kills nécessaires" est triplé (3Kills=2Points)'
       ]
 

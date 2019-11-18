@@ -11,11 +11,6 @@ const SideMenuFooter = () => {
                         {translate('global.sidemenu.buttons.github')}
                     </a>
                 </li>
-                <li>
-                    <a href='https://status.unexpected-studio.com/' title={translate('global.sidemenu.labels.status')}>
-                        {translate('global.sidemenu.buttons.status')}
-                    </a>
-                </li>
             </ul>
         </div>
     );

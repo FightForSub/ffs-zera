@@ -126,7 +126,7 @@
     "focus-devtools": "1.0.0",
     "font-awesome": "4.7.0",
     "html-to-draftjs": "1.4.0",
-    "immutable": "3.8.2",
+    "immutable": "4.3.9",
     "localforage": "1.7.3",
     "lodash": "4.17.11",
     "material-design-icons-iconfont": "4.0.5",
